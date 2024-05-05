@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://0vli7igu6kxq"
+path="res://.godot/imported/Pixel 12.ogg-9d7f4d30fd54e074af9cd9f924c1c818.oggvorbisstr"
+
+[deps]
+
+source_file="res://Music/Pixel/Pixel 12.ogg"
+dest_files=["res://.godot/imported/Pixel 12.ogg-9d7f4d30fd54e074af9cd9f924c1c818.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

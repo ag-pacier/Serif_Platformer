@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://mdp2doa241bw"
+path="res://.godot/imported/Pixel 1.ogg-b326c91246eb459b39dec47c420a8ef6.oggvorbisstr"
+
+[deps]
+
+source_file="res://Music/Pixel/Pixel 1.ogg"
+dest_files=["res://.godot/imported/Pixel 1.ogg-b326c91246eb459b39dec47c420a8ef6.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
