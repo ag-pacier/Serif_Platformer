@@ -1,6 +1,8 @@
-[gd_scene load_steps=53 format=3 uid="uid://n1qf3a26u2r2"]
+[gd_scene load_steps=56 format=3 uid="uid://n1qf3a26u2r2"]
 
 [ext_resource type="Texture2D" uid="uid://b6aa67uvpmm37" path="res://Art/Satiro/satiro-Sheet v1.1.png" id="1_7o2o1"]
+[ext_resource type="Script" path="res://Sprites/satrio.gd" id="1_wkkd5"]
+[ext_resource type="AudioStream" uid="uid://d822junqcdwr" path="res://Sounds/FreeSFX/Retro Jump Classic 08.wav" id="3_5qow8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_05doj"]
 atlas = ExtResource("1_7o2o1")
@@ -395,9 +397,20 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="Satrio" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d0lfg"]
+radius = 8.0
+height = 22.0
+
+[node name="Satrio" type="CharacterBody2D"]
+script = ExtResource("1_wkkd5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0loxt")
-animation = &"jump"
-frame_progress = 0.418616
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_d0lfg")
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_5qow8")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
