@@ -38,6 +38,12 @@ pause={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_4="Baddies"
+2d_physics/layer_5="Satrio"
+2d_physics/layer_10="Pickups"
+
 [rendering]
 
 renderer/rendering_method="mobile"
