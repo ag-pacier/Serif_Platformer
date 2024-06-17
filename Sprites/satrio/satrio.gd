@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Satrio
 
 const SPEED = 400.0
 const JUMP_VELOCITY = -500.0
@@ -28,7 +29,7 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction * SPEED
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, (SPEED / 8))
 		
 	# Set direction based on velocity
 	if velocity.x >= 0:

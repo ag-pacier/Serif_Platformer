@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://rqkcg2rwl2ki"]
 
-[ext_resource type="PackedScene" uid="uid://n1qf3a26u2r2" path="res://Sprites/satrio.tscn" id="1_l5mey"]
+[ext_resource type="PackedScene" uid="uid://n1qf3a26u2r2" path="res://Sprites/satrio/satrio.tscn" id="1_l5mey"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_8umx7"]
 
@@ -22,3 +22,5 @@ shape = SubResource("RectangleShape2D_oy7r2")
 
 [node name="Satrio" parent="." instance=ExtResource("1_l5mey")]
 position = Vector2(159, 542)
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]

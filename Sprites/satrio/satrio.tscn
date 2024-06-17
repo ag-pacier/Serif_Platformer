@@ -1,7 +1,7 @@
 [gd_scene load_steps=56 format=3 uid="uid://n1qf3a26u2r2"]
 
 [ext_resource type="Texture2D" uid="uid://b6aa67uvpmm37" path="res://Art/Satiro/satiro-Sheet v1.1.png" id="1_7o2o1"]
-[ext_resource type="Script" path="res://Sprites/satrio.gd" id="1_wkkd5"]
+[ext_resource type="Script" path="res://Sprites/satrio/satrio.gd" id="1_wkkd5"]
 [ext_resource type="AudioStream" uid="uid://d822junqcdwr" path="res://Sounds/FreeSFX/Retro Jump Classic 08.wav" id="3_5qow8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_05doj"]
