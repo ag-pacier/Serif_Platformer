@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://rqkcg2rwl2ki"]
+[gd_scene load_steps=6 format=3 uid="uid://rqkcg2rwl2ki"]
 
 [ext_resource type="PackedScene" uid="uid://n1qf3a26u2r2" path="res://Sprites/satrio/satrio.tscn" id="1_l5mey"]
+[ext_resource type="AudioStream" uid="uid://d4msu2liccfog" path="res://Music/Pixel/Pixel 4.ogg" id="2_jd34j"]
 [ext_resource type="PackedScene" uid="uid://cgryfmkyeh460" path="res://Sprites/coin/coin.tscn" id="2_kx845"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_8umx7"]
@@ -25,6 +26,9 @@ shape = SubResource("RectangleShape2D_oy7r2")
 position = Vector2(159, 542)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_jd34j")
+volume_db = -5.622
+autoplay = true
 
 [node name="Coins" type="Node2D" parent="."]
 
