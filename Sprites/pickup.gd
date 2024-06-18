@@ -2,10 +2,9 @@ extends Area2D
 class_name Pickup
 
 @export var pickup_name: String
+@export var worth: int
 @export var pickup_sound: AudioStream
 @export var significant: bool = false
-
-signal pickup_taken(pickup_name)
 
 func _ready():
 	if $AnimatedSprite2D.sprite_frames == null:
@@ -23,7 +22,7 @@ func _on_body_entered(body):
 		# Play whatever noise is set to PickupNoise,
 		# notify that it has been picked up and make the sprite invisible
 		$PickupNoise.play()
-		pickup_taken.emit(pickup_name)
+		body.add_score(worth)
 		$AnimatedSprite2D.visible = false
 		# Disable monitoring as this will object disappears after the particles are done
 		set_deferred("monitoring", false)

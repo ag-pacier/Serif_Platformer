@@ -84,6 +84,7 @@ animations = [{
 
 [node name="Coin" instance=ExtResource("1_mcn7s")]
 pickup_name = "coin"
+worth = 30
 pickup_sound = ExtResource("2_thkdl")
 
 [node name="AnimatedSprite2D" parent="." index="1"]

@@ -12,6 +12,15 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 # Timer for briefly limiting movement during bounces and injuries
 @onready var bounce_timer: Timer = get_node("BounceTimer")
 
+
+func _ready():
+	# Set max health and score
+	$Hud.set_health(3)
+	$Hud.set_score(0)
+
+func add_score(added_score: int):
+	$Hud.increment_score(added_score)
+
 func _physics_process(delta):
 	# Make the DebugSprite invisible
 	$DebugSprite.visible = false

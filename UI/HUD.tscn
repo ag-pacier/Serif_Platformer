@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://cryvpoe0gf6fy"]
+
+[ext_resource type="Script" path="res://UI/HUD.gd" id="1_cyhru"]
+
+[node name="Hud" type="CanvasLayer"]
+script = ExtResource("1_cyhru")
+
+[node name="TopContainer" type="HBoxContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="HealthText" type="RichTextLabel" parent="TopContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+bbcode_enabled = true
+text = "Big feelings, whoa"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="ScoreText" type="RichTextLabel" parent="TopContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "Score: 0"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+text_direction = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 3
+alignment = 1
+
+[node name="HealthIncTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
