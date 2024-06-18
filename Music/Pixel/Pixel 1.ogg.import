@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Pixel 1.ogg-b326c91246eb459b39dec47c420a8ef6.
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
