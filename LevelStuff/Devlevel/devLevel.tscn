@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://rqkcg2rwl2ki"]
 
 [ext_resource type="PackedScene" uid="uid://n1qf3a26u2r2" path="res://Sprites/satrio/satrio.tscn" id="1_l5mey"]
-[ext_resource type="PackedScene" uid="uid://b8ja3qoy8ksw3" path="res://Sprites/base_pickup.tscn" id="2_5bfy4"]
+[ext_resource type="PackedScene" uid="uid://cgryfmkyeh460" path="res://Sprites/coin/coin.tscn" id="2_kx845"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_8umx7"]
 
@@ -26,5 +26,16 @@ position = Vector2(159, 542)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 
-[node name="BasePickup" parent="." instance=ExtResource("2_5bfy4")]
-position = Vector2(255, 554)
+[node name="Coins" type="Node2D" parent="."]
+
+[node name="Coin2" parent="Coins" instance=ExtResource("2_kx845")]
+position = Vector2(400, 559)
+
+[node name="Coin3" parent="Coins" instance=ExtResource("2_kx845")]
+position = Vector2(353, 557)
+
+[node name="Coin4" parent="Coins" instance=ExtResource("2_kx845")]
+position = Vector2(311, 557)
+
+[node name="Coin" parent="Coins" instance=ExtResource("2_kx845")]
+position = Vector2(232, 557)
