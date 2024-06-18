@@ -24,14 +24,15 @@ func _physics_process(delta):
 			velocity.x = move_toward(velocity.x, 0, (SPEED / 8))
 		
 	# Add the gravity with terminal velocity
-	# Modify gravity a bit if we are "wall sliding"
-	if not is_on_floor() and velocity.y < 800:
+	# Modify velocity if we are "wall sliding"
+	if not is_on_floor():
 		if is_on_wall() and velocity.y > -10 and direction != 0:
 			# In case we hit are able to latch onto a wall after falling a while
 			# check the velocity and quarter it until we are under a sliding speed
 			if velocity.y > 100:
 				velocity.y = velocity.y * .25
-		velocity.y += gravity * delta
+		if velocity.y < 800:
+			velocity.y += gravity * delta
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_wall()):
