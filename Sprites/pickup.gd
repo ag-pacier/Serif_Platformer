@@ -25,6 +25,8 @@ func _on_body_entered(body):
 		$PickupNoise.play()
 		pickup_taken.emit(pickup_name)
 		$AnimatedSprite2D.visible = false
+		# Disable monitoring as this will object disappears after the particles are done
+		set_deferred("monitoring", false)
 		if significant:
 			# If marked as significant, turn off the significant particles
 			$SignificantParticles.emitting = false
