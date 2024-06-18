@@ -13,22 +13,30 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var jump_noise: AudioStreamPlayer = get_node("JumpSound")
 
 func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor() and velocity.y < 800:
-		velocity.y += gravity * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		jump_noise.play()
-		anim_node.play("jump")
-		velocity.y = JUMP_VELOCITY
-
+	# Make the DebugSprite invisible
+	$DebugSprite.visible = false
 	# Get the input direction and handle the movement/deceleration.
 	var direction = Input.get_axis("left", "right")
 	if direction:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, (SPEED / 8))
+		
+	# Add the gravity with terminal velocity
+	# Modify gravity a bit if we are "wall sliding"
+	if not is_on_floor() and velocity.y < 800:
+		if is_on_wall() and velocity.y > -10 and direction != 0:
+			# In case we hit are able to latch onto a wall after falling a while
+			# check the velocity and quarter it until we are under a sliding speed
+			if velocity.y > 100:
+				velocity.y = velocity.y * .25
+		velocity.y += gravity * delta
+
+	# Handle jump.
+	if Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_wall()):
+		jump_noise.play()
+		anim_node.play("jump")
+		velocity.y = JUMP_VELOCITY
 		
 	# Set direction based on velocity
 	if velocity.x >= 0:
@@ -46,7 +54,10 @@ func _physics_process(delta):
 				$StepSounds.play()
 	else:
 		if velocity.y >= 0:
-			anim_node.play("fall")
+			if is_on_wall() and direction != 0:
+				anim_node.play("dodge_stop")
+			else:
+				anim_node.play("fall")
 		else:
 			anim_node.play("jump")
 	move_and_slide()

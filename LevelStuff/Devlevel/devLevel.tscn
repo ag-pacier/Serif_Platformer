@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://rqkcg2rwl2ki"]
+[gd_scene load_steps=9 format=3 uid="uid://rqkcg2rwl2ki"]
 
 [ext_resource type="PackedScene" uid="uid://n1qf3a26u2r2" path="res://Sprites/satrio/satrio.tscn" id="1_l5mey"]
 [ext_resource type="AudioStream" uid="uid://d4msu2liccfog" path="res://Music/Pixel/Pixel 4.ogg" id="2_jd34j"]
@@ -9,9 +9,19 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oy7r2"]
 size = Vector2(1151, 78.5)
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2y2e3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_46y3y"]
+size = Vector2(64, 435)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fmp24"]
+distance = 77.28
+
 [node name="DevLevel" type="Node2D"]
 
 [node name="Floor" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="Floor"]
 position = Vector2(576.125, 607)
@@ -32,6 +42,15 @@ autoplay = true
 
 [node name="Coins" type="Node2D" parent="."]
 
+[node name="Coin8" parent="Coins" instance=ExtResource("2_kx845")]
+position = Vector2(-75, 488)
+
+[node name="Coin7" parent="Coins" instance=ExtResource("2_kx845")]
+position = Vector2(-80, 290)
+
+[node name="Coin6" parent="Coins" instance=ExtResource("2_kx845")]
+position = Vector2(-78, 392)
+
 [node name="Coin2" parent="Coins" instance=ExtResource("2_kx845")]
 position = Vector2(400, 559)
 
@@ -43,3 +62,28 @@ position = Vector2(311, 557)
 
 [node name="Coin" parent="Coins" instance=ExtResource("2_kx845")]
 position = Vector2(232, 557)
+
+[node name="Coin5" parent="Coins" instance=ExtResource("2_kx845")]
+position = Vector2(-81, 181)
+
+[node name="TestWall" type="StaticBody2D" parent="."]
+position = Vector2(15, 519)
+collision_layer = 6
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="TestWall"]
+position = Vector2(18, -168.5)
+scale = Vector2(64, 433)
+texture = SubResource("PlaceholderTexture2D_2y2e3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestWall"]
+position = Vector2(18, -167.5)
+shape = SubResource("RectangleShape2D_46y3y")
+
+[node name="WorldFloor" type="StaticBody2D" parent="."]
+position = Vector2(15, 782)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldFloor"]
+shape = SubResource("WorldBoundaryShape2D_fmp24")

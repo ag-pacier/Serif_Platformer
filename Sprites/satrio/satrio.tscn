@@ -1,9 +1,10 @@
-[gd_scene load_steps=57 format=3 uid="uid://n1qf3a26u2r2"]
+[gd_scene load_steps=58 format=3 uid="uid://n1qf3a26u2r2"]
 
 [ext_resource type="Texture2D" uid="uid://b6aa67uvpmm37" path="res://Art/Satiro/satiro-Sheet v1.1.png" id="1_7o2o1"]
 [ext_resource type="Script" path="res://Sprites/satrio/satrio.gd" id="1_wkkd5"]
 [ext_resource type="AudioStream" uid="uid://d822junqcdwr" path="res://Sounds/FreeSFX/Retro Jump Classic 08.wav" id="3_5qow8"]
 [ext_resource type="AudioStream" uid="uid://dhtool1i13isv" path="res://Sounds/FreeSFX/Retro FootStep Grass 01.wav" id="4_372a0"]
+[ext_resource type="Texture2D" uid="uid://b2m2wnkvq2wna" path="res://Art/UI PixelArt Icons/UI ICONS_WHITE_pixel art_Sprite Sheet.png" id="5_yuq77"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_05doj"]
 atlas = ExtResource("1_7o2o1")
@@ -243,7 +244,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jjuu4")
 }],
-"loop": true,
+"loop": false,
 "name": &"dodge_stop",
 "speed": 10.0
 }, {
@@ -393,7 +394,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_87upf")
 }],
-"loop": true,
+"loop": false,
 "name": &"swoosh",
 "speed": 12.0
 }]
@@ -403,13 +404,19 @@ radius = 8.0
 height = 22.0
 
 [node name="Satrio" type="CharacterBody2D" groups=["MainC"]]
-collision_layer = 17
-collision_mask = 9
+collision_layer = 22
+collision_mask = 526
+floor_constant_speed = true
+platform_on_leave = 1
+platform_floor_layers = 4294966782
+platform_wall_layers = 4
 script = ExtResource("1_wkkd5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0loxt")
-animation = &"move"
+animation = &"dodge_stop"
+frame = 3
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_d0lfg")
@@ -419,6 +426,17 @@ stream = ExtResource("3_5qow8")
 
 [node name="StepSounds" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_372a0")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="DebugSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -19)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_yuq77")
+region_enabled = true
+region_rect = Rect2(1201, 418, 32, 60)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="finished" from="StepSounds" to="." method="_on_step_sounds_finished"]
