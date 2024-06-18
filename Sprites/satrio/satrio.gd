@@ -9,18 +9,19 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 # Sprite animation node
 @onready var anim_node: AnimatedSprite2D = get_node("AnimatedSprite2D")
 
-# Jump sound player
-@onready var jump_noise: AudioStreamPlayer = get_node("JumpSound")
+# Timer for briefly limiting movement during bounces and injuries
+@onready var bounce_timer: Timer = get_node("BounceTimer")
 
 func _physics_process(delta):
 	# Make the DebugSprite invisible
 	$DebugSprite.visible = false
 	# Get the input direction and handle the movement/deceleration.
 	var direction = Input.get_axis("left", "right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, (SPEED / 8))
+	if bounce_timer.is_stopped():
+		if direction:
+			velocity.x = direction * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, (SPEED / 8))
 		
 	# Add the gravity with terminal velocity
 	# Modify gravity a bit if we are "wall sliding"
@@ -34,9 +35,12 @@ func _physics_process(delta):
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_wall()):
-		jump_noise.play()
+		$JumpSound.play()
 		anim_node.play("jump")
 		velocity.y = JUMP_VELOCITY
+		if is_on_wall_only():
+			velocity.x = -50 * anim_node.scale.x
+			bounce_timer.start()
 		
 	# Set direction based on velocity
 	if velocity.x >= 0:
