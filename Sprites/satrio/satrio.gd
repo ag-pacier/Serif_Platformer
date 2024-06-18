@@ -36,18 +36,20 @@ func _physics_process(delta):
 	else:
 		anim_node.scale.x = -1
 	# make sure there is always some animation playing
+	# play appropriate sounds for movement
 	if is_on_floor():
 		if velocity.x == 0:
 			anim_node.play("default")
 		else:
 			anim_node.play("move")
+			if $StepSounds.is_playing() == false:
+				$StepSounds.play()
 	else:
 		if velocity.y >= 0:
 			anim_node.play("fall")
 		else:
 			anim_node.play("jump")
 	move_and_slide()
-
 
 func _on_animated_sprite_2d_animation_finished():
 	if velocity.y > 0:
@@ -58,3 +60,7 @@ func _on_animated_sprite_2d_animation_finished():
 		else:
 			anim_node.play("move")
 		
+
+func _on_step_sounds_finished():
+	if anim_node.animation == "move":
+		$StepSounds.play()

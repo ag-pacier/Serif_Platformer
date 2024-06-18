@@ -1,8 +1,9 @@
-[gd_scene load_steps=56 format=3 uid="uid://n1qf3a26u2r2"]
+[gd_scene load_steps=57 format=3 uid="uid://n1qf3a26u2r2"]
 
 [ext_resource type="Texture2D" uid="uid://b6aa67uvpmm37" path="res://Art/Satiro/satiro-Sheet v1.1.png" id="1_7o2o1"]
 [ext_resource type="Script" path="res://Sprites/satrio/satrio.gd" id="1_wkkd5"]
 [ext_resource type="AudioStream" uid="uid://d822junqcdwr" path="res://Sounds/FreeSFX/Retro Jump Classic 08.wav" id="3_5qow8"]
+[ext_resource type="AudioStream" uid="uid://dhtool1i13isv" path="res://Sounds/FreeSFX/Retro FootStep Grass 01.wav" id="4_372a0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_05doj"]
 atlas = ExtResource("1_7o2o1")
@@ -408,6 +409,7 @@ script = ExtResource("1_wkkd5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0loxt")
+animation = &"move"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_d0lfg")
@@ -415,4 +417,8 @@ shape = SubResource("CapsuleShape2D_d0lfg")
 [node name="JumpSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_5qow8")
 
+[node name="StepSounds" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_372a0")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="finished" from="StepSounds" to="." method="_on_step_sounds_finished"]
