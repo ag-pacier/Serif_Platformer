@@ -15,6 +15,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
 	# Set max health and score
+	$Hud.set_max_health(3)
 	$Hud.set_health(3)
 	$Hud.set_score(0)
 

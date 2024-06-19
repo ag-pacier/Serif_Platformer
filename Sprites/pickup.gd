@@ -1,10 +1,17 @@
 extends Area2D
 class_name Pickup
 
+# Name of the pickup in case it needs to be referenced
 @export var pickup_name: String
-@export var worth: int
+# How much the pickup gives the score
+@export var worth: int = 0
+# Sound played when the item is picked up
 @export var pickup_sound: AudioStream
+# Whether or not it should have *special glow*
 @export var significant: bool = false
+
+# Container if this will be displaying worth on pickup
+var is_worthy: bool = false
 
 func _ready():
 	if $AnimatedSprite2D.sprite_frames == null:
@@ -15,6 +22,10 @@ func _ready():
 		$SignificantParticles.visible = true
 	if pickup_sound != null:
 		$PickupNoise.stream = pickup_sound
+
+func _physics_process(delta):
+	if is_worthy:
+		$WorthLabel.position.y -= 15 * delta
 
 # the main character is interacting with the pickup if their body enters this object
 func _on_body_entered(body):
@@ -29,6 +40,15 @@ func _on_body_entered(body):
 		if significant:
 			# If marked as significant, turn off the significant particles
 			$SignificantParticles.emitting = false
+		elif worth != 0:
+			var worth_string: String
+			if worth < 0:
+				worth_string = "-" + str(worth)
+			else:
+				worth_string = str(worth)
+			$WorthLabel.parse_bbcode(worth_string)
+			is_worthy = true
+			$WorthLabel.visible = true
 		# emit the pickup particles
 		$PickupParticles.emitting = true
 
