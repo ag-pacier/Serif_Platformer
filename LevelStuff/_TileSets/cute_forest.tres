@@ -1,6 +1,15 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cjvnmumb8d1af"]
+[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://cjvnmumb8d1af"]
 
 [ext_resource type="Texture2D" uid="uid://bjb65sr0dyn1p" path="res://Art/cute_forest/tileset.png" id="1_aiqe5"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_mnx4o"]
+tile_data = PackedInt32Array(0, 196608, 3, 65536, 131072, 1, 131072, 131072, 1, 196608, 131072, 1, 262144, 131072, 1, 327680, 131072, 1, 393216, 131072, 1, 458752, 131072, 1, 524288, 131072, 1, 589824, 131072, 1, 1, 262144, 3, 65537, 262144, 4, 131073, 131072, 1, 196609, 131072, 1, 262145, 131072, 1, 327681, 131072, 1, 393217, 131072, 1, 458753, 131072, 1, 524289, 131072, 1, 589825, 131072, 1, 65538, 262144, 3, 131074, 262144, 4, 196610, 131072, 1, 262146, 131072, 1, 327682, 131072, 1, 393218, 131072, 1, 458754, 131072, 1, 524290, 131072, 1, 589826, 131072, 1, 131075, 262144, 3, 196611, 262144, 4, 262147, 131072, 1, 327683, 131072, 1, 393219, 131072, 1, 458755, 131072, 1, 524291, 131072, 1, 589827, 131072, 1, 196612, 262144, 3, 262148, 262144, 4, 327684, 131072, 1, 393220, 131072, 1, 458756, 131072, 1, 524292, 131072, 1, 589828, 131072, 1, 262149, 262144, 3, 327685, 262144, 4, 393221, 131072, 1, 458757, 131072, 1, 524293, 131072, 1, 589829, 131072, 1, 327686, 262144, 3, 393222, 262144, 4, 458758, 131072, 1, 524294, 131072, 1, 589830, 131072, 1, 393223, 262144, 3, 458759, 262144, 4, 524295, 131072, 1, 589831, 131072, 1, 458760, 262144, 3, 524296, 262144, 4, 589832, 131072, 1, 524297, 262144, 3, 589833, 262144, 1)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_qh7xk"]
+tile_data = PackedInt32Array(0, 196608, 1, 65536, 262144, 1, 65537, 131072, 0)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_1t5u2"]
+tile_data = PackedInt32Array(0, 131072, 0, 1, 196608, 0, 65537, 196608, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ib43l"]
 texture = ExtResource("1_aiqe5")
@@ -356,3 +365,6 @@ physics_layer_0/collision_mask = 0
 physics_layer_1/collision_layer = 4
 physics_layer_1/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_ib43l")
+pattern_0 = SubResource("TileMapPattern_mnx4o")
+pattern_1 = SubResource("TileMapPattern_qh7xk")
+pattern_2 = SubResource("TileMapPattern_1t5u2")
