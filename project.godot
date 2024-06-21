@@ -43,8 +43,9 @@ pause={
 2d_physics/layer_1="BackgroundStuff"
 2d_physics/layer_2="Floor"
 2d_physics/layer_3="Wall"
-2d_physics/layer_4="Baddies"
+2d_physics/layer_4="OneWayFloor"
 2d_physics/layer_5="Satrio"
+2d_physics/layer_7="Baddies"
 2d_physics/layer_10="Pickups"
 
 [rendering]
