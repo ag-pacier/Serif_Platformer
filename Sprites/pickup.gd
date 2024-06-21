@@ -34,6 +34,8 @@ func _on_body_entered(body):
 		# notify that it has been picked up and make the sprite invisible
 		$PickupNoise.play()
 		body.add_score(worth)
+		# Set effects that happen after this point to render above EVERYTHING
+		z_index = RenderingServer.CANVAS_ITEM_Z_MAX
 		$AnimatedSprite2D.visible = false
 		# Disable monitoring as this will object disappears after the particles are done
 		set_deferred("monitoring", false)
