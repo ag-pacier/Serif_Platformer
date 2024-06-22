@@ -3,6 +3,19 @@ extends CharacterBody2D
 const SPEED = 400.0
 const JUMP_VELOCITY = -500.0
 
+# Enum for emoting
+enum Emotion {
+	SPEECHLESS = 0,
+	SHOCK = 1,
+	CONTENT = 2,
+	JOY = 3,
+	STUNNED = 4,
+	NORMAL = 5,
+	SIGH = 6,
+	SAD = 7,
+	MAD = 8
+}
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -12,6 +25,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 # Timer for briefly limiting movement during bounces and injuries
 @onready var bounce_timer: Timer = get_node("BounceTimer")
 
+@onready var emote_sprite: AnimatedSprite2D = get_node("Emote")
 
 func _ready():
 	# Set max health and score
@@ -19,8 +33,26 @@ func _ready():
 	$Hud.set_health(3)
 	$Hud.set_score(0)
 
+## Publicly accessible method to ensure the HUD gets the message to change the
+## score
 func add_score(added_score: int):
 	$Hud.increment_score(added_score)
+
+## Publicly accessible method to elicit emotion from Satrio
+func emote(emotion: Emotion):
+	if emotion < Emotion.SPEECHLESS or emotion > Emotion.MAD:
+		emotion = Emotion.SPEECHLESS
+	emote_sprite.frame = emotion
+	emote_sprite.visible = true
+	$EmoteTimer.start()
+
+## method to control behavior of emote while visible. Uses the delta of the
+## process method it's called in
+func _emoting_now(_delta):
+	# Don't bother if the sprite is invisible
+	if emote_sprite.visible == false:
+		return
+
 
 func _physics_process(delta):
 	# Make the DebugSprite invisible
@@ -77,6 +109,8 @@ func _physics_process(delta):
 			anim_node.play("jump")
 	move_and_slide()
 
+## When an animation finishes, check to see what we should be doing and
+## ensure animation continues as it should
 func _on_animated_sprite_2d_animation_finished():
 	if velocity.y > 0:
 		anim_node.play("fall")
@@ -85,8 +119,14 @@ func _on_animated_sprite_2d_animation_finished():
 			anim_node.play("default")
 		else:
 			anim_node.play("move")
-		
 
+## When the step sound finishes, if we are still moving, play it again
 func _on_step_sounds_finished():
 	if anim_node.animation == "move":
 		$StepSounds.play()
+
+
+## When the emote timer elapses, make the emote icon invisible
+func _on_emote_timer_timeout():
+	if emote_sprite.visible == true:
+		emote_sprite.visible = false

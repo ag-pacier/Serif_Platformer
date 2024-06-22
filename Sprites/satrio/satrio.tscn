@@ -1,11 +1,83 @@
-[gd_scene load_steps=59 format=3 uid="uid://n1qf3a26u2r2"]
+[gd_scene load_steps=70 format=3 uid="uid://n1qf3a26u2r2"]
 
 [ext_resource type="Texture2D" uid="uid://b6aa67uvpmm37" path="res://Art/Satiro/satiro-Sheet v1.1.png" id="1_7o2o1"]
 [ext_resource type="Script" path="res://Sprites/satrio/satrio.gd" id="1_wkkd5"]
+[ext_resource type="Texture2D" uid="uid://cudxn7s078dcq" path="res://Art/Mini FX, Items & UI/Mini UI/Speech_Emotes (16 x 16).png" id="2_62h5s"]
 [ext_resource type="AudioStream" uid="uid://d822junqcdwr" path="res://Sounds/FreeSFX/Retro Jump Classic 08.wav" id="3_5qow8"]
 [ext_resource type="AudioStream" uid="uid://dhtool1i13isv" path="res://Sounds/FreeSFX/Retro FootStep Grass 01.wav" id="4_372a0"]
 [ext_resource type="Texture2D" uid="uid://b2m2wnkvq2wna" path="res://Art/UI PixelArt Icons/UI ICONS_WHITE_pixel art_Sprite Sheet.png" id="5_yuq77"]
 [ext_resource type="PackedScene" uid="uid://cryvpoe0gf6fy" path="res://UI/HUD.tscn" id="6_k7i8d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7t4by"]
+atlas = ExtResource("2_62h5s")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nx80h"]
+atlas = ExtResource("2_62h5s")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rs62x"]
+atlas = ExtResource("2_62h5s")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1klw1"]
+atlas = ExtResource("2_62h5s")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0m0a1"]
+atlas = ExtResource("2_62h5s")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4duqo"]
+atlas = ExtResource("2_62h5s")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aetrn"]
+atlas = ExtResource("2_62h5s")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jk0n"]
+atlas = ExtResource("2_62h5s")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kolfk"]
+atlas = ExtResource("2_62h5s")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cwycx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7t4by")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nx80h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rs62x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1klw1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0m0a1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4duqo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aetrn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jk0n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kolfk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_05doj"]
 atlas = ExtResource("1_7o2o1")
@@ -409,9 +481,14 @@ collision_layer = 22
 collision_mask = 526
 floor_constant_speed = true
 platform_on_leave = 1
-platform_floor_layers = 4294966782
+platform_floor_layers = 4294966718
 platform_wall_layers = 4
 script = ExtResource("1_wkkd5")
+
+[node name="Emote" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -20)
+sprite_frames = SubResource("SpriteFrames_cwycx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0loxt")
@@ -445,7 +522,13 @@ region_rect = Rect2(1201, 418, 32, 60)
 wait_time = 0.15
 one_shot = true
 
+[node name="EmoteTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 3.0
+one_shot = true
+
 [node name="Hud" parent="." instance=ExtResource("6_k7i8d")]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="finished" from="StepSounds" to="." method="_on_step_sounds_finished"]
+[connection signal="timeout" from="EmoteTimer" to="." method="_on_emote_timer_timeout"]
