@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c31t0m1h55ytb"]
+
+[ext_resource type="Script" path="res://LevelStuff/_trigger/trigger_base.gd" id="1_eo0xl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_21eb3"]
+size = Vector2(20, 60)
+
+[node name="TriggerBase" type="Area2D"]
+monitorable = false
+script = ExtResource("1_eo0xl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_21eb3")
+disabled = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

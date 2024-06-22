@@ -16,6 +16,10 @@ enum Emotion {
 	MAD = 8
 }
 
+# Scale and position for emote to start with
+@onready var start_scale = 0.1
+@onready var start_pos = Vector2(0, -10)
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -48,10 +52,15 @@ func emote(emotion: Emotion):
 
 ## method to control behavior of emote while visible. Uses the delta of the
 ## process method it's called in
-func _emoting_now(_delta):
+func _emoting_now(delta):
 	# Don't bother if the sprite is invisible
 	if emote_sprite.visible == false:
 		return
+	if emote_sprite.scale < Vector2(1, 1):
+		emote_sprite.scale += Vector2(.1, .1)
+		emote_sprite.position.y -= 5 * delta
+	elif emote_sprite.position.y <= -30:
+		emote_sprite.position.y += 3 * delta
 
 
 func _physics_process(delta):
@@ -108,6 +117,7 @@ func _physics_process(delta):
 		else:
 			anim_node.play("jump")
 	move_and_slide()
+	_emoting_now(delta)
 
 ## When an animation finishes, check to see what we should be doing and
 ## ensure animation continues as it should
@@ -130,3 +140,5 @@ func _on_step_sounds_finished():
 func _on_emote_timer_timeout():
 	if emote_sprite.visible == true:
 		emote_sprite.visible = false
+		emote_sprite.scale = start_scale
+		emote_sprite.position = start_pos

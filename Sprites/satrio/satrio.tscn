@@ -487,7 +487,7 @@ script = ExtResource("1_wkkd5")
 
 [node name="Emote" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(0, -20)
+position = Vector2(0, -10)
 sprite_frames = SubResource("SpriteFrames_cwycx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
