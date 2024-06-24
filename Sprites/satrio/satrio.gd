@@ -18,7 +18,7 @@ enum Emotion {
 
 # Scale and position for emote to start with
 @onready var start_scale = 0.1
-@onready var start_pos = Vector2(0, -10)
+@onready var start_pos = Vector2(0, -20)
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -42,11 +42,16 @@ func _ready():
 func add_score(added_score: int):
 	$Hud.increment_score(added_score)
 
+func trigger_action():
+	emote(Emotion.CONTENT)
+
 ## Publicly accessible method to elicit emotion from Satrio
 func emote(emotion: Emotion):
 	if emotion < Emotion.SPEECHLESS or emotion > Emotion.MAD:
 		emotion = Emotion.SPEECHLESS
 	emote_sprite.frame = emotion
+	emote_sprite.scale = Vector2(start_scale, start_scale)
+	emote_sprite.position = start_pos
 	emote_sprite.visible = true
 	$EmoteTimer.start()
 
@@ -58,9 +63,9 @@ func _emoting_now(delta):
 		return
 	if emote_sprite.scale < Vector2(1, 1):
 		emote_sprite.scale += Vector2(.1, .1)
-		emote_sprite.position.y -= 5 * delta
-	elif emote_sprite.position.y <= -30:
-		emote_sprite.position.y += 3 * delta
+		emote_sprite.position.y += 50 * delta
+	elif emote_sprite.position.y >= -30:
+		emote_sprite.position.y -= 10 * delta
 
 
 func _physics_process(delta):
@@ -138,7 +143,8 @@ func _on_step_sounds_finished():
 
 ## When the emote timer elapses, make the emote icon invisible
 func _on_emote_timer_timeout():
+	print("Emote timer timed out")
 	if emote_sprite.visible == true:
 		emote_sprite.visible = false
-		emote_sprite.scale = start_scale
+		emote_sprite.scale = Vector2(start_scale, start_scale)
 		emote_sprite.position = start_pos

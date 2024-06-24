@@ -6,6 +6,8 @@
 size = Vector2(20, 60)
 
 [node name="TriggerBase" type="Area2D"]
+collision_layer = 0
+collision_mask = 80
 monitorable = false
 script = ExtResource("1_eo0xl")
 

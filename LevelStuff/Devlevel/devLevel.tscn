@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://rqkcg2rwl2ki"]
+[gd_scene load_steps=10 format=3 uid="uid://rqkcg2rwl2ki"]
 
 [ext_resource type="PackedScene" uid="uid://n1qf3a26u2r2" path="res://Sprites/satrio/satrio.tscn" id="1_l5mey"]
 [ext_resource type="AudioStream" uid="uid://d4msu2liccfog" path="res://Music/Pixel/Pixel 4.ogg" id="2_jd34j"]
 [ext_resource type="PackedScene" uid="uid://cgryfmkyeh460" path="res://Sprites/coin/coin.tscn" id="2_kx845"]
+[ext_resource type="PackedScene" uid="uid://c31t0m1h55ytb" path="res://LevelStuff/_trigger/trigger_base.tscn" id="4_cc5nd"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_8umx7"]
 
@@ -87,3 +88,7 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldFloor"]
 shape = SubResource("WorldBoundaryShape2D_fmp24")
+
+[node name="TriggerBase" parent="." instance=ExtResource("4_cc5nd")]
+position = Vector2(606, 538)
+expected_body_group = "MainC"
