@@ -377,7 +377,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"game_over",
-"speed": 12.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -446,7 +446,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"on_hit",
-"speed": 12.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -493,7 +493,9 @@ sprite_frames = SubResource("SpriteFrames_cwycx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0loxt")
-animation = &"swoosh"
+animation = &"game_over"
+frame = 9
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_d0lfg")
@@ -528,8 +530,14 @@ process_callback = 0
 wait_time = 3.0
 one_shot = true
 
+[node name="InjuryTimer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
 [node name="Hud" parent="." instance=ExtResource("6_k7i8d")]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="finished" from="StepSounds" to="." method="_on_step_sounds_finished"]
 [connection signal="timeout" from="EmoteTimer" to="." method="_on_emote_timer_timeout"]
+[connection signal="timeout" from="InjuryTimer" to="." method="_on_injury_timer_timeout"]
+[connection signal="death" from="Hud" to="." method="_on_death"]

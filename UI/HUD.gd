@@ -13,6 +13,9 @@ extends CanvasLayer
 @onready var health_display = get_node("TopContainer/HealthText")
 @onready var score_display = get_node("TopContainer/ScoreText")
 
+# Indicator that Satrio has reached 0 health :(
+signal death
+
 func _process(_delta):
 	# Only do any checking if the buffer has health in it
 	if not buffer_health == 0:
@@ -29,6 +32,8 @@ func _process(_delta):
 				buffer_health += 1
 			health_display.clear()
 			health_display.parse_bbcode("Health: " + str(_current_health))
+			if _current_health <= 0:
+				_on_zero_health()
 			$HealthIncTimer.start()
 	if not buffer_score == 0:
 		# If the buffer isn't zero, plink up or down on the current score
@@ -76,3 +81,8 @@ func set_max_health(max_health: int):
 		_max_health = max_health
 	else:
 		_max_health = 3
+
+func _on_zero_health():
+	buffer_health = 0
+	emit_signal("death")
+	$CenterContainer.visible = true
