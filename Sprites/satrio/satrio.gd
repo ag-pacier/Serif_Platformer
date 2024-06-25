@@ -79,6 +79,8 @@ func change_health(health: int):
 		bounce_timer.start()
 		anim_node.play("on_hit")
 		anim_node.self_modulate = Color.from_hsv(0, 100, 0)
+		velocity.y = -80
+		velocity.x = -30 * anim_node.scale.x
 		color_v = 0
 	$Hud.increment_health(health)
 
@@ -94,6 +96,7 @@ func _emoting_now(delta):
 	elif emote_sprite.position.y >= -30:
 		emote_sprite.position.y -= 10 * delta
 
+
 func _physics_process(delta):
 	# Make the DebugSprite invisible
 	$DebugSprite.visible = false
@@ -101,8 +104,9 @@ func _physics_process(delta):
 	_emoting_now(delta)
 	# If the injury timer is running, tweak the V of the HSV
 	if not $InjuryTimer.is_stopped():
+		var new_alpha = randf_range(0.1, 0.8)
 		color_v += 2.0
-		anim_node.self_modulate = Color.from_hsv(0, 100, color_v)
+		anim_node.self_modulate = Color.from_hsv(0, 100, color_v, new_alpha)
 	# Get the input direction and handle the movement/deceleration.
 	var direction = Input.get_axis("left", "right")
 	if bounce_timer.is_stopped() and alive:
@@ -138,7 +142,7 @@ func _physics_process(delta):
 		anim_node.scale.x = -1
 	# make sure there is always some animation playing
 	# play appropriate sounds for movement
-	if alive:
+	if alive and not anim_node.animation == "on_hit":
 		if is_on_floor():
 			if velocity.x == 0:
 				anim_node.play("default")
