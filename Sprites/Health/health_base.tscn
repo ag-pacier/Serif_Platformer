@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv1b0fwqgu16l"]
+
+[ext_resource type="PackedScene" uid="uid://b8ja3qoy8ksw3" path="res://Sprites/base_pickup.tscn" id="1_hgvb4"]
+[ext_resource type="Script" path="res://Sprites/Health/health_base.gd" id="2_kjnb5"]
+
+[node name="HealthBase" instance=ExtResource("1_hgvb4")]
+script = ExtResource("2_kjnb5")
+heal_amount = 1
+
+[node name="HealLabel" type="RichTextLabel" parent="." index="0"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
