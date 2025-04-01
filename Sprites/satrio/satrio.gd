@@ -40,6 +40,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 # container for if Satrio is alive
 @onready var alive: bool = true
+signal not_alive
 
 func _ready():
 	# Set max health and score
@@ -192,6 +193,7 @@ func _on_injury_timer_timeout():
 
 func _on_death():
 	alive = false
+	emit_signal("not_alive")
 	$InjuryTimer.stop()
 	anim_node.self_modulate = Color(1, 1, 1, 1)
 	velocity = Vector2(0,0)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=70 format=3 uid="uid://n1qf3a26u2r2"]
 
 [ext_resource type="Texture2D" uid="uid://b6aa67uvpmm37" path="res://Art/Satiro/satiro-Sheet v1.1.png" id="1_7o2o1"]
-[ext_resource type="Script" path="res://Sprites/satrio/satrio.gd" id="1_wkkd5"]
+[ext_resource type="Script" uid="uid://chvrool8jgv7x" path="res://Sprites/satrio/satrio.gd" id="1_wkkd5"]
 [ext_resource type="Texture2D" uid="uid://cudxn7s078dcq" path="res://Art/Mini FX, Items & UI/Mini UI/Speech_Emotes (16 x 16).png" id="2_62h5s"]
 [ext_resource type="AudioStream" uid="uid://d822junqcdwr" path="res://Sounds/FreeSFX/Retro Jump Classic 08.wav" id="3_5qow8"]
 [ext_resource type="AudioStream" uid="uid://dhtool1i13isv" path="res://Sounds/FreeSFX/Retro FootStep Grass 01.wav" id="4_372a0"]
