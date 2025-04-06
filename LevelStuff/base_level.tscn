@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://xbynapupnn5l"]
+[gd_scene load_steps=3 format=3 uid="uid://xbynapupnn5l"]
 
 [ext_resource type="Script" uid="uid://b66efe3b41a4y" path="res://LevelStuff/currentLVL.gd" id="1_qaewb"]
 [ext_resource type="PackedScene" uid="uid://n1qf3a26u2r2" path="res://Sprites/satrio/satrio.tscn" id="2_ok3cd"]
-[ext_resource type="TileSet" uid="uid://cjvnmumb8d1af" path="res://LevelStuff/_TileSets/cute_forest.tres" id="3_hd2g4"]
 
 [node name="BaseLevel" type="Node2D"]
 script = ExtResource("1_qaewb")
@@ -20,12 +19,9 @@ motion_scale = Vector2(0.2, 0.2)
 z_index = 5
 position = Vector2(-1, -12)
 
-[node name="Coins" type="Node2D" parent="."]
-
 [node name="TileMapLayers" type="Node2D" parent="."]
 
 [node name="Base" type="TileMapLayer" parent="TileMapLayers"]
-tile_set = ExtResource("3_hd2g4")
 
 [node name="Platform" type="TileMapLayer" parent="TileMapLayers"]
 
@@ -36,5 +32,13 @@ tile_set = ExtResource("3_hd2g4")
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 volume_db = -6.0
 autoplay = true
+
+[node name="Items" type="Node2D" parent="."]
+
+[node name="Coins" type="Node2D" parent="Items"]
+
+[node name="Health" type="Node2D" parent="Items"]
+
+[node name="Sign" type="Node2D" parent="Items"]
 
 [connection signal="not_alive" from="Satrio" to="." method="_on_death"]
