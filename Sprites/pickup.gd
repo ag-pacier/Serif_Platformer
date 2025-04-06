@@ -17,7 +17,7 @@ func _ready():
 	if $AnimatedSprite2D.sprite_frames == null:
 		push_error("Pickup ", get_rid(), " does not have a SpriteFrames asscociated with it!")
 	else:
-		$AnimatedSprite2D.play("default")
+		$AnimatedSprite2D.play()
 	if significant:
 		$SignificantParticles.visible = true
 	if pickup_sound != null:
