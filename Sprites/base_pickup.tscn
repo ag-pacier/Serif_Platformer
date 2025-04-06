@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://ck5smn3hderwk" path="res://Sprites/pickup.gd" id="1_18vre"]
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7fs22"]
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_77xhb"]
 particle_flag_disable_z = true
 emission_shape = 2
@@ -20,12 +22,13 @@ collision_mode = 1
 collision_friction = 0.0
 collision_bounce = 0.57
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7fs22"]
-
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_8sugg"]
 polygon = PackedVector2Array(-20, 9, 22, 9, 49, 20, -47, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_46onf"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7wlmw"]
+size = Vector2(3, 3)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3k8v6"]
 particle_flag_rotate_y = true
@@ -40,9 +43,6 @@ initial_velocity_max = 50.0
 gravity = Vector3(0, -50, 0)
 collision_mode = 2
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7wlmw"]
-size = Vector2(3, 3)
-
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4ppcl"]
 cull_mode = 1
 polygon = PackedVector2Array(0, 7, 21, 7, 21, -17, 18, -17, 18, 5, -19, 5, -19, -17, -22, -17, -22, 7)
@@ -56,9 +56,9 @@ script = ExtResource("1_18vre")
 [node name="PickupParticles" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 10
-process_material = SubResource("ParticleProcessMaterial_77xhb")
 texture = SubResource("PlaceholderTexture2D_7fs22")
 one_shot = true
+process_material = SubResource("ParticleProcessMaterial_77xhb")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="PickupParticles"]
 occluder = SubResource("OccluderPolygon2D_8sugg")
@@ -71,8 +71,8 @@ shape = SubResource("RectangleShape2D_46onf")
 [node name="SignificantParticles" type="GPUParticles2D" parent="."]
 visible = false
 amount = 30
-process_material = SubResource("ParticleProcessMaterial_3k8v6")
 texture = SubResource("PlaceholderTexture2D_7wlmw")
+process_material = SubResource("ParticleProcessMaterial_3k8v6")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="SignificantParticles"]
 occluder = SubResource("OccluderPolygon2D_4ppcl")
