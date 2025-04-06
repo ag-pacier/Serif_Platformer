@@ -103,6 +103,14 @@ func _emoting_now(delta):
 func _physics_process(delta):
 	# Make the DebugSprite invisible
 	$DebugSprite.visible = false
+	# Check what we are touching and trip injury if the damage layer
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		if collision.get_collider().name == "Damage":
+			if $InjuryTimer.is_stopped():
+				change_health(-1)
+			break
+
 	# Deal with the emotion if it is showing
 	_emoting_now(delta)
 	# If the injury timer is running, tweak the V of the HSV
@@ -174,6 +182,8 @@ func _on_animated_sprite_2d_animation_finished():
 				anim_node.play("default")
 			else:
 				anim_node.play("move")
+	else:
+		$AnimatedSprite2D.visible = false
 
 ## When the step sound finishes, if we are still moving, play it again
 func _on_step_sounds_finished():
