@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://rqkcg2rwl2ki"]
+[gd_scene load_steps=11 format=3 uid="uid://rqkcg2rwl2ki"]
 
 [ext_resource type="PackedScene" uid="uid://n1qf3a26u2r2" path="res://Sprites/satrio/satrio.tscn" id="1_l5mey"]
 [ext_resource type="AudioStream" uid="uid://d4msu2liccfog" path="res://Music/Pixel/Pixel 4.ogg" id="2_jd34j"]
 [ext_resource type="PackedScene" uid="uid://cgryfmkyeh460" path="res://Sprites/coin/coin.tscn" id="2_kx845"]
 [ext_resource type="PackedScene" uid="uid://c31t0m1h55ytb" path="res://LevelStuff/_trigger/trigger_base.tscn" id="4_cc5nd"]
+[ext_resource type="PackedScene" uid="uid://bv1b0fwqgu16l" path="res://Sprites/Health/health_base.tscn" id="4_dg641"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_8umx7"]
 
@@ -38,7 +39,7 @@ position = Vector2(159, 542)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_jd34j")
-volume_db = -5.622
+volume_db = -11.244
 autoplay = true
 
 [node name="Coins" type="Node2D" parent="."]
@@ -66,6 +67,19 @@ position = Vector2(232, 557)
 
 [node name="Coin5" parent="Coins" instance=ExtResource("2_kx845")]
 position = Vector2(-81, 181)
+
+[node name="HealthItems" type="Node2D" parent="."]
+
+[node name="BadHealTest" parent="HealthItems" instance=ExtResource("4_dg641")]
+position = Vector2(697, 558)
+heal_amount = -1
+pickup_name = "BadHeal"
+worth = -5
+
+[node name="GoodHealTest" parent="HealthItems" instance=ExtResource("4_dg641")]
+position = Vector2(949, 559)
+pickup_name = "GoodHealTest"
+worth = 5
 
 [node name="TestWall" type="StaticBody2D" parent="."]
 position = Vector2(15, 519)
