@@ -53,9 +53,6 @@ func _ready():
 func add_score(added_score: int):
 	$Hud.increment_score(added_score)
 
-func trigger_action():
-	change_health(-1)
-
 ## Publicly accessible method to elicit emotion from Satrio
 func emote(emotion: Emotion):
 	if emotion < Emotion.SPEECHLESS or emotion > Emotion.MAD:
