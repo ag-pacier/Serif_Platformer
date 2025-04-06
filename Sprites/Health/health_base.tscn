@@ -1,7 +1,49 @@
-[gd_scene load_steps=3 format=3 uid="uid://bv1b0fwqgu16l"]
+[gd_scene load_steps=9 format=3 uid="uid://bv1b0fwqgu16l"]
 
 [ext_resource type="PackedScene" uid="uid://b8ja3qoy8ksw3" path="res://Sprites/base_pickup.tscn" id="1_hgvb4"]
 [ext_resource type="Script" uid="uid://bdv5lxd61f43f" path="res://Sprites/Health/health_base.gd" id="2_kjnb5"]
+[ext_resource type="Texture2D" uid="uid://cyntlsckujtx3" path="res://Art/Mini FX, Items & UI/Food Items/Bottled_Drinks (16 x 16).png" id="3_cbhlh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5wb5"]
+atlas = ExtResource("3_cbhlh")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhkeb"]
+atlas = ExtResource("3_cbhlh")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpp8n"]
+atlas = ExtResource("3_cbhlh")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3kxe"]
+atlas = ExtResource("3_cbhlh")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y2d6b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5wb5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhkeb")
+}],
+"loop": true,
+"name": &"bad",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpp8n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3kxe")
+}],
+"loop": true,
+"name": &"good",
+"speed": 5.0
+}]
 
 [node name="HealthBase" instance=ExtResource("1_hgvb4")]
 script = ExtResource("2_kjnb5")
@@ -25,3 +67,9 @@ fit_content = true
 scroll_active = false
 deselect_on_focus_loss_enabled = false
 drag_and_drop_selection_enabled = false
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+sprite_frames = SubResource("SpriteFrames_y2d6b")
+animation = &"good"
+frame_progress = 0.426676
+speed_scale = 1.6
