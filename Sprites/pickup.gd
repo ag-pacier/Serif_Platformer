@@ -52,10 +52,7 @@ func _on_body_entered(body):
 			
 		elif worth != 0:
 			var worth_string: String
-			if worth < 0:
-				worth_string = "-" + str(worth)
-			else:
-				worth_string = str(worth)
+			worth_string = str(worth)
 			$WorthLabel.parse_bbcode(worth_string)
 			is_worthy = true
 			$WorthLabel.visible = true

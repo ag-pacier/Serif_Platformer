@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://rqkcg2rwl2ki"]
+[gd_scene load_steps=15 format=3 uid="uid://rqkcg2rwl2ki"]
 
 [ext_resource type="PackedScene" uid="uid://n1qf3a26u2r2" path="res://Sprites/satrio/satrio.tscn" id="1_l5mey"]
+[ext_resource type="Script" uid="uid://c0m3h7mds8ktw" path="res://LevelStuff/Devlevel/dev_level.gd" id="1_u6ie4"]
 [ext_resource type="AudioStream" uid="uid://d4msu2liccfog" path="res://Music/Pixel/Pixel 4.ogg" id="2_jd34j"]
 [ext_resource type="PackedScene" uid="uid://cgryfmkyeh460" path="res://Sprites/coin/coin.tscn" id="2_kx845"]
 [ext_resource type="PackedScene" uid="uid://c31t0m1h55ytb" path="res://LevelStuff/_trigger/trigger_base.tscn" id="4_cc5nd"]
 [ext_resource type="PackedScene" uid="uid://bv1b0fwqgu16l" path="res://Sprites/Health/health_base.tscn" id="4_dg641"]
+[ext_resource type="Texture2D" uid="uid://5ykld2jlro4e" path="res://Art/Dark VFX 2/Dark VFX 2 (48x64).png" id="6_xuqvl"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_8umx7"]
 
@@ -19,7 +21,21 @@ size = Vector2(64, 435)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fmp24"]
 distance = 77.28
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6ie4"]
+atlas = ExtResource("6_xuqvl")
+region = Rect2(337, 0, 48, 64)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ml064"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(30, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+gravity = Vector3(0, -200, 0)
+
 [node name="DevLevel" type="Node2D"]
+script = ExtResource("1_u6ie4")
 
 [node name="Floor" type="StaticBody2D" parent="."]
 collision_layer = 2
@@ -103,6 +119,14 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldFloor"]
 shape = SubResource("WorldBoundaryShape2D_fmp24")
 
-[node name="TriggerBase" parent="." instance=ExtResource("4_cc5nd")]
+[node name="TestTrigger" parent="." instance=ExtResource("4_cc5nd")]
 position = Vector2(606, 538)
-expected_body_group = "MainC"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="TestTrigger"]
+emitting = false
+amount = 20
+texture = SubResource("AtlasTexture_u6ie4")
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_ml064")
+
+[connection signal="trigger_trip" from="TestTrigger" to="." method="_on_test_trigger_trigger_trip"]

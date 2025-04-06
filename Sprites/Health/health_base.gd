@@ -14,6 +14,7 @@ func _ready():
 	else:
 		heal_label = "[color=red]" + str(heal_amount) + "[/color]"
 		$AnimatedSprite2D.play("bad")
+		worth = -5
 	$HealLabel.parse_bbcode(heal_label)
 	$SignificantParticles.visible = false
 	super()
