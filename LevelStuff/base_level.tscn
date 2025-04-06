@@ -28,6 +28,8 @@ position = Vector2(-1, -12)
 [node name="Damage" type="TileMapLayer" parent="TileMapLayers"]
 
 [node name="Foreground" type="TileMapLayer" parent="TileMapLayers"]
+z_index = 50
+z_as_relative = false
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 volume_db = -6.0
