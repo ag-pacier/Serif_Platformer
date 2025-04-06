@@ -76,13 +76,18 @@ func change_health(health: int):
 	elif health < 0:
 		# If the health amount is negative, start the timers
 		# and set the animation indicators
-		$InjuryTimer.start()
-		bounce_timer.start()
-		anim_node.play("on_hit")
-		anim_node.self_modulate = Color.from_hsv(0, 100, 0)
-		velocity.y = -80
-		velocity.x = -30 * anim_node.scale.x
-		color_v = 0
+		if $InjuryTimer.is_stopped():
+			$InjuryTimer.start()
+			bounce_timer.start()
+			anim_node.play("on_hit")
+			anim_node.self_modulate = Color.from_hsv(0, 100, 0)
+			velocity.y = -80
+			velocity.x = -30 * anim_node.scale.x
+			color_v = 0
+		else:
+			# If injury timer is running and we got a negative health change,
+			# ignore it (haha, invincible)
+			return
 	$Hud.increment_health(health)
 
 ## method to control behavior of emote while visible. Uses the delta of the
