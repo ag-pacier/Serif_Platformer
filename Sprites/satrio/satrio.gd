@@ -107,7 +107,7 @@ func _physics_process(delta):
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		if collision.get_collider().name == "Damage":
-			if $InjuryTimer.is_stopped():
+			if $InjuryTimer.is_stopped() and collision.get_angle() < 1:
 				change_health(-1)
 			break
 
