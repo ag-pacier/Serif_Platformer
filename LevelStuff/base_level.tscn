@@ -13,8 +13,6 @@ follow_viewport_scale = 0.2
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
 motion_scale = Vector2(0.2, 0.2)
 
-[node name="OneWayPlatforms" type="Node2D" parent="."]
-
 [node name="Satrio" parent="." instance=ExtResource("2_ok3cd")]
 z_index = 5
 position = Vector2(-1, -12)
@@ -23,7 +21,7 @@ position = Vector2(-1, -12)
 
 [node name="Base" type="TileMapLayer" parent="TileMapLayers"]
 
-[node name="Platform" type="TileMapLayer" parent="TileMapLayers"]
+[node name="OneWay" type="TileMapLayer" parent="TileMapLayers"]
 
 [node name="Damage" type="TileMapLayer" parent="TileMapLayers"]
 
