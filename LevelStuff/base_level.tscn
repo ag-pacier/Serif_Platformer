@@ -41,4 +41,8 @@ autoplay = true
 
 [node name="Sign" type="Node2D" parent="Items"]
 
+[node name="MovingPlats" type="Node2D" parent="."]
+
+[node name="Enemies" type="Node2D" parent="."]
+
 [connection signal="not_alive" from="Satrio" to="." method="_on_death"]
