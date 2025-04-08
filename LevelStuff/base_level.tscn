@@ -6,12 +6,17 @@
 [node name="BaseLevel" type="Node2D"]
 script = ExtResource("1_qaewb")
 
-[node name="Background" type="ParallaxBackground" parent="."]
-follow_viewport_enabled = true
-follow_viewport_scale = 0.2
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
-motion_scale = Vector2(0.2, 0.2)
+[node name="Still" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+
+[node name="TextureStill" type="Sprite2D" parent="ParallaxBackground/Still"]
+
+[node name="Near" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(1.2, 0)
+
+[node name="TextureNear" type="Sprite2D" parent="ParallaxBackground/Near"]
 
 [node name="Satrio" parent="." instance=ExtResource("2_ok3cd")]
 z_index = 5
