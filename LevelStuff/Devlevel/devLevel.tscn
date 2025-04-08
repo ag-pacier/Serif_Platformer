@@ -1,7 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1dxqy8fo7ltb"]
+[gd_scene load_steps=5 format=3 uid="uid://d1dxqy8fo7ltb"]
 
 [ext_resource type="PackedScene" uid="uid://xbynapupnn5l" path="res://LevelStuff/base_level.tscn" id="1_thfdx"]
 [ext_resource type="Script" uid="uid://cvw8sosk80xcu" path="res://LevelStuff/Devlevel/devlevel.gd" id="2_sqm4d"]
+[ext_resource type="TileSet" uid="uid://b24tcgkq7tmxq" path="res://LevelStuff/_TileSets/peaceful_night.tres" id="3_fut0s"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fut0s"]
 
 [node name="DevLevel" instance=ExtResource("1_thfdx")]
 script = ExtResource("2_sqm4d")
+
+[node name="Satrio" parent="." index="1"]
+position = Vector2(287, 162)
+
+[node name="Base" parent="TileMapLayers" index="0"]
+tile_set = ExtResource("3_fut0s")
+
+[node name="Bottom Boundary" type="StaticBody2D" parent="TileMapLayers" index="4"]
+position = Vector2(0, -30)
+collision_layer = 598
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayers/Bottom Boundary" index="0"]
+position = Vector2(125, 678)
+shape = SubResource("WorldBoundaryShape2D_fut0s")
