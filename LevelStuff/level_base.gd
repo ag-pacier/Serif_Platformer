@@ -13,10 +13,8 @@ class_name LevelBase
 func _ready():
 	# Check if the background music is exists and push errors if something is amiss
 	# or set the appropriate settings if it is where it needs to be
-	if background_music == null:
-		push_error("Unable to find expected background music node at BackgroundMusic as a AudioStreamPlayer")
-	elif background_music.stream == null:
-		push_error("Node found but no stream set")
+	if background_music.stream == null:
+		push_error("No music set for background!")
 	else:
 		background_music.volume_db = -6
 		background_music.autoplay = true
