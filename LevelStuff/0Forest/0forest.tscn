@@ -321,7 +321,7 @@ pattern_2 = SubResource("TileMapPattern_1t5u2")
 
 [node name="0Forest" instance=ExtResource("1_34sam")]
 
-[node name="Satrio" parent="." index="1"]
+[node name="Satrio" parent="." index="0"]
 position = Vector2(34, -80)
 
 [node name="Base" parent="TileMapLayers" index="0"]
