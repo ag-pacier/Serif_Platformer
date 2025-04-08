@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=4 uid="uid://dqombc1fr40sb"]
+[gd_scene load_steps=13 format=4 uid="uid://dqombc1fr40sb"]
 
 [ext_resource type="PackedScene" uid="uid://xbynapupnn5l" path="res://LevelStuff/base_level.tscn" id="1_34sam"]
 [ext_resource type="TileSet" uid="uid://cjvnmumb8d1af" path="res://LevelStuff/_TileSets/cute_forest.tres" id="2_li8j4"]
 [ext_resource type="Texture2D" uid="uid://bjb65sr0dyn1p" path="res://Art/cute_forest/tileset.png" id="2_oc2ln"]
 [ext_resource type="PackedScene" uid="uid://cgryfmkyeh460" path="res://Sprites/coin/coin.tscn" id="4_wl2n7"]
+[ext_resource type="PackedScene" uid="uid://bv1b0fwqgu16l" path="res://Sprites/Health/health_base.tscn" id="5_ypcme"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_mnx4o"]
 tile_data = PackedInt32Array(0, 196608, 3, 65536, 131072, 1, 131072, 131072, 1, 196608, 131072, 1, 262144, 131072, 1, 327680, 131072, 1, 393216, 131072, 1, 458752, 131072, 1, 524288, 131072, 1, 589824, 131072, 1, 1, 262144, 3, 65537, 262144, 4, 131073, 131072, 1, 196609, 131072, 1, 262145, 131072, 1, 327681, 131072, 1, 393217, 131072, 1, 458753, 131072, 1, 524289, 131072, 1, 589825, 131072, 1, 65538, 262144, 3, 131074, 262144, 4, 196610, 131072, 1, 262146, 131072, 1, 327682, 131072, 1, 393218, 131072, 1, 458754, 131072, 1, 524290, 131072, 1, 589826, 131072, 1, 131075, 262144, 3, 196611, 262144, 4, 262147, 131072, 1, 327683, 131072, 1, 393219, 131072, 1, 458755, 131072, 1, 524291, 131072, 1, 589827, 131072, 1, 196612, 262144, 3, 262148, 262144, 4, 327684, 131072, 1, 393220, 131072, 1, 458756, 131072, 1, 524292, 131072, 1, 589828, 131072, 1, 262149, 262144, 3, 327685, 262144, 4, 393221, 131072, 1, 458757, 131072, 1, 524293, 131072, 1, 589829, 131072, 1, 327686, 262144, 3, 393222, 262144, 4, 458758, 131072, 1, 524294, 131072, 1, 589830, 131072, 1, 393223, 262144, 3, 458759, 262144, 4, 524295, 131072, 1, 589831, 131072, 1, 458760, 262144, 3, 524296, 262144, 4, 589832, 131072, 1, 524297, 262144, 3, 589833, 262144, 1)
@@ -449,3 +450,11 @@ position = Vector2(1848, 150)
 
 [node name="Coin37" parent="Items/Coins" index="36" instance=ExtResource("4_wl2n7")]
 position = Vector2(1897, 149)
+
+[node name="pithealth" parent="Items/Health" index="0" instance=ExtResource("5_ypcme")]
+position = Vector2(1219, 333)
+pickup_name = "pitheal"
+
+[node name="pithealth2" parent="Items/Health" index="1" instance=ExtResource("5_ypcme")]
+position = Vector2(-87, 662)
+pickup_name = "pitheal"
