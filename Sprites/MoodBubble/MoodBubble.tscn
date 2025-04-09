@@ -1,0 +1,94 @@
+[gd_scene load_steps=14 format=3 uid="uid://fuhcty1ur8ca"]
+
+[ext_resource type="Script" uid="uid://bt4i1o34wvsei" path="res://Sprites/MoodBubble/mood_bubble.gd" id="1_8gwhl"]
+[ext_resource type="Texture2D" uid="uid://cudxn7s078dcq" path="res://Art/Mini FX, Items & UI/Mini UI/Speech_Emotes (16 x 16).png" id="2_mj2u8"]
+[ext_resource type="AudioStream" uid="uid://vawwk61y3gw0" path="res://Sounds/FreeSFX/Retro Water Drop 01.wav" id="3_mj2u8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igasb"]
+atlas = ExtResource("2_mj2u8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8muh"]
+atlas = ExtResource("2_mj2u8")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldpj0"]
+atlas = ExtResource("2_mj2u8")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6kog"]
+atlas = ExtResource("2_mj2u8")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rp3vf"]
+atlas = ExtResource("2_mj2u8")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uocau"]
+atlas = ExtResource("2_mj2u8")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snltw"]
+atlas = ExtResource("2_mj2u8")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgw8i"]
+atlas = ExtResource("2_mj2u8")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4n4r"]
+atlas = ExtResource("2_mj2u8")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lwwwn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igasb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8muh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldpj0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6kog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rp3vf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uocau")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snltw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgw8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4n4r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MoodBubble" type="Node2D"]
+script = ExtResource("1_8gwhl")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_lwwwn")
+centered = false
+offset = Vector2(-8, -16)
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_mj2u8")
+
+[connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]

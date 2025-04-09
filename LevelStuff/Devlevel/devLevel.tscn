@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://d1dxqy8fo7ltb"]
+[gd_scene load_steps=12 format=4 uid="uid://d1dxqy8fo7ltb"]
 
 [ext_resource type="PackedScene" uid="uid://xbynapupnn5l" path="res://LevelStuff/base_level.tscn" id="1_thfdx"]
 [ext_resource type="Script" uid="uid://cvw8sosk80xcu" path="res://LevelStuff/Devlevel/devlevel.gd" id="2_sqm4d"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bh5u35bv1lvxj" path="res://Art/Peaceful_Nightfield/tileset.png" id="4_4sij5"]
 [ext_resource type="AudioStream" uid="uid://mdp2doa241bw" path="res://Music/Pixel/Pixel 1.ogg" id="4_7yiu3"]
 [ext_resource type="Texture2D" uid="uid://dx2rwftuppphm" path="res://Art/stringstar fields/background_2.png" id="4_hf1jf"]
+[ext_resource type="PackedScene" uid="uid://c31t0m1h55ytb" path="res://LevelStuff/_trigger/trigger_base.tscn" id="8_ngk8f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6bjdc"]
 texture = ExtResource("4_4sij5")
@@ -150,3 +151,8 @@ shape = SubResource("WorldBoundaryShape2D_fut0s")
 
 [node name="BackgroundMusic" parent="." index="3"]
 stream = ExtResource("4_7yiu3")
+
+[node name="TriggerBase" parent="Items/Sign" index="0" instance=ExtResource("8_ngk8f")]
+position = Vector2(119, 201)
+
+[connection signal="trigger_trip" from="Items/Sign/TriggerBase" to="." method="_on_trigger_base_trigger_trip"]
