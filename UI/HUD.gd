@@ -13,8 +13,42 @@ extends CanvasLayer
 @onready var health_display = get_node("TopContainer/HealthText")
 @onready var score_display = get_node("TopContainer/ScoreText")
 
+# Container for health indicators
+@onready var hearts: Array
+@onready var health_sprite = preload("res://Sprites/HUD/Health_Ind.tscn")
+
 # Indicator that Satrio has reached 0 health :(
 signal death
+
+func _ready() -> void:
+	generate_health_indicator()
+
+## Update the health bar if max health has changed
+func generate_health_indicator():
+	# Fill the hearts array until it matches what the max health
+	while len(hearts) < _max_health:
+		# create a heart sprite and place it based on it's part of
+		# the array
+		var new_heart = health_sprite.instantiate()
+		var new_x: float = len(hearts) * 16
+		new_heart.position = Vector2(new_x, 0)
+		add_child(new_heart)
+		hearts.push_back(new_heart)
+	# If the max_health is lower than the hearts showing up,
+	# get rid of extra hearts until we are back to what we need
+	while len(hearts) > _max_health:
+		var bad_heart = hearts.pop_back()
+		bad_heart.queue_free()
+
+## Update the health bar if health changes
+func update_health_indicator():
+	var cur_heart = 0
+	for heart in hearts:
+		if cur_heart < _current_health:
+			heart.frame = 0
+		else:
+			heart.frame = 1
+		cur_heart += 1
 
 func _process(_delta):
 	# Only do any checking if the buffer has health in it
@@ -30,8 +64,9 @@ func _process(_delta):
 			else:
 				_current_health -= 1
 				buffer_health += 1
-			health_display.clear()
-			health_display.parse_bbcode("Health: " + str(_current_health))
+			#health_display.clear()
+			#health_display.parse_bbcode("Health: " + str(_current_health))
+			update_health_indicator()
 			if _current_health <= 0:
 				_on_zero_health()
 			$HealthIncTimer.start()
@@ -64,8 +99,10 @@ func increment_health(increment: int):
 ## level start or save load
 func set_health(health: int):
 	_current_health = health
-	health_display.clear()
-	health_display.parse_bbcode("Health: " + str(_current_health))
+	generate_health_indicator()
+	update_health_indicator()
+	#health_display.clear()
+	#health_display.parse_bbcode("Health: " + str(_current_health))
 
 ## Set score without increment. Will also update the display. Primarily used on
 ## level start or save load
@@ -77,10 +114,9 @@ func set_score(score: int):
 ## Set the max health so that the HUD can track when to top out
 ## This purposefully does not touch nor invalid the health buffer
 func set_max_health(max_health: int):
-	if max_health > 3:
+	if max_health > _max_health:
 		_max_health = max_health
-	else:
-		_max_health = 3
+		generate_health_indicator()
 
 func _on_zero_health():
 	buffer_health = 0

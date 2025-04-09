@@ -11,6 +11,7 @@ anchor_right = 1.0
 grow_horizontal = 2
 
 [node name="HealthText" type="RichTextLabel" parent="TopContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -67,5 +68,5 @@ size_flags_vertical = 3
 alignment = 1
 
 [node name="HealthIncTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.5
 one_shot = true
