@@ -13,6 +13,5 @@ script = ExtResource("1_eo0xl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_21eb3")
-disabled = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
