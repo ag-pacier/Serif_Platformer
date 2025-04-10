@@ -108,7 +108,7 @@ script = ExtResource("2_sqm4d")
 
 [node name="TextureStill" parent="ParallaxBackground/Still" index="0"]
 texture_filter = 1
-scale = Vector2(1.99306, 1.79444)
+scale = Vector2(2.02083, 1.81667)
 texture = ExtResource("3_6bjdc")
 centered = false
 
