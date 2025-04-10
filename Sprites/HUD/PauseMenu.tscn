@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://bahl7j3gs67je"]
+
+[ext_resource type="Script" uid="uid://bp3yuhyvlr5g6" path="res://Sprites/HUD/pause_menu.gd" id="1_qhpok"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qhpok")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="CenterContainer"]
+layout_mode = 2
+text = "Temp Pause Test"
+horizontal_alignment = 1
+
+[node name="PrimeMenu" type="CenterContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Settings" type="CenterContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+
+[node name="SaveLoad" type="CenterContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2

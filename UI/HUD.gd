@@ -89,6 +89,7 @@ func _process(_delta):
 		$PauseTimer.start()
 		if get_tree().paused:
 			$CenterContainer/MenuContainer.visible = false
+			$CenterContainer/MenuContainer/PauseMenu.reset_cur_item()
 			get_tree().paused = false
 		else:
 			get_tree().paused = true
