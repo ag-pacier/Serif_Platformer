@@ -121,4 +121,4 @@ func set_max_health(max_health: int):
 func _on_zero_health():
 	buffer_health = 0
 	emit_signal("death")
-	$CenterContainer.visible = true
+	$CenterContainer/GmOva.visible = true
