@@ -3,23 +3,13 @@
 [ext_resource type="Script" uid="uid://clvk2okm7g3st" path="res://UI/HUD.gd" id="1_cyhru"]
 
 [node name="Hud" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_cyhru")
 
 [node name="TopContainer" type="HBoxContainer" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
-
-[node name="HealthText" type="RichTextLabel" parent="TopContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-bbcode_enabled = true
-text = "Big feelings, whoa"
-fit_content = true
-scroll_active = false
-shortcut_keys_enabled = false
 
 [node name="ScoreText" type="RichTextLabel" parent="TopContainer"]
 layout_mode = 2
@@ -57,6 +47,16 @@ shortcut_keys_enabled = false
 deselect_on_focus_loss_enabled = false
 drag_and_drop_selection_enabled = false
 
+[node name="MenuContainer" type="CenterContainer" parent="CenterContainer"]
+process_mode = 2
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/MenuContainer"]
+layout_mode = 2
+text = "Test Pause"
+horizontal_alignment = 1
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 12
 anchor_top = 1.0
@@ -70,3 +70,8 @@ alignment = 1
 [node name="HealthIncTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="PauseTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+ignore_time_scale = true

@@ -10,7 +10,6 @@ extends CanvasLayer
 @onready var _max_health: int = 3
 
 # Nodes for displaying items in HUD
-@onready var health_display = get_node("TopContainer/HealthText")
 @onready var score_display = get_node("TopContainer/ScoreText")
 
 # Container for health indicators
@@ -51,8 +50,9 @@ func update_health_indicator():
 		cur_heart += 1
 
 func _process(_delta):
-	# Only do any checking if the buffer has health in it
-	if not buffer_health == 0:
+	# Only do any checking if the buffer has health in it and the game's not
+	# paused
+	if not buffer_health == 0 and get_tree().paused == false:
 		# Everytime the health increment timer stops, move the buffer
 		# closer to zero and reflect the change in the health
 		if $HealthIncTimer.is_stopped():
@@ -70,10 +70,10 @@ func _process(_delta):
 			if _current_health <= 0:
 				_on_zero_health()
 			$HealthIncTimer.start()
-	if not buffer_score == 0:
-		# If the buffer isn't zero, plink up or down on the current score
-		# every process frame until the buffer is back to zero
-		# update the display for the score everytime it changes
+	# If the buffer isn't zero, plink up or down on the current score
+	# every process frame until the buffer is back to zero
+	# update the display for the score everytime it changes
+	if not buffer_score == 0 and get_tree().paused == false:
 		if buffer_score > 0:
 			_current_score += 1
 			buffer_score -= 1
@@ -82,6 +82,17 @@ func _process(_delta):
 			buffer_score += 1
 		score_display.clear()
 		score_display.parse_bbcode("Score: " + str(_current_score))
+	
+	# Handle pausing the game
+	# Using a pause timer to prevent rapid pausing
+	if Input.is_action_just_pressed("pause") and $PauseTimer.is_stopped():
+		$PauseTimer.start()
+		if get_tree().paused:
+			$CenterContainer/MenuContainer.visible = false
+			get_tree().paused = false
+		else:
+			get_tree().paused = true
+			$CenterContainer/MenuContainer.visible = true
 
 ## increment the score up (using positive numbers) or down (using negative numbers)
 ## note that the increment goes into a buffer that slowly builds into the score
@@ -101,8 +112,6 @@ func set_health(health: int):
 	_current_health = health
 	generate_health_indicator()
 	update_health_indicator()
-	#health_display.clear()
-	#health_display.parse_bbcode("Health: " + str(_current_health))
 
 ## Set score without increment. Will also update the display. Primarily used on
 ## level start or save load
