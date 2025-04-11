@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://d1dxqy8fo7ltb"]
+[gd_scene load_steps=14 format=4 uid="uid://d1dxqy8fo7ltb"]
 
 [ext_resource type="PackedScene" uid="uid://xbynapupnn5l" path="res://LevelStuff/base_level.tscn" id="1_thfdx"]
 [ext_resource type="Script" uid="uid://cvw8sosk80xcu" path="res://LevelStuff/Devlevel/devlevel.gd" id="2_sqm4d"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dx2rwftuppphm" path="res://Art/stringstar fields/background_2.png" id="4_hf1jf"]
 [ext_resource type="TileSet" uid="uid://cjvnmumb8d1af" path="res://LevelStuff/_TileSets/cute_forest.tres" id="7_w0vl6"]
 [ext_resource type="PackedScene" uid="uid://c31t0m1h55ytb" path="res://LevelStuff/_trigger/trigger_base.tscn" id="8_ngk8f"]
+[ext_resource type="PackedScene" uid="uid://cgryfmkyeh460" path="res://Sprites/coin/coin.tscn" id="9_5q86y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6bjdc"]
 texture = ExtResource("4_4sij5")
@@ -156,6 +157,27 @@ shape = SubResource("WorldBoundaryShape2D_fut0s")
 
 [node name="BackgroundMusic" parent="." index="3"]
 stream = ExtResource("4_7yiu3")
+
+[node name="Coin" parent="Items/Coins" index="0" instance=ExtResource("9_5q86y")]
+position = Vector2(34, 199)
+
+[node name="Coin2" parent="Items/Coins" index="1" instance=ExtResource("9_5q86y")]
+position = Vector2(35, 47)
+
+[node name="Coin3" parent="Items/Coins" index="2" instance=ExtResource("9_5q86y")]
+position = Vector2(-11, 5)
+
+[node name="Coin4" parent="Items/Coins" index="3" instance=ExtResource("9_5q86y")]
+position = Vector2(-59, 34)
+
+[node name="Coin5" parent="Items/Coins" index="4" instance=ExtResource("9_5q86y")]
+position = Vector2(-57, 630)
+
+[node name="Coin6" parent="Items/Coins" index="5" instance=ExtResource("9_5q86y")]
+position = Vector2(-566, 628)
+
+[node name="Coin7" parent="Items/Coins" index="6" instance=ExtResource("9_5q86y")]
+position = Vector2(-911, 628)
 
 [node name="TriggerBase" parent="Items/Sign" index="0" instance=ExtResource("8_ngk8f")]
 position = Vector2(119, 201)

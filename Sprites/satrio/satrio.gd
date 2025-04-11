@@ -112,7 +112,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("action") and alive:
 		var new_mood = mood_bub.instantiate()
 		$AnimatedSprite2D/EmoteAnchor.add_child(new_mood)
-		new_mood.emote(0, true)
+		new_mood.emote(3, true)
 		
 	# Set direction based on velocity
 	if velocity.x >= 0:
