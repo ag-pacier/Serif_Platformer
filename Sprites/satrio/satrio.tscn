@@ -414,6 +414,7 @@ platform_wall_layers = 4
 script = ExtResource("1_wkkd5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_0loxt")
 
 [node name="EmoteAnchor" type="Node2D" parent="AnimatedSprite2D"]
