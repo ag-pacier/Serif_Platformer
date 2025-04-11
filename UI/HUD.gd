@@ -29,7 +29,7 @@ func generate_health_indicator():
 		# create a heart sprite and place it based on it's part of
 		# the array
 		var new_heart = health_sprite.instantiate()
-		var new_x: float = len(hearts) * 16
+		var new_x: float = (len(hearts) * 16) + 8
 		new_heart.position = Vector2(new_x, 0)
 		add_child(new_heart)
 		hearts.push_back(new_heart)

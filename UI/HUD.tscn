@@ -10,11 +10,15 @@ script = ExtResource("1_cyhru")
 [node name="TopContainer" type="HBoxContainer" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
+offset_bottom = 23.0
 grow_horizontal = 2
+theme_override_constants/separation = 0
 
 [node name="ScoreText" type="RichTextLabel" parent="TopContainer"]
+clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 0
 bbcode_enabled = true
 text = "Score: 0"
 fit_content = true

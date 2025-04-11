@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bahl7j3gs67je"]
+[gd_scene load_steps=3 format=3 uid="uid://bahl7j3gs67je"]
 
 [ext_resource type="Script" uid="uid://bp3yuhyvlr5g6" path="res://Sprites/HUD/pause_menu.gd" id="1_qhpok"]
+[ext_resource type="StyleBox" uid="uid://plume04f37nw" path="res://Sprites/HUD/PauseBox.tres" id="2_nq3hk"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 2
@@ -12,37 +13,22 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qhpok")
 
-[node name="TopLevel" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -65.5
-offset_right = 65.5
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
 offset_bottom = 40.0
-grow_horizontal = 2
+theme_override_constants/separation = 32
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TopLevel"]
+[node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 0
-alignment = 1
+theme_override_styles/normal = ExtResource("2_nq3hk")
+text = "Pause Menu"
 
-[node name="Label" type="Label" parent="TopLevel/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-text = "Temp Pause Test"
-horizontal_alignment = 1
+size_flags_vertical = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="TopLevel"]
-layout_mode = 2
-
-[node name="PrimeMenu" type="CenterContainer" parent="TopLevel/CenterContainer"]
-layout_mode = 2
-
-[node name="Settings" type="CenterContainer" parent="TopLevel/CenterContainer"]
-visible = false
-layout_mode = 2
-
-[node name="SaveLoad" type="CenterContainer" parent="TopLevel/CenterContainer"]
-visible = false
+[node name="PrimeMenu" type="CenterContainer" parent="VBoxContainer/CenterContainer"]
 layout_mode = 2

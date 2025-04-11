@@ -1,0 +1,15 @@
+[gd_resource type="StyleBoxTexture" load_steps=3 format=3 uid="uid://plume04f37nw"]
+
+[ext_resource type="Texture2D" uid="uid://ddi7ugs6q7okk" path="res://Art/Dungeon Ruins Tileset/Dungeon Ruins Tileset Night.png" id="1_pvdo3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5w0x"]
+atlas = ExtResource("1_pvdo3")
+region = Rect2(240, 16, 32, 32)
+
+[resource]
+texture = SubResource("AtlasTexture_m5w0x")
+expand_margin_left = 16.0
+expand_margin_top = 16.0
+expand_margin_right = 16.0
+expand_margin_bottom = 16.0
+region_rect = Rect2(0, 0, 32, 32)
