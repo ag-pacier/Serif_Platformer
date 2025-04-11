@@ -1,7 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://cryvpoe0gf6fy"]
+[gd_scene load_steps=6 format=3 uid="uid://cryvpoe0gf6fy"]
 
 [ext_resource type="Script" uid="uid://clvk2okm7g3st" path="res://UI/HUD.gd" id="1_cyhru"]
+[ext_resource type="Texture2D" uid="uid://c6pbj6sp8ps3x" path="res://Art/Dungeon Ruins Tileset/Dungeon Ruins Tileset Day.png" id="2_4n7mi"]
 [ext_resource type="PackedScene" uid="uid://bahl7j3gs67je" path="res://Sprites/HUD/PauseMenu.tscn" id="2_ijstf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uk570"]
+atlas = ExtResource("2_4n7mi")
+region = Rect2(16, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2wx0"]
+atlas = ExtResource("2_4n7mi")
+region = Rect2(48, 80, 16, 16)
 
 [node name="Hud" type="CanvasLayer"]
 process_mode = 3
@@ -13,6 +22,16 @@ anchor_right = 1.0
 offset_bottom = 23.0
 grow_horizontal = 2
 theme_override_constants/separation = 0
+
+[node name="StartHB" type="TextureRect" parent="TopContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = SubResource("AtlasTexture_uk570")
+
+[node name="EndHB" type="TextureRect" parent="TopContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = SubResource("AtlasTexture_f2wx0")
 
 [node name="ScoreText" type="RichTextLabel" parent="TopContainer"]
 clip_contents = false

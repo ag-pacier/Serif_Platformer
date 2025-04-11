@@ -14,7 +14,7 @@ extends CanvasLayer
 
 # Container for health indicators
 @onready var hearts: Array
-@onready var health_sprite = preload("res://Sprites/HUD/Health_Ind.tscn")
+@onready var health_sprite = preload("res://Sprites/HealthIndi/healthtexture.tscn")
 
 # Indicator that Satrio has reached 0 health :(
 signal death
@@ -29,9 +29,11 @@ func generate_health_indicator():
 		# create a heart sprite and place it based on it's part of
 		# the array
 		var new_heart = health_sprite.instantiate()
-		var new_x: float = (len(hearts) * 16) + 8
-		new_heart.position = Vector2(new_x, 0)
-		add_child(new_heart)
+		#var new_x: float = (len(hearts) * 16) + 8
+		var new_index = len(hearts) + 1
+		#new_heart.position = Vector2(new_x, 0)
+		$TopContainer.add_child(new_heart)
+		$TopContainer.move_child(new_heart, new_index)
 		hearts.push_back(new_heart)
 	# If the max_health is lower than the hearts showing up,
 	# get rid of extra hearts until we are back to what we need
@@ -44,9 +46,9 @@ func update_health_indicator():
 	var cur_heart = 0
 	for heart in hearts:
 		if cur_heart < _current_health:
-			heart.frame = 0
+			heart.healed()
 		else:
-			heart.frame = 1
+			heart.hurt()
 		cur_heart += 1
 
 func _process(_delta):

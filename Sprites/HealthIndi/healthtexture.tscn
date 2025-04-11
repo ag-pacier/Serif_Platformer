@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://cwedtrso75cq0"]
+
+[ext_resource type="Texture2D" uid="uid://c6pbj6sp8ps3x" path="res://Art/Dungeon Ruins Tileset/Dungeon Ruins Tileset Day.png" id="1_822r0"]
+[ext_resource type="Texture2D" uid="uid://c5j0at3rt02xg" path="res://Art/Mini FX, Items & UI/Mini UI/Health_Indicator_Black_Outline (8 x 8).png" id="2_luo27"]
+[ext_resource type="Script" uid="uid://cueapxraxguw6" path="res://Sprites/HealthIndi/healthtexture.gd" id="2_pw5yo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_luo27"]
+atlas = ExtResource("1_822r0")
+region = Rect2(32, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1shq"]
+atlas = ExtResource("2_luo27")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pw5yo"]
+atlas = ExtResource("2_luo27")
+region = Rect2(0, 0, 8, 8)
+
+[node name="Background" type="TextureRect"]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_luo27")
+expand_mode = 3
+script = ExtResource("2_pw5yo")
+
+[node name="Dot" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_s1shq")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Heart" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_pw5yo")
+expand_mode = 3
+stretch_mode = 5
