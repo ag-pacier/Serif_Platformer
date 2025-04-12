@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://cusr2fu4hkqd1" path="res://Art/stringstar fields/background_0.png" id="3_6bjdc"]
 [ext_resource type="TileSet" uid="uid://b24tcgkq7tmxq" path="res://LevelStuff/_TileSets/peaceful_night.tres" id="3_fut0s"]
 [ext_resource type="Texture2D" uid="uid://bh5u35bv1lvxj" path="res://Art/Peaceful_Nightfield/tileset.png" id="4_4sij5"]
-[ext_resource type="AudioStream" uid="uid://mdp2doa241bw" path="res://Music/Pixel/Pixel 1.ogg" id="4_7yiu3"]
 [ext_resource type="Texture2D" uid="uid://dx2rwftuppphm" path="res://Art/stringstar fields/background_2.png" id="4_hf1jf"]
 [ext_resource type="TileSet" uid="uid://cjvnmumb8d1af" path="res://LevelStuff/_TileSets/cute_forest.tres" id="7_w0vl6"]
 [ext_resource type="PackedScene" uid="uid://c31t0m1h55ytb" path="res://LevelStuff/_trigger/trigger_base.tscn" id="8_ngk8f"]
+[ext_resource type="AudioStream" uid="uid://dgf5oju7s22gj" path="res://Music/8Bit Adventure Loop.ogg" id="8_ugjrc"]
 [ext_resource type="PackedScene" uid="uid://cgryfmkyeh460" path="res://Sprites/coin/coin.tscn" id="9_5q86y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6bjdc"]
@@ -156,7 +156,7 @@ position = Vector2(125, 678)
 shape = SubResource("WorldBoundaryShape2D_fut0s")
 
 [node name="BackgroundMusic" parent="." index="3"]
-stream = ExtResource("4_7yiu3")
+stream = ExtResource("8_ugjrc")
 
 [node name="Coin" parent="Items/Coins" index="0" instance=ExtResource("9_5q86y")]
 position = Vector2(34, 199)
