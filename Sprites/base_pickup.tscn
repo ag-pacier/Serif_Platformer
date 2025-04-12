@@ -79,6 +79,7 @@ occluder = SubResource("OccluderPolygon2D_4ppcl")
 sdf_collision = false
 
 [node name="PickupNoise" type="AudioStreamPlayer" parent="."]
+bus = &"Effects"
 
 [node name="WorthLabel" type="RichTextLabel" parent="."]
 visible = false
