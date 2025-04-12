@@ -12,3 +12,8 @@ class_name MovingPlatform
 @export var move_distance: int
 ## Check if the platform should try to fall away when touched
 @export var collapse: bool = false
+
+func _ready():
+	if move_speed == 0 or move_distance == 0:
+		x_movement = false
+		y_movement = false
