@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://clvk2okm7g3st" path="res://UI/HUD.gd" id="1_cyhru"]
 [ext_resource type="Texture2D" uid="uid://c6pbj6sp8ps3x" path="res://Art/Dungeon Ruins Tileset/Dungeon Ruins Tileset Day.png" id="2_4n7mi"]
-[ext_resource type="PackedScene" uid="uid://bahl7j3gs67je" path="res://Sprites/HUD/PauseMenu.tscn" id="2_ijstf"]
+[ext_resource type="PackedScene" uid="uid://bahl7j3gs67je" path="res://UI/PauseMenu/PauseMenu.tscn" id="2_ijstf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uk570"]
 atlas = ExtResource("2_4n7mi")

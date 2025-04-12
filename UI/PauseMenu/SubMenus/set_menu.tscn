@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cw6knrkiffvii"]
+
+[ext_resource type="PackedScene" uid="uid://0o311gqfojnt" path="res://UI/PauseMenu/pmenu_base.tscn" id="1_lyrfc"]
+[ext_resource type="Script" uid="uid://dnygvrta6qtqg" path="res://UI/PauseMenu/SubMenus/set_menu.gd" id="2_fn514"]
+
+[node name="SetMenu" instance=ExtResource("1_lyrfc")]
+script = ExtResource("2_fn514")
+menu_title = "Settings Menu"
+
+[node name="MasterVolume" type="HBoxContainer" parent="VBoxContainer" index="2"]
+layout_mode = 2
+alignment = 1
+
+[node name="MasterVolLab" type="Label" parent="VBoxContainer/MasterVolume" index="0"]
+layout_mode = 2
+
+[node name="MasterVolSlide" type="HSlider" parent="VBoxContainer/MasterVolume" index="1"]
+layout_mode = 2
+step = 10.0
+rounded = true
+tick_count = 10
+ticks_on_borders = true

@@ -14,7 +14,7 @@ extends CanvasLayer
 
 # Container for health indicators
 @onready var hearts: Array
-@onready var health_sprite = preload("res://Sprites/HealthIndi/healthtexture.tscn")
+@onready var health_sprite = preload("res://UI/HealthIndi/healthtexture.tscn")
 
 # Indicator that Satrio has reached 0 health :(
 signal death
@@ -91,7 +91,6 @@ func _process(_delta):
 		$PauseTimer.start()
 		if get_tree().paused:
 			$CenterContainer/MenuContainer.visible = false
-			$CenterContainer/MenuContainer/PauseMenu.reset_menus()
 			get_tree().paused = false
 		else:
 			get_tree().paused = true

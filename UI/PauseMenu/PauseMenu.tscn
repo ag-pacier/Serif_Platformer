@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://bahl7j3gs67je"]
+
+[ext_resource type="Script" uid="uid://bp3yuhyvlr5g6" path="res://UI/PauseMenu/pause_menu.gd" id="1_qhpok"]
+[ext_resource type="StyleBox" uid="uid://plume04f37nw" path="res://UI/PauseMenu/PauseBox.tres" id="2_nq3hk"]
+[ext_resource type="PackedScene" uid="uid://cvo0eahxhgec" path="res://UI/PauseMenu/SubMenus/top_menu.tscn" id="3_fhxse"]
+[ext_resource type="PackedScene" uid="uid://cw6knrkiffvii" path="res://UI/PauseMenu/SubMenus/set_menu.tscn" id="4_sjch0"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qhpok")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Pause Indicator" type="Label" parent="CenterContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_styles/normal = ExtResource("2_nq3hk")
+text = "Pause Menu"
+horizontal_alignment = 1
+
+[node name="TopMenu" parent="CenterContainer/VBoxContainer" instance=ExtResource("3_fhxse")]
+layout_mode = 2
+
+[node name="SetMenu" parent="CenterContainer/VBoxContainer" instance=ExtResource("4_sjch0")]
+visible = false
+layout_mode = 2
+
+[node name="QuitTimer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
+[connection signal="menu_change" from="CenterContainer/VBoxContainer/TopMenu" to="." method="_on_top_menu_menu_change"]
+[connection signal="timeout" from="QuitTimer" to="." method="_on_quit_timer_timeout"]
