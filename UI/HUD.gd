@@ -90,11 +90,11 @@ func _process(_delta):
 	if Input.is_action_just_pressed("pause") and $PauseTimer.is_stopped():
 		$PauseTimer.start()
 		if get_tree().paused:
-			$CenterContainer/MenuContainer.visible = false
+			$CenterContainer/PauseMenu.visible = false
 			get_tree().paused = false
 		else:
 			get_tree().paused = true
-			$CenterContainer/MenuContainer.visible = true
+			$CenterContainer/PauseMenu.visible = true
 
 ## increment the score up (using positive numbers) or down (using negative numbers)
 ## note that the increment goes into a buffer that slowly builds into the score

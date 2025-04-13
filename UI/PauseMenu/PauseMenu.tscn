@@ -1,21 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://bahl7j3gs67je"]
+[gd_scene load_steps=7 format=3 uid="uid://bahl7j3gs67je"]
 
 [ext_resource type="Script" uid="uid://bp3yuhyvlr5g6" path="res://UI/PauseMenu/pause_menu.gd" id="1_qhpok"]
-[ext_resource type="StyleBox" uid="uid://plume04f37nw" path="res://UI/PauseMenu/PauseBox.tres" id="2_nq3hk"]
-[ext_resource type="PackedScene" uid="uid://cvo0eahxhgec" path="res://UI/PauseMenu/SubMenus/top_menu.tscn" id="3_fhxse"]
-[ext_resource type="PackedScene" uid="uid://cw6knrkiffvii" path="res://UI/PauseMenu/SubMenus/set_menu.tscn" id="4_sjch0"]
+[ext_resource type="FontFile" uid="uid://dyrk0j7befli8" path="res://Art/ThaleahFat.ttf" id="2_sjch0"]
+[ext_resource type="Texture2D" uid="uid://ddi7ugs6q7okk" path="res://Art/Dungeon Ruins Tileset/Dungeon Ruins Tileset Night.png" id="3_fhxse"]
+[ext_resource type="PackedScene" uid="uid://d1y8j5jvvdhtx" path="res://UI/PauseMenu/SubMenus/top_menu.tscn" id="4_sjch0"]
+[ext_resource type="PackedScene" uid="uid://dv6vuos0oqfev" path="res://UI/PauseMenu/SubMenus/set_menu.tscn" id="5_n7v2j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjch0"]
+atlas = ExtResource("3_fhxse")
+region = Rect2(16, 80, 48, 16)
 
 [node name="PauseMenu" type="Control"]
 process_mode = 2
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 script = ExtResource("1_qhpok")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,27 +24,45 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="Pause Indicator" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="Pause Indicator" type="Label" parent="VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
-theme_override_styles/normal = ExtResource("2_nq3hk")
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_sjch0")
+theme_override_font_sizes/font_size = 32
 text = "Pause Menu"
 horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 160
+metadata/_edit_use_anchors_ = true
 
-[node name="TopMenu" parent="CenterContainer/VBoxContainer" instance=ExtResource("3_fhxse")]
+[node name="TextureSep" type="TextureRect" parent="VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
+size_flags_vertical = 6
+texture = SubResource("AtlasTexture_sjch0")
 
-[node name="SetMenu" parent="CenterContainer/VBoxContainer" instance=ExtResource("4_sjch0")]
+[node name="SubMen" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="TopMenu" parent="VBoxContainer/SubMen" instance=ExtResource("4_sjch0")]
+layout_mode = 2
+menu_title = "Main Pause Menu"
+top_menu = true
+
+[node name="setmen" parent="VBoxContainer/SubMen" instance=ExtResource("5_n7v2j")]
 visible = false
 layout_mode = 2
+menu_title = "Settings Menu"
 
 [node name="QuitTimer" type="Timer" parent="."]
 wait_time = 0.8
 one_shot = true
 
-[connection signal="menu_change" from="CenterContainer/VBoxContainer/TopMenu" to="." method="_on_top_menu_menu_change"]
+[connection signal="menu_change" from="VBoxContainer/SubMen/TopMenu" to="." method="_on_top_menu_menu_change"]
+[connection signal="menu_change" from="VBoxContainer/SubMen/setmen" to="." method="_on_set_menu_menu_change"]
 [connection signal="timeout" from="QuitTimer" to="." method="_on_quit_timer_timeout"]

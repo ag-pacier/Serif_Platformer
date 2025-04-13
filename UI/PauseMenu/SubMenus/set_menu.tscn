@@ -1,22 +1,65 @@
-[gd_scene load_steps=3 format=3 uid="uid://cw6knrkiffvii"]
+[gd_scene load_steps=3 format=3 uid="uid://dv6vuos0oqfev"]
 
 [ext_resource type="PackedScene" uid="uid://0o311gqfojnt" path="res://UI/PauseMenu/pmenu_base.tscn" id="1_lyrfc"]
 [ext_resource type="Script" uid="uid://dnygvrta6qtqg" path="res://UI/PauseMenu/SubMenus/set_menu.gd" id="2_fn514"]
 
-[node name="SetMenu" instance=ExtResource("1_lyrfc")]
+[node name="setmen" instance=ExtResource("1_lyrfc")]
 script = ExtResource("2_fn514")
-menu_title = "Settings Menu"
 
-[node name="MasterVolume" type="HBoxContainer" parent="VBoxContainer" index="2"]
-layout_mode = 2
-alignment = 1
-
-[node name="MasterVolLab" type="Label" parent="VBoxContainer/MasterVolume" index="0"]
+[node name="TopVolume" type="HBoxContainer" parent="." index="2"]
 layout_mode = 2
 
-[node name="MasterVolSlide" type="HSlider" parent="VBoxContainer/MasterVolume" index="1"]
+[node name="MasLabel" type="Label" parent="TopVolume" index="0"]
 layout_mode = 2
-step = 10.0
-rounded = true
+size_flags_horizontal = 0
+text = "Master Volume"
+
+[node name="MasSlider" type="HSlider" parent="TopVolume" index="1"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+min_value = -80.0
+max_value = 6.0
+step = 5.0
+scrollable = false
 tick_count = 10
 ticks_on_borders = true
+
+[node name="EffectVolume" type="HBoxContainer" parent="." index="3"]
+layout_mode = 2
+
+[node name="EffLabel" type="Label" parent="EffectVolume" index="0"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Effects Volume"
+
+[node name="EffSlider" type="HSlider" parent="EffectVolume" index="1"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+min_value = -80.0
+max_value = 6.0
+step = 5.0
+scrollable = false
+tick_count = 10
+ticks_on_borders = true
+
+[node name="MusicVolume" type="HBoxContainer" parent="." index="4"]
+layout_mode = 2
+
+[node name="MusLabel" type="Label" parent="MusicVolume" index="0"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Music Volume"
+
+[node name="MusSlider" type="HSlider" parent="MusicVolume" index="1"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+min_value = -80.0
+max_value = 6.0
+step = 5.0
+scrollable = false
+tick_count = 10
+ticks_on_borders = true
+
+[connection signal="drag_ended" from="TopVolume/MasSlider" to="." method="_on_mas_slider_drag_ended"]
+[connection signal="drag_ended" from="EffectVolume/EffSlider" to="." method="_on_eff_slider_drag_ended"]
+[connection signal="drag_ended" from="MusicVolume/MusSlider" to="." method="_on_mus_slider_drag_ended"]
