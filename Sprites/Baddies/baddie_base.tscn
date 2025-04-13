@@ -18,9 +18,13 @@ collision_mask = 528
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
 shape = SubResource("CapsuleShape2D_6jasc")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="VisionCast" type="RayCast2D" parent="."]
 target_position = Vector2(50, 0)
 collision_mask = 596
+
+[node name="TopHurtCast" type="RayCast2D" parent="."]
+target_position = Vector2(0, -16)
+collision_mask = 16
 
 [node name="VisualTimer" type="Timer" parent="."]
 
