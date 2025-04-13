@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1y8j5jvvdhtx"]
+
+[ext_resource type="PackedScene" uid="uid://0o311gqfojnt" path="res://UI/PauseMenu/pmenu_base.tscn" id="1_4iaxw"]
+[ext_resource type="Script" uid="uid://6hd0ijsmtvtf" path="res://UI/PauseMenu/SubMenus/top_menu.gd" id="2_2tcfr"]
+
+[node name="TopMenu" instance=ExtResource("1_4iaxw")]
+script = ExtResource("2_2tcfr")
+
+[node name="Settings" type="Label" parent="." index="2"]
+layout_mode = 2
+text = "Settings"
+horizontal_alignment = 1
