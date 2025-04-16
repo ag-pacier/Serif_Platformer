@@ -40,6 +40,12 @@ func _ready():
 func add_score(added_score: int):
 	$Hud.increment_score(added_score)
 
+
+func bounce_me() -> void:
+	velocity.y = -300.0
+	velocity.x = -30.0 * anim_node.scale.x
+
+
 ## Publicly accessible method to change Satrio's health
 ## negative health will be considered an injury
 ## positive health with be considered a heal

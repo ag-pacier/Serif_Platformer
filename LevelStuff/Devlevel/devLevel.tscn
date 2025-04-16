@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://d1dxqy8fo7ltb"]
+[gd_scene load_steps=15 format=4 uid="uid://d1dxqy8fo7ltb"]
 
 [ext_resource type="PackedScene" uid="uid://xbynapupnn5l" path="res://LevelStuff/base_level.tscn" id="1_thfdx"]
 [ext_resource type="Script" uid="uid://cvw8sosk80xcu" path="res://LevelStuff/Devlevel/devlevel.gd" id="2_sqm4d"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c31t0m1h55ytb" path="res://LevelStuff/_trigger/trigger_base.tscn" id="8_ngk8f"]
 [ext_resource type="AudioStream" uid="uid://dgf5oju7s22gj" path="res://Music/8Bit Adventure Loop.ogg" id="8_ugjrc"]
 [ext_resource type="PackedScene" uid="uid://cgryfmkyeh460" path="res://Sprites/coin/coin.tscn" id="9_5q86y"]
+[ext_resource type="PackedScene" uid="uid://q7ign3bl3yn3" path="res://Sprites/Baddies/Slime/Slime.tscn" id="11_ystxo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6bjdc"]
 texture = ExtResource("4_4sij5")
@@ -182,4 +183,8 @@ position = Vector2(-911, 628)
 [node name="TriggerBase" parent="Items/Sign" index="0" instance=ExtResource("8_ngk8f")]
 position = Vector2(119, 201)
 
+[node name="Slime" parent="Enemies" index="0" instance=ExtResource("11_ystxo")]
+position = Vector2(693, 218)
+
 [connection signal="trigger_trip" from="Items/Sign/TriggerBase" to="." method="_on_trigger_base_trigger_trip"]
+[connection signal="enemy_gone" from="Enemies/Slime" to="." method="_on_slime_enemy_gone"]
