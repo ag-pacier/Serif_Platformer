@@ -1,19 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://q7ign3bl3yn3"]
+[gd_scene load_steps=3 format=3 uid="uid://q7ign3bl3yn3"]
 
 [ext_resource type="PackedScene" uid="uid://cd48e4gqr48pn" path="res://Sprites/Baddies/baddie_base.tscn" id="1_ek6xe"]
-[ext_resource type="Script" uid="uid://dglo4xecewxfh" path="res://Sprites/Baddies/Slime/slime.gd" id="2_07tnp"]
 [ext_resource type="SpriteFrames" uid="uid://bhbd34aqik85h" path="res://Sprites/Baddies/Slime/slime_frames.tres" id="3_ys2v6"]
 
 [node name="Slime" instance=ExtResource("1_ek6xe")]
-script = ExtResource("2_07tnp")
+platform_floor_layers = 170
 speed = 100
 default_behavior = 2
 
-[node name="AnimatedSprite2D" parent="." index="1"]
+[node name="AnimatedSprite2D" parent="." index="2"]
 sprite_frames = ExtResource("3_ys2v6")
 
 [node name="Zs" parent="AnimatedSprite2D/EmoteAnchor" index="0"]
 position = Vector2(-12, 9)
 
-[node name="VisionCast" parent="." index="2"]
+[node name="VisionCast" parent="." index="3"]
 target_position = Vector2(-50, 0)

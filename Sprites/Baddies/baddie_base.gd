@@ -1,4 +1,4 @@
-extends AnimatableBody2D
+extends CharacterBody2D
 class_name Enemy
 
 ## Maximum health that this baddie can obtain
@@ -16,6 +16,7 @@ class_name Enemy
 ## Starting behavior
 @export var default_behavior: behave = behave.ASLEEP
 
+@onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var last_seen
 @onready var current_health: int = max_health
 @onready var current_feel: behave = default_behavior
@@ -38,13 +39,14 @@ signal enemy_gone
 
 func _ready() -> void:
 	$VisualTimer.wait_time = react_time
-	var col_top = $CollisionShape2D.shape.radius
-	$TopHurt.position = Vector2(0.0, ((col_top + 4) * -1))
 	if ani_node.sprite_frames == null:
 		push_error("No sprite frames to be found, enemy will need to be removed! Object:", self.to_string())
 
-func _process(delta: float) -> void:
-	pass
+func _physics_process(delta: float) -> void:
+	if not flying and not is_on_floor():
+		if velocity.y < 600:
+			velocity.y += gravity * delta
+			
 
 
 ## Create mood bubble based on current feel
@@ -149,6 +151,9 @@ func _on_top_hurt_body_entered(hit_body: Node2D) -> void:
 	hit_body.bounce_me()
 	if $InjuryTimer.is_stopped():
 		if current_health <= 1:
+			flying = true
+			aggro = false
+			$VisionCast.enabled = false
 			ani_node.play("dead")
 			$CollisionShape2D.set_deferred("disabled", true)
 			$TopHurt/CollisionShape2D.set_deferred("disabled", true)

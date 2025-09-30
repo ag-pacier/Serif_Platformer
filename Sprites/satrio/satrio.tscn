@@ -406,7 +406,7 @@ height = 22.0
 
 [node name="Satrio" type="CharacterBody2D" groups=["MainC"]]
 collision_layer = 22
-collision_mask = 526
+collision_mask = 590
 floor_constant_speed = true
 platform_on_leave = 1
 platform_floor_layers = 4294966718

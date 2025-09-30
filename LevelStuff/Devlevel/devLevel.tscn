@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dx2rwftuppphm" path="res://Art/stringstar fields/background_2.png" id="4_hf1jf"]
 [ext_resource type="TileSet" uid="uid://cjvnmumb8d1af" path="res://LevelStuff/_TileSets/cute_forest.tres" id="7_w0vl6"]
 [ext_resource type="PackedScene" uid="uid://c31t0m1h55ytb" path="res://LevelStuff/_trigger/trigger_base.tscn" id="8_ngk8f"]
-[ext_resource type="AudioStream" uid="uid://dgf5oju7s22gj" path="res://Music/8Bit Adventure Loop.ogg" id="8_ugjrc"]
+[ext_resource type="AudioStream" uid="uid://0vli7igu6kxq" path="res://Music/Pixel/Pixel 12.ogg" id="8_ystxo"]
 [ext_resource type="PackedScene" uid="uid://cgryfmkyeh460" path="res://Sprites/coin/coin.tscn" id="9_5q86y"]
 [ext_resource type="PackedScene" uid="uid://q7ign3bl3yn3" path="res://Sprites/Baddies/Slime/Slime.tscn" id="11_ystxo"]
 
@@ -157,7 +157,7 @@ position = Vector2(125, 678)
 shape = SubResource("WorldBoundaryShape2D_fut0s")
 
 [node name="BackgroundMusic" parent="." index="3"]
-stream = ExtResource("8_ugjrc")
+stream = ExtResource("8_ystxo")
 
 [node name="Coin" parent="Items/Coins" index="0" instance=ExtResource("9_5q86y")]
 position = Vector2(34, 199)
@@ -184,7 +184,6 @@ position = Vector2(-911, 628)
 position = Vector2(119, 201)
 
 [node name="Slime" parent="Enemies" index="0" instance=ExtResource("11_ystxo")]
-position = Vector2(693, 218)
+position = Vector2(317, 137)
 
 [connection signal="trigger_trip" from="Items/Sign/TriggerBase" to="." method="_on_trigger_base_trigger_trip"]
-[connection signal="enemy_gone" from="Enemies/Slime" to="." method="_on_slime_enemy_gone"]
