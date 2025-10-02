@@ -41,12 +41,14 @@ func _ready() -> void:
 	$VisualTimer.wait_time = react_time
 	if ani_node.sprite_frames == null:
 		push_error("No sprite frames to be found, enemy will need to be removed! Object:", self.to_string())
+	else:
+		ani_node.play("default")
 
 func _physics_process(delta: float) -> void:
 	if not flying and not is_on_floor():
 		if velocity.y < 600:
 			velocity.y += gravity * delta
-			
+	move_and_slide()
 
 
 ## Create mood bubble based on current feel
@@ -147,22 +149,6 @@ func _cleanup() -> void:
 	queue_free()
 
 
-func _on_top_hurt_body_entered(hit_body: Node2D) -> void:
-	hit_body.bounce_me()
-	if $InjuryTimer.is_stopped():
-		if current_health <= 1:
-			flying = true
-			aggro = false
-			$VisionCast.enabled = false
-			ani_node.play("dead")
-			$CollisionShape2D.set_deferred("disabled", true)
-			$TopHurt/CollisionShape2D.set_deferred("disabled", true)
-		else:
-			current_health -= 1
-			behavior_transition(behave.SAD)
-			$InjuryTimer.start()
-
-
 func _on_animated_sprite_2d_animation_finished() -> void:
 	match $AnimatedSprite2D.animation:
 		"default":
@@ -174,3 +160,23 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		_:
 			push_warning("Animation ", $AnimatedSprite2D.animation, " finished but doesn't have a case!")
 	
+
+
+func _on_hit_box_body_entered(body: Node2D) -> void:
+	var hit_angle = body.get_angle_to(position)
+	if hit_angle > 0.8 and hit_angle < 2.5:
+		body.bounce_me(false)
+		if $InjuryTimer.is_stopped():
+			if current_health <= 1:
+				flying = true
+				aggro = false
+				$VisionCast.enabled = false
+				ani_node.play("dead")
+				$CollisionShape2D.set_deferred("disabled", true)
+				$HitBox/CollisionShape2D.set_deferred("disabled", true)
+			else:
+				current_health -= 1
+				behavior_transition(behave.SAD)
+				$InjuryTimer.start()
+	else:
+		body.change_health(-1)
