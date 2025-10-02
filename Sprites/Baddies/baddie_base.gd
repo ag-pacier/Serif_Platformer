@@ -15,6 +15,9 @@ class_name Enemy
 @export var react_time: float = 0.5
 ## Starting behavior
 @export var default_behavior: behave = behave.ASLEEP
+## See nothing counter
+@export var secs_to_default: int = 5
+@onready var nothing_check: int = 0
 
 @onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var last_seen
@@ -131,10 +134,22 @@ func behavior_transition(new_behave: behave) -> void:
 func _on_visual_timer_timeout() -> void:
 	if $VisionCast.is_colliding():
 		var coll_body = $VisionCast.get_collider()
+		if coll_body.is_in_group("MainC"):
+			if last_seen == null:
+				behavior_transition(behave.SHOCK)
+				nothing_check = 0
+			else:
+				if current_feel != behave.ANGRY:
+					behavior_transition(behave.ANGRY)
 		last_seen = coll_body
-		#print(last_seen)
 	else:
-		last_seen = null
+		if current_feel != default_behavior:
+			last_seen = null
+			if nothing_check > secs_to_default:
+				behavior_transition(behave.BLANK)
+			else:
+				nothing_check += 1
+		
 
 
 func _on_injury_timer_timeout() -> void:
@@ -142,7 +157,14 @@ func _on_injury_timer_timeout() -> void:
 
 
 func _on_behave_timer_timeout() -> void:
-	pass # Replace with function body.
+	if current_feel != default_behavior:
+		match current_feel:
+			behave.ANGRY:
+				if last_seen == null:
+					behavior_transition(behave.BLANK)
+			_:
+				behavior_transition(default_behavior)
+			
 
 
 func _cleanup() -> void:

@@ -76,3 +76,5 @@ one_shot = true
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="VisualTimer" to="." method="_on_visual_timer_timeout"]
+[connection signal="timeout" from="BehaveTimer" to="." method="_on_behave_timer_timeout"]
