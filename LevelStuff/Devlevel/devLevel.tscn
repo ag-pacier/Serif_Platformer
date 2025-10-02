@@ -185,5 +185,9 @@ position = Vector2(119, 201)
 
 [node name="Slime" parent="Enemies" index="0" instance=ExtResource("11_ystxo")]
 position = Vector2(317, 137)
+collision_layer = 70
+collision_mask = 542
+flying = true
 
 [connection signal="trigger_trip" from="Items/Sign/TriggerBase" to="." method="_on_trigger_base_trigger_trip"]
+[connection signal="enemy_gone" from="Enemies/Slime" to="." method="_on_slime_enemy_gone"]

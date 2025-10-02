@@ -41,9 +41,11 @@ func add_score(added_score: int):
 	$Hud.increment_score(added_score)
 
 
-func bounce_me() -> void:
-	velocity.y = -300.0
-	velocity.x = -30.0 * anim_node.scale.x
+func bounce_me(back: bool = false) -> void:
+	velocity.y = -200.0
+	if back:
+		velocity.x = -250.0 * anim_node.scale.x
+	bounce_timer.start()
 
 
 ## Publicly accessible method to change Satrio's health
@@ -58,11 +60,9 @@ func change_health(health: int):
 		# and set the animation indicators
 		if $InjuryTimer.is_stopped():
 			$InjuryTimer.start()
-			bounce_timer.start()
+			bounce_me(true)
 			anim_node.play("on_hit")
 			anim_node.self_modulate = Color.from_hsv(0, 100, 0)
-			velocity.y = -80
-			velocity.x = -30 * anim_node.scale.x
 			color_v = 0
 		else:
 			# If injury timer is running and we got a negative health change,
@@ -151,7 +151,7 @@ func _on_animated_sprite_2d_animation_finished():
 	if alive:
 		if velocity.y > 0:
 			anim_node.play("fall")
-		if is_on_floor():
+		else:
 			if velocity.x == 0:
 				anim_node.play("default")
 			else:

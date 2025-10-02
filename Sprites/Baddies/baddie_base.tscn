@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cd48e4gqr48pn"]
+[gd_scene load_steps=6 format=3 uid="uid://cd48e4gqr48pn"]
 
 [ext_resource type="Script" uid="uid://74ryh3myrsbc" path="res://Sprites/Baddies/baddie_base.gd" id="1_6jasc"]
 [ext_resource type="Texture2D" uid="uid://c5uclolnqr4h3" path="res://Sprites/MoodBubble/Z.png" id="2_ufvih"]
@@ -6,6 +6,9 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ufvih"]
 radius = 7.0
 height = 20.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ufvih"]
+size = Vector2(22, 22)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ufvih"]
 particle_flag_rotate_y = true
@@ -23,8 +26,8 @@ turbulence_noise_speed_random = 0.0
 turbulence_influence_min = 0.0
 
 [node name="BaddieBase" type="CharacterBody2D"]
-collision_layer = 70
-collision_mask = 542
+collision_layer = 64
+collision_mask = 526
 slide_on_ceiling = false
 platform_floor_layers = 4294966698
 platform_wall_layers = 4
@@ -33,6 +36,14 @@ script = ExtResource("1_6jasc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ufvih")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_ufvih")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 
@@ -63,4 +74,5 @@ one_shot = true
 [node name="BehaveTimer" type="Timer" parent="."]
 one_shot = true
 
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
