@@ -33,6 +33,8 @@ platform_floor_layers = 4294966698
 platform_wall_layers = 4
 safe_margin = 1.0
 script = ExtResource("1_6jasc")
+react_time = 0.2
+time_to_default = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ufvih")

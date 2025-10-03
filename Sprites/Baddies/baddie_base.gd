@@ -16,7 +16,7 @@ class_name Enemy
 ## Starting behavior
 @export var default_behavior: behave = behave.ASLEEP
 ## See nothing counter
-@export var secs_to_default: int = 5
+@export var time_to_default: int = 5
 @onready var nothing_check: int = 0
 
 @onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -27,6 +27,8 @@ class_name Enemy
 @onready var mood_bub = preload("res://Sprites/MoodBubble/MoodBubble.tscn")
 @onready var poof = preload("res://Sprites/Baddies/poof_out.tscn")
 @onready var ani_node = $AnimatedSprite2D
+@onready var color_v: float = 0
+@onready var default_aggro: bool = aggro
 
 enum behave {
 	ASLEEP = 0,
@@ -48,6 +50,12 @@ func _ready() -> void:
 		ani_node.play("default")
 
 func _physics_process(delta: float) -> void:
+	# If the injury timer is running, tweak the V of the HSV
+	if not $InjuryTimer.is_stopped():
+		var new_alpha = randf_range(0.1, 0.8)
+		color_v += 2.0
+		ani_node.self_modulate = Color.from_hsv(0, 100, color_v, new_alpha)
+	# Make gravity happen
 	if not flying and not is_on_floor():
 		if velocity.y < 600:
 			velocity.y += gravity * delta
@@ -135,36 +143,35 @@ func _on_visual_timer_timeout() -> void:
 	if $VisionCast.is_colliding():
 		var coll_body = $VisionCast.get_collider()
 		if coll_body.is_in_group("MainC"):
-			if last_seen == null:
+			if last_seen == null and nothing_check == 0:
 				behavior_transition(behave.SHOCK)
-				nothing_check = 0
 			else:
 				if current_feel != behave.ANGRY:
 					behavior_transition(behave.ANGRY)
+					nothing_check = 1
 		last_seen = coll_body
 	else:
-		if current_feel != default_behavior:
+		if last_seen != null:
 			last_seen = null
-			if nothing_check > secs_to_default:
-				behavior_transition(behave.BLANK)
-			else:
+			behavior_transition(behave.BLANK)
+		if nothing_check > 1:
+			if nothing_check < time_to_default:
 				nothing_check += 1
+			else:
+				nothing_check = 0
 		
 
 
 func _on_injury_timer_timeout() -> void:
-	pass # Replace with function body.
+	ani_node.self_modulate = Color(1, 1, 1, 1)
+	color_v = 0
+	if default_aggro:
+		aggro = true
 
 
 func _on_behave_timer_timeout() -> void:
-	if current_feel != default_behavior:
-		match current_feel:
-			behave.ANGRY:
-				if last_seen == null:
-					behavior_transition(behave.BLANK)
-			_:
-				behavior_transition(default_behavior)
-			
+	if current_feel != default_behavior and last_seen == null:
+		behavior_transition(default_behavior)
 
 
 func _cleanup() -> void:
@@ -176,7 +183,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		"default":
 			$AnimatedSprite2D.play("default")
 		"attack":
-			pass
+			$AnimatedSprite2D.play("default")
 		"dead":
 			poof_out()
 		_:
@@ -186,15 +193,16 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	var hit_angle = body.get_angle_to(position)
-	if hit_angle > 0.8 and hit_angle < 2.5:
+	if hit_angle > 0.8 and hit_angle < 2.5 and body.is_in_group("MainC"):
 		body.bounce_me(false)
 		if $InjuryTimer.is_stopped():
+			aggro = false
 			if current_health <= 1:
+				velocity = Vector2.ZERO
 				flying = true
-				aggro = false
 				$VisionCast.enabled = false
 				ani_node.play("dead")
-				$CollisionShape2D.set_deferred("disabled", true)
+				#$CollisionShape2D.set_deferred("disabled", true)
 				$HitBox/CollisionShape2D.set_deferred("disabled", true)
 			else:
 				current_health -= 1
