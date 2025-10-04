@@ -187,7 +187,10 @@ position = Vector2(119, 201)
 position = Vector2(317, 137)
 collision_layer = 70
 collision_mask = 542
-flying = true
+floor_constant_speed = false
+platform_on_leave = 0
+max_health = 3
+aggro = true
 react_time = 0.5
 time_to_default = 5
 

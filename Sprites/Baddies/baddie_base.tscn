@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cd48e4gqr48pn"]
+[gd_scene load_steps=7 format=3 uid="uid://cd48e4gqr48pn"]
 
 [ext_resource type="Script" uid="uid://74ryh3myrsbc" path="res://Sprites/Baddies/baddie_base.gd" id="1_6jasc"]
 [ext_resource type="Texture2D" uid="uid://c5uclolnqr4h3" path="res://Sprites/MoodBubble/Z.png" id="2_ufvih"]
@@ -6,6 +6,9 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ufvih"]
 radius = 7.0
 height = 20.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e5x31"]
+size = Vector2(14, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ufvih"]
 size = Vector2(22, 22)
@@ -29,6 +32,8 @@ turbulence_influence_min = 0.0
 collision_layer = 64
 collision_mask = 526
 slide_on_ceiling = false
+floor_constant_speed = true
+platform_on_leave = 2
 platform_floor_layers = 4294966698
 platform_wall_layers = 4
 safe_margin = 1.0
@@ -38,6 +43,11 @@ time_to_default = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ufvih")
+
+[node name="AttackBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackBox"]
+shape = SubResource("RectangleShape2D_e5x31")
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 0
@@ -76,7 +86,10 @@ one_shot = true
 [node name="BehaveTimer" type="Timer" parent="."]
 one_shot = true
 
+[connection signal="body_entered" from="AttackBox" to="." method="_on_attack_box_entered"]
+[connection signal="body_exited" from="AttackBox" to="." method="_on_attack_box_exited"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="VisualTimer" to="." method="_on_visual_timer_timeout"]
+[connection signal="timeout" from="InjuryTimer" to="." method="_on_injury_timer_timeout"]
 [connection signal="timeout" from="BehaveTimer" to="." method="_on_behave_timer_timeout"]

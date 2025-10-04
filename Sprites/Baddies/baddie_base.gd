@@ -18,6 +18,8 @@ class_name Enemy
 ## See nothing counter
 @export var time_to_default: int = 5
 @onready var nothing_check: int = 0
+## Attack Frame
+@export var attack_frm: int
 
 @onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var last_seen
@@ -29,6 +31,8 @@ class_name Enemy
 @onready var ani_node = $AnimatedSprite2D
 @onready var color_v: float = 0
 @onready var default_aggro: bool = aggro
+@onready var mainc_loc
+@onready var attacking: bool = false
 
 enum behave {
 	ASLEEP = 0,
@@ -53,8 +57,8 @@ func _physics_process(delta: float) -> void:
 	# If the injury timer is running, tweak the V of the HSV
 	if not $InjuryTimer.is_stopped():
 		var new_alpha = randf_range(0.1, 0.8)
-		color_v += 2.0
-		ani_node.self_modulate = Color.from_hsv(0, 100, color_v, new_alpha)
+		color_v += 0.9
+		ani_node.self_modulate = Color.from_hsv(0, 1, color_v, new_alpha)
 	# Make gravity happen
 	if not flying and not is_on_floor():
 		if velocity.y < 600:
@@ -143,10 +147,11 @@ func _on_visual_timer_timeout() -> void:
 	if $VisionCast.is_colliding():
 		var coll_body = $VisionCast.get_collider()
 		if coll_body.is_in_group("MainC"):
+			mainc_loc = coll_body.position
 			if last_seen == null and nothing_check == 0:
 				behavior_transition(behave.SHOCK)
 			else:
-				if current_feel != behave.ANGRY:
+				if current_feel != behave.ANGRY and aggro:
 					behavior_transition(behave.ANGRY)
 					nothing_check = 1
 		last_seen = coll_body
@@ -159,6 +164,8 @@ func _on_visual_timer_timeout() -> void:
 				nothing_check += 1
 			else:
 				nothing_check = 0
+		else:
+			mainc_loc = null
 		
 
 
@@ -210,3 +217,14 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 				$InjuryTimer.start()
 	else:
 		body.change_health(-1)
+
+
+func _on_attack_box_entered(body: Node2D) -> void:
+	if body.is_in_group("MainC") and aggro and $InjuryTimer.is_stopped():
+		attacking = true
+		if current_feel == behave.ANGRY:
+			$AnimatedSprite2D.animation = "attack"
+
+func _on_attack_box_exited(body: Node2D) -> void:
+	if body.is_in_group("MainC"):
+		attacking = false
