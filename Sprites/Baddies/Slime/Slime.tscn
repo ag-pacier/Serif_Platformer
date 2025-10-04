@@ -7,12 +7,16 @@
 platform_floor_layers = 170
 speed = 100
 default_behavior = 2
+attack_frm = 6
 
-[node name="AnimatedSprite2D" parent="." index="2"]
+[node name="CollisionShape2D" parent="AttackBox" index="0"]
+position = Vector2(0, -4)
+
+[node name="AnimatedSprite2D" parent="." index="3"]
 sprite_frames = ExtResource("3_ys2v6")
 
 [node name="Zs" parent="AnimatedSprite2D/EmoteAnchor" index="0"]
 position = Vector2(-12, 9)
 
-[node name="VisionCast" parent="." index="3"]
+[node name="VisionCast" parent="." index="4"]
 target_position = Vector2(-50, 0)
