@@ -77,6 +77,8 @@ func _physics_process(delta):
 	# Check what we are touching and trip injury if the damage layer
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
+		if collision.get_collider() == null:
+			continue
 		if collision.get_collider().name == "Damage" and alive:
 			var found_angle = collision.get_angle()
 			if $InjuryTimer.is_stopped() and (found_angle < 1 or found_angle > 3):
