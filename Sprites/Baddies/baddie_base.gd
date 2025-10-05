@@ -32,7 +32,7 @@ class_name Enemy
 @onready var color_v: float = 0
 @onready var default_aggro: bool = aggro
 @onready var mainc_loc
-@onready var attacking: bool = false
+@onready var attacking
 
 enum behave {
 	ASLEEP = 0,
@@ -59,6 +59,11 @@ func _physics_process(delta: float) -> void:
 		var new_alpha = randf_range(0.1, 0.8)
 		color_v += 0.9
 		ani_node.self_modulate = Color.from_hsv(0, 1, color_v, new_alpha)
+	if attacking != null and current_feel == behave.ANGRY:
+		if $AnimatedSprite2D.animation != "attack":
+			$AnimatedSprite2D.play("attack")
+		elif $AnimatedSprite2D.frame == attack_frm:
+			attacking.change_health(-1)
 	# Make gravity happen
 	if not flying and not is_on_floor():
 		if velocity.y < 600:
@@ -220,11 +225,9 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 
 
 func _on_attack_box_entered(body: Node2D) -> void:
-	if body.is_in_group("MainC") and aggro and $InjuryTimer.is_stopped():
-		attacking = true
-		if current_feel == behave.ANGRY:
-			$AnimatedSprite2D.animation = "attack"
+	if body.is_in_group("MainC"):
+		attacking = body
 
 func _on_attack_box_exited(body: Node2D) -> void:
 	if body.is_in_group("MainC"):
-		attacking = false
+		attacking = null

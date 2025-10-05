@@ -1,17 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://cd48e4gqr48pn"]
+[gd_scene load_steps=8 format=3 uid="uid://cd48e4gqr48pn"]
 
 [ext_resource type="Script" uid="uid://74ryh3myrsbc" path="res://Sprites/Baddies/baddie_base.gd" id="1_6jasc"]
 [ext_resource type="Texture2D" uid="uid://c5uclolnqr4h3" path="res://Sprites/MoodBubble/Z.png" id="2_ufvih"]
+
+[sub_resource type="Curve2D" id="Curve2D_ufvih"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ufvih"]
 radius = 7.0
 height = 20.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e5x31"]
-size = Vector2(14, 20)
+size = Vector2(49, 21.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ufvih"]
-size = Vector2(22, 22)
+size = Vector2(17, 22)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ufvih"]
 particle_flag_rotate_y = true
@@ -41,12 +43,20 @@ script = ExtResource("1_6jasc")
 react_time = 0.2
 time_to_default = 10
 
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_ufvih")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ufvih")
 
 [node name="AttackBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackBox"]
+position = Vector2(0, -0.75)
 shape = SubResource("RectangleShape2D_e5x31")
 
 [node name="HitBox" type="Area2D" parent="."]
@@ -54,7 +64,7 @@ collision_layer = 0
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(0, -2)
+position = Vector2(-0.5, -2)
 shape = SubResource("RectangleShape2D_ufvih")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -73,8 +83,8 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_ufvih")
 
 [node name="VisionCast" type="RayCast2D" parent="."]
-target_position = Vector2(50, 0)
-collision_mask = 596
+target_position = Vector2(100, 0)
+collision_mask = 592
 
 [node name="VisualTimer" type="Timer" parent="."]
 autostart = true
