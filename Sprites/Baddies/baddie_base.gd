@@ -33,6 +33,8 @@ class_name Enemy
 @onready var default_aggro: bool = aggro
 @onready var mainc_loc
 @onready var attacking
+@onready var moving: bool = true
+@onready var start_x: float
 
 enum behave {
 	ASLEEP = 0,
@@ -54,6 +56,9 @@ func _ready() -> void:
 		ani_node.play("default")
 
 func _physics_process(delta: float) -> void:
+	# If startx hasn't been grabbed yet, try to. Don't let it be origin
+	if start_x == null or start_x == 0.0:
+		start_x = global_position.x
 	# If the injury timer is running, tweak the V of the HSV
 	if not $InjuryTimer.is_stopped():
 		var new_alpha = randf_range(0.1, 0.8)
@@ -64,6 +69,48 @@ func _physics_process(delta: float) -> void:
 			$AnimatedSprite2D.play("attack")
 		elif $AnimatedSprite2D.frame == attack_frm:
 			attacking.change_health(-1)
+	# Set movement if needed
+	if moving:
+		if mainc_loc != null:
+			var main_dir = global_position.x - mainc_loc.x
+			if main_dir > 1:
+				main_dir = -1
+			else:
+				main_dir = 1
+			if attacking == null:
+				velocity.x = move_toward(velocity.x, main_dir * speed, speed)
+			elif $AnimatedSprite2D.animation != "attack":
+				velocity.x = move_toward(velocity.x, 0, speed)
+			else:
+				velocity.x = 0
+				if flying:
+					velocity.y = 0
+		else:
+			var main_dir = global_position.x - start_x
+			if main_dir > 10:
+				main_dir = -1
+			elif main_dir < -10:
+				main_dir = 1
+			else:
+				main_dir = 0
+			if main_dir != 0:
+				velocity.x = move_toward(velocity.x, main_dir * speed, speed)
+			else:
+				velocity.x = move_toward(velocity.x, 0, speed)
+	else:
+		velocity.x = 0
+		if flying:
+			velocity.y = 0
+	# Face towards the likely way that main character is coming from
+	# unless it makes sense to look elsewhere
+	if velocity.x > 0:
+		$AnimatedSprite2D.scale.x = -1
+		$VisionCast.target_position.x = 100
+	else:
+		$AnimatedSprite2D.scale.x = 1
+		$VisionCast.target_position.x = -100
+	
+	
 	# Make gravity happen
 	if not flying and not is_on_floor():
 		if velocity.y < 600:
@@ -128,6 +175,8 @@ func behavior_transition(new_behave: behave) -> void:
 		behave.SHOCK:
 			mood_indicate(behave.SHOCK)
 			$BehaveTimer.start(1.0)
+			if moving:
+				moving = false
 		behave.HAPPY:
 			pass
 		behave.JOY:
@@ -136,12 +185,18 @@ func behavior_transition(new_behave: behave) -> void:
 		behave.BLANK:
 			mood_indicate(behave.BLANK)
 			$BehaveTimer.start(2.0)
+			if moving:
+				moving = false
 		behave.SAD:
 			mood_indicate(behave.SAD)
 			$BehaveTimer.start(2.0)
+			if moving:
+				moving = false
 		behave.ANGRY:
 			mood_indicate(behave.ANGRY)
 			$BehaveTimer.start(1.0)
+			if !moving:
+				moving = true
 		_:
 			pass
 		
@@ -149,6 +204,7 @@ func behavior_transition(new_behave: behave) -> void:
 
 ## On reaction time, check to see if we see anything and react to it
 func _on_visual_timer_timeout() -> void:
+	print("Visual Timer!")
 	if $VisionCast.is_colliding():
 		var coll_body = $VisionCast.get_collider()
 		if coll_body.is_in_group("MainC"):
@@ -167,8 +223,10 @@ func _on_visual_timer_timeout() -> void:
 		if nothing_check > 1:
 			if nothing_check < time_to_default:
 				nothing_check += 1
+				print("Nuffin")
 			else:
 				nothing_check = 0
+				print("Reset Nuffin")
 		else:
 			mainc_loc = null
 		
