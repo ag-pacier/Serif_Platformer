@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://q7ign3bl3yn3"]
+
+[ext_resource type="PackedScene" uid="uid://cd48e4gqr48pn" path="res://Sprites/Baddies/baddie_base.tscn" id="1_ek6xe"]
+[ext_resource type="SpriteFrames" uid="uid://bhbd34aqik85h" path="res://Sprites/Baddies/Slime/slime_frames.tres" id="3_ys2v6"]
+
+[node name="Slime" instance=ExtResource("1_ek6xe")]
+platform_floor_layers = 170
+speed = 50
+default_behavior = 2
+attack_frm = 6
+
+[node name="CollisionShape2D" parent="AttackBox" index="0"]
+position = Vector2(0.5, -5.5)
+
+[node name="AnimatedSprite2D" parent="." index="3"]
+sprite_frames = ExtResource("3_ys2v6")
+animation = &"attack"
+frame = 6
+frame_progress = 0.20025
+
+[node name="Zs" parent="AnimatedSprite2D/EmoteAnchor" index="0"]
+position = Vector2(-12, 9)
+
+[node name="VisionCast" parent="." index="4"]
+target_position = Vector2(-90, 0)

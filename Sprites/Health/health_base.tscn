@@ -71,5 +71,5 @@ drag_and_drop_selection_enabled = false
 [node name="AnimatedSprite2D" parent="." index="2"]
 sprite_frames = SubResource("SpriteFrames_y2d6b")
 animation = &"good"
-frame_progress = 0.426676
+frame_progress = 0.955867
 speed_scale = 1.6
