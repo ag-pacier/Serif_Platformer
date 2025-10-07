@@ -270,7 +270,6 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 				flying = true
 				$VisionCast.enabled = false
 				ani_node.play("dead")
-				#$CollisionShape2D.set_deferred("disabled", true)
 				$HitBox/CollisionShape2D.set_deferred("disabled", true)
 			else:
 				current_health -= 1
