@@ -178,9 +178,10 @@ func behavior_transition(new_behave: behave) -> void:
 			if moving:
 				moving = false
 		behave.HAPPY:
-			pass
+			if !moving:
+				moving = true
 		behave.JOY:
-			mood_indicate(behave.SHOCK)
+			mood_indicate(behave.JOY)
 			$BehaveTimer.start(2.0)
 		behave.BLANK:
 			mood_indicate(behave.BLANK)
@@ -204,7 +205,6 @@ func behavior_transition(new_behave: behave) -> void:
 
 ## On reaction time, check to see if we see anything and react to it
 func _on_visual_timer_timeout() -> void:
-	print("Visual Timer!")
 	if $VisionCast.is_colliding():
 		var coll_body = $VisionCast.get_collider()
 		if coll_body.is_in_group("MainC"):
@@ -220,13 +220,11 @@ func _on_visual_timer_timeout() -> void:
 		if last_seen != null:
 			last_seen = null
 			behavior_transition(behave.BLANK)
-		if nothing_check > 1:
+		if nothing_check >= 1:
 			if nothing_check < time_to_default:
 				nothing_check += 1
-				print("Nuffin")
 			else:
 				nothing_check = 0
-				print("Reset Nuffin")
 		else:
 			mainc_loc = null
 		

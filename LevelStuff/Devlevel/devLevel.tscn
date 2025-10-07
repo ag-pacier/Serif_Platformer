@@ -190,7 +190,6 @@ collision_mask = 542
 floor_constant_speed = false
 platform_on_leave = 0
 max_health = 3
-speed = 200
 aggro = true
 react_time = 0.5
 time_to_default = 5

@@ -5,7 +5,7 @@
 
 [node name="Slime" instance=ExtResource("1_ek6xe")]
 platform_floor_layers = 170
-speed = 100
+speed = 50
 default_behavior = 2
 attack_frm = 6
 
