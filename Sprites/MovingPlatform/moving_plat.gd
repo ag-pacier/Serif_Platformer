@@ -1,19 +1,15 @@
 extends Node2D
 class_name MovingPlatform
 
-## Allow movement on the X plane
-@export var x_movement: bool = false
-## Allow movement on the Y plane
-@export var y_movement: bool = false
-## Movement speed to engage on X and/or Y plane
-@export var move_speed: float
-## Maximum length the platform will move
-## Example: if var set to 100, platform will move starting position + 100 (X and/or Y)
-@export var move_distance: int
-## Check if the platform should try to fall away when touched
-@export var collapse: bool = false
+@export var offset = Vector2(0, -320)
+@export var duration = 5.0
+
 
 func _ready():
-	if move_speed == 0 or move_distance == 0:
-		x_movement = false
-		y_movement = false
+	start_tween()
+
+func start_tween():
+	var tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+	tween.set_loops().set_parallel(false)
+	tween.tween_property($AnimatableBody2d, "position", offset, duration / 2)
+	tween.tween_property($AnimatableBody2d, "position", Vector2.ZERO, duration / 2)
