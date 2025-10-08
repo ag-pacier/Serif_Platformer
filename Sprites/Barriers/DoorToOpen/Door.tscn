@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://xicgr417lmjh"]
+
+[ext_resource type="Script" uid="uid://cpdysl1hrnhob" path="res://Sprites/Barriers/DoorToOpen/door.gd" id="1_2e2j4"]
+[ext_resource type="AudioStream" uid="uid://qhhgi0b8w4mv" path="res://Sounds/unlock_door.wav" id="2_0xc6w"]
+[ext_resource type="Texture2D" uid="uid://blndbnvi1tihi" path="res://Art/FantasyCave/mainlev_build.png" id="2_fi51p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yelo8"]
+size = Vector2(26, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xc6w"]
+atlas = ExtResource("2_fi51p")
+region = Rect2(752, 96, 48, 48)
+
+[node name="Door" type="Node2D"]
+script = ExtResource("1_2e2j4")
+
+[node name="OpenDoorSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0xc6w")
+bus = &"Effects"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -27.5)
+shape = SubResource("RectangleShape2D_yelo8")
+
+[node name="Default" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(9.53674e-07, -27.5)
+scale = Vector2(0.541667, 1.14583)
+texture = SubResource("AtlasTexture_0xc6w")
+
+[node name="Open" type="Sprite2D" parent="StaticBody2D"]
+visible = false
+
+[connection signal="finished" from="OpenDoorSound" to="." method="_on_open_door_sound_finished"]
