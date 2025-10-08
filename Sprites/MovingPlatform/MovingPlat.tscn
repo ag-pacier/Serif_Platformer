@@ -1,18 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://651qoousmogv"]
+[gd_scene load_steps=5 format=3 uid="uid://651qoousmogv"]
 
 [ext_resource type="Script" uid="uid://ban0601nwasq0" path="res://Sprites/MovingPlatform/moving_plat.gd" id="1_u6w0c"]
+[ext_resource type="Texture2D" uid="uid://ccymtfug3ikyo" path="res://Art/stringstar fields/tileset.png" id="2_hi0qg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15p0s"]
+atlas = ExtResource("2_hi0qg")
+region = Rect2(80, 64, 80, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u6w0c"]
-size = Vector2(20, 6)
+size = Vector2(80, 8)
 
 [node name="MovingPlat" type="Node2D"]
 script = ExtResource("1_u6w0c")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
 collision_layer = 6
 collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
+texture = SubResource("AtlasTexture_15p0s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
 shape = SubResource("RectangleShape2D_u6w0c")
