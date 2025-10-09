@@ -8,7 +8,7 @@ func _ready():
 
 
 func _on_trigger_base_trigger_trip(bod) -> void:
-	if bod.is_in_group("MainC") and test_door != null:
+	if bod.is_in_group("MainC") and test_door != null and bod.has_key("RedKey"):
 		test_door.unlock_door()
 
 

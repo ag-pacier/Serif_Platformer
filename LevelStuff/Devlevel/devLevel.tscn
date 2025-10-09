@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://d1dxqy8fo7ltb"]
+[gd_scene load_steps=18 format=4 uid="uid://d1dxqy8fo7ltb"]
 
 [ext_resource type="PackedScene" uid="uid://xbynapupnn5l" path="res://LevelStuff/base_level.tscn" id="1_thfdx"]
 [ext_resource type="Script" uid="uid://cvw8sosk80xcu" path="res://LevelStuff/Devlevel/devlevel.gd" id="2_sqm4d"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://xicgr417lmjh" path="res://Sprites/Barriers/DoorToOpen/Door.tscn" id="9_x0utg"]
 [ext_resource type="PackedScene" uid="uid://651qoousmogv" path="res://Sprites/MovingPlatform/MovingPlat.tscn" id="11_p8pol"]
 [ext_resource type="PackedScene" uid="uid://q7ign3bl3yn3" path="res://Sprites/Baddies/Slime/Slime.tscn" id="11_ystxo"]
+[ext_resource type="PackedScene" uid="uid://due08jky8phuv" path="res://Sprites/Barriers/Key/key.tscn" id="12_nyj2j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6bjdc"]
 texture = ExtResource("4_4sij5")
@@ -188,11 +189,15 @@ position = Vector2(-911, 628)
 [node name="TriggerBase" parent="Items/Sign" index="0" instance=ExtResource("8_ngk8f")]
 position = Vector2(997, 203)
 
+[node name="Key" parent="Items" index="3" instance=ExtResource("12_nyj2j")]
+position = Vector2(117, 222)
+pickup_name = "RedKey"
+
 [node name="MovingPlat" parent="MovingPlats" index="0" instance=ExtResource("11_p8pol")]
 position = Vector2(1105, 628)
 
 [node name="Slime" parent="Enemies" index="0" instance=ExtResource("11_ystxo")]
-position = Vector2(317, 137)
+position = Vector2(468, 149)
 collision_layer = 70
 collision_mask = 542
 floor_constant_speed = false
