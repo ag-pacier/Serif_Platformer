@@ -39,6 +39,8 @@ volume_db = -6.0
 autoplay = true
 bus = &"Music"
 
+[node name="Doors" type="Node2D" parent="."]
+
 [node name="Items" type="Node2D" parent="."]
 
 [node name="Coins" type="Node2D" parent="Items"]

@@ -1,0 +1,97 @@
+[gd_scene load_steps=17 format=3 uid="uid://due08jky8phuv"]
+
+[ext_resource type="Script" uid="uid://dfox3buwo5brm" path="res://Sprites/Barriers/Key/key.gd" id="1_b78e3"]
+[ext_resource type="PackedScene" uid="uid://b8ja3qoy8ksw3" path="res://Sprites/base_pickup.tscn" id="1_y1qya"]
+[ext_resource type="AudioStream" uid="uid://dcnkrfe0r28hl" path="res://Sounds/HorrorSFX/Keys_pick up.wav" id="2_ajc82"]
+[ext_resource type="Texture2D" uid="uid://dqermcfup3dat" path="res://Art/key-rpblocks/KeyString.png" id="2_b78e3"]
+[ext_resource type="PackedScene" uid="uid://brw3y7t6gam4y" path="res://Sprites/Barriers/Key/keyaura.tscn" id="5_v5vre"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajc82"]
+atlas = ExtResource("2_b78e3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdcpy"]
+atlas = ExtResource("2_b78e3")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5vre"]
+atlas = ExtResource("2_b78e3")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ejy5"]
+atlas = ExtResource("2_b78e3")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hi40q"]
+atlas = ExtResource("2_b78e3")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ue7vf"]
+atlas = ExtResource("2_b78e3")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yq7w5"]
+atlas = ExtResource("2_b78e3")
+region = Rect2(0, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20yt8"]
+atlas = ExtResource("2_b78e3")
+region = Rect2(0, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sf3us"]
+atlas = ExtResource("2_b78e3")
+region = Rect2(0, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0dqk"]
+atlas = ExtResource("2_b78e3")
+region = Rect2(0, 144, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w1d1x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajc82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdcpy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5vre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ejy5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hi40q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ue7vf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yq7w5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20yt8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sf3us")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0dqk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[node name="Key" instance=ExtResource("1_y1qya")]
+script = ExtResource("1_b78e3")
+key_color = Color(1, 0, 0, 1)
+worth = 20
+pickup_sound = ExtResource("2_ajc82")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_w1d1x")
+frame_progress = 0.718571
+
+[node name="Keyaura" parent="." index="2" instance=ExtResource("5_v5vre")]
