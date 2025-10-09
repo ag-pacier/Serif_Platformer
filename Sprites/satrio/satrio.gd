@@ -22,9 +22,6 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 # Mood sprite
 @onready var mood_bub = preload("res://Sprites/MoodBubble/MoodBubble.tscn")
 
-# Key aura scene
-@onready var kaura = preload("res://Sprites/Barriers/Key/keyaura.tscn")
-
 # Container for key auras
 @onready var held_keys: Dictionary
 
@@ -179,17 +176,11 @@ func has_key(aurname: StringName) -> bool:
 
 func add_key_aura(aurname: StringName, col: Color) -> void:
 	if aurname not in held_keys:
-		var new_aura = kaura.instantiate()
-		new_aura.set_color(col)
-		add_child(new_aura)
-		held_keys[aurname] = new_aura
+		held_keys[aurname] = col
 
 func remove_key_aura(aurname: StringName) -> void:
 	if aurname in held_keys:
-		var removed_aura = held_keys[aurname]
 		held_keys.erase(aurname)
-		removed_aura.set_deferred("visible", false)
-		removed_aura.queue_free()
 
 ## When the injury timer elapses, we can be hurt again :(
 func _on_injury_timer_timeout():

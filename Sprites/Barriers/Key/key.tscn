@@ -1,10 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://due08jky8phuv"]
+[gd_scene load_steps=16 format=3 uid="uid://due08jky8phuv"]
 
 [ext_resource type="Script" uid="uid://dfox3buwo5brm" path="res://Sprites/Barriers/Key/key.gd" id="1_b78e3"]
 [ext_resource type="PackedScene" uid="uid://b8ja3qoy8ksw3" path="res://Sprites/base_pickup.tscn" id="1_y1qya"]
 [ext_resource type="AudioStream" uid="uid://dcnkrfe0r28hl" path="res://Sounds/HorrorSFX/Keys_pick up.wav" id="2_ajc82"]
 [ext_resource type="Texture2D" uid="uid://dqermcfup3dat" path="res://Art/key-rpblocks/KeyString.png" id="2_b78e3"]
-[ext_resource type="PackedScene" uid="uid://brw3y7t6gam4y" path="res://Sprites/Barriers/Key/keyaura.tscn" id="5_v5vre"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ajc82"]
 atlas = ExtResource("2_b78e3")
@@ -86,12 +85,10 @@ animations = [{
 
 [node name="Key" instance=ExtResource("1_y1qya")]
 script = ExtResource("1_b78e3")
-key_color = Color(1, 0, 0, 1)
+key_color = Color(0, 0, 0, 1)
 worth = 20
 pickup_sound = ExtResource("2_ajc82")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_w1d1x")
 frame_progress = 0.718571
-
-[node name="Keyaura" parent="." index="2" instance=ExtResource("5_v5vre")]

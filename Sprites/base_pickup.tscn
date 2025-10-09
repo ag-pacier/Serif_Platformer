@@ -2,50 +2,50 @@
 
 [ext_resource type="Script" uid="uid://ck5smn3hderwk" path="res://Sprites/pickup.gd" id="1_18vre"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7fs22"]
+[sub_resource type="Curve" id="Curve_r7rua"]
+bake_resolution = 25
+_data = [Vector2(0.279412, 1), 0.0, 0.0, 0, 0, Vector2(0.654412, 0.224719), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qmhgc"]
+curve = SubResource("Curve_r7rua")
+
+[sub_resource type="Gradient" id="Gradient_0wx5y"]
+offsets = PackedFloat32Array(0.290909, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_w0ruh"]
+gradient = SubResource("Gradient_0wx5y")
+use_hdr = true
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_77xhb"]
 particle_flag_disable_z = true
 emission_shape = 2
-emission_sphere_radius = 1.0
-angle_min = -30.0
-angle_max = 90.0
+emission_sphere_radius = 2.0
+angle_min = -80.0
+angle_max = 75.0
 direction = Vector3(0, 0, 0)
-spread = 90.0
-initial_velocity_min = 44.95
-initial_velocity_max = 123.6
-angular_velocity_max = 90.0
+spread = 81.325
+flatness = 0.241
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+angular_velocity_min = -20.0
+angular_velocity_max = 50.0
 gravity = Vector3(0, -200, 0)
+color = Color(0.501615, 0.000523278, 0.582109, 1)
+color_ramp = SubResource("GradientTexture1D_w0ruh")
+alpha_curve = SubResource("CurveTexture_qmhgc")
 turbulence_enabled = true
-turbulence_noise_strength = 4.37
-collision_mode = 1
-collision_friction = 0.0
-collision_bounce = 0.57
+turbulence_noise_strength = 5.0
+turbulence_noise_scale = 8.0
+turbulence_noise_speed_random = 0.56
+turbulence_influence_max = 0.283
+turbulence_initial_displacement_min = -35.5
+turbulence_initial_displacement_max = 20.8
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_8sugg"]
 polygon = PackedVector2Array(-20, 9, 22, 9, 49, 20, -47, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_46onf"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7wlmw"]
-size = Vector2(3, 3)
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3k8v6"]
-particle_flag_rotate_y = true
-particle_flag_disable_z = true
-emission_shape_scale = Vector3(2, 2, 1)
-emission_shape = 1
-emission_sphere_radius = 1.0
-direction = Vector3(0, -500, 0)
-spread = 119.831
-initial_velocity_min = 30.0
-initial_velocity_max = 50.0
-gravity = Vector3(0, -50, 0)
-collision_mode = 2
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4ppcl"]
-cull_mode = 1
-polygon = PackedVector2Array(0, 7, 21, 7, 21, -17, 18, -17, 18, 5, -19, 5, -19, -17, -22, -17, -22, 7)
 
 [node name="BasePickup" type="Area2D"]
 collision_layer = 512
@@ -56,8 +56,12 @@ script = ExtResource("1_18vre")
 [node name="PickupParticles" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 10
-texture = SubResource("PlaceholderTexture2D_7fs22")
+lifetime = 2.5
 one_shot = true
+explosiveness = 1.0
+fixed_fps = 12
+trail_sections = 2
+trail_section_subdivisions = 2
 process_material = SubResource("ParticleProcessMaterial_77xhb")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="PickupParticles"]
@@ -67,16 +71,6 @@ occluder = SubResource("OccluderPolygon2D_8sugg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_46onf")
-
-[node name="SignificantParticles" type="GPUParticles2D" parent="."]
-visible = false
-amount = 30
-texture = SubResource("PlaceholderTexture2D_7wlmw")
-process_material = SubResource("ParticleProcessMaterial_3k8v6")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="SignificantParticles"]
-occluder = SubResource("OccluderPolygon2D_4ppcl")
-sdf_collision = false
 
 [node name="PickupNoise" type="AudioStreamPlayer" parent="."]
 bus = &"Effects"

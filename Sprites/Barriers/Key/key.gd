@@ -1,11 +1,11 @@
 extends Pickup
 class_name Key
 
-@export var key_color: Color = Color("red")
+@export var key_color: Color
 
 func _ready() -> void:
 	super()
-	$Keyaura.set_color(key_color)
+	$AnimatedSprite2D.self_modulate = key_color
 
 func _on_body_entered(body):
 	if body.is_in_group("MainC"):

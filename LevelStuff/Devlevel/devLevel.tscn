@@ -189,9 +189,20 @@ position = Vector2(-911, 628)
 [node name="TriggerBase" parent="Items/Sign" index="0" instance=ExtResource("8_ngk8f")]
 position = Vector2(997, 203)
 
-[node name="Key" parent="Items" index="3" instance=ExtResource("12_nyj2j")]
+[node name="RedKey" parent="Items" index="3" instance=ExtResource("12_nyj2j")]
 position = Vector2(117, 222)
+key_color = Color(1, 0, 0, 1)
 pickup_name = "RedKey"
+
+[node name="BlueKey" parent="Items" index="4" instance=ExtResource("12_nyj2j")]
+position = Vector2(351, 222)
+key_color = Color(0.0333333, 0, 1, 1)
+pickup_name = "BlueKey"
+
+[node name="GreenKey" parent="Items" index="5" instance=ExtResource("12_nyj2j")]
+position = Vector2(206, 222)
+key_color = Color(0.0500001, 1, 0, 1)
+pickup_name = "GreenKey"
 
 [node name="MovingPlat" parent="MovingPlats" index="0" instance=ExtResource("11_p8pol")]
 position = Vector2(1105, 628)

@@ -9,25 +9,31 @@ gradient = SubResource("Gradient_iv3j1")
 width = 80
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uhpvc"]
+particle_flag_align_y = true
 particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 8.0
-gravity = Vector3(0, 50, 0)
-radial_accel_min = -60.92
-radial_accel_max = -60.92
-scale_max = 3.0
+inherit_velocity_ratio = 0.1
+direction = Vector3(0, -10, 0)
+spread = 131.747
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -90.0
+radial_accel_max = 90.0
+tangential_accel_min = -5.0
+tangential_accel_max = 5.0
 color = Color(0.0166667, 1, 0, 1)
 color_ramp = SubResource("GradientTexture1D_mdcpy")
 
 [node name="Keyaura" type="Node2D"]
+show_behind_parent = true
 script = ExtResource("1_uhpvc")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-amount = 18
+amount = 16
+lifetime = 0.8
 randomness = 0.44
 fixed_fps = 12
 visibility_rect = Rect2(-32, -32, 32, 32)
-trail_enabled = true
 trail_lifetime = 0.2
 trail_sections = 4
 process_material = SubResource("ParticleProcessMaterial_uhpvc")

@@ -7,22 +7,15 @@ class_name Pickup
 @export var worth: int = 0
 # Sound played when the item is picked up
 @export var pickup_sound: AudioStream
-# Whether or not it should have *special glow*
-@export var significant: bool = false
 
 # Container if this will be displaying worth on pickup
 var is_worthy: bool = false
-
-# Signal to emit if a significant item is picked up
-signal sig_pickup
 
 func _ready():
 	if $AnimatedSprite2D.sprite_frames == null:
 		push_error("Pickup ", get_rid(), " does not have a SpriteFrames asscociated with it!")
 	else:
 		$AnimatedSprite2D.play()
-	if significant:
-		$SignificantParticles.visible = true
 		# If the name wasn't set for a significant item, freak out
 		if pickup_name == null:
 			push_error("Pickup with significant marker not labeled and will ruin pickup trigger!")
@@ -45,12 +38,8 @@ func _on_body_entered(body):
 		$AnimatedSprite2D.visible = false
 		# Disable monitoring as this will object disappears after the particles are done
 		set_deferred("monitoring", false)
-		if significant:
-			# If marked as significant, turn off the significant particles
-			$SignificantParticles.emitting = false
-			emit_signal("sig_pickup", pickup_name)
 			
-		elif worth != 0:
+		if worth != 0:
 			var worth_string: String
 			worth_string = str(worth)
 			$WorthLabel.parse_bbcode(worth_string)
