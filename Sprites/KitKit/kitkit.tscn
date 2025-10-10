@@ -470,6 +470,7 @@ alpha_curve = SubResource("CurveTexture_povsh")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ririo")
 animation = &"asleep"
+frame_progress = 0.284064
 centered = false
 offset = Vector2(-16, -32)
 script = ExtResource("2_rv81i")
@@ -478,8 +479,8 @@ script = ExtResource("2_rv81i")
 position = Vector2(9, -11)
 
 [node name="Zzs" type="GPUParticles2D" parent="EmoteAnchor"]
-visible = false
 texture_filter = 1
+emitting = false
 amount = 3
 texture = ExtResource("3_dtvbe")
 lifetime = 2.0

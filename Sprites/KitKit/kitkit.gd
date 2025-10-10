@@ -4,6 +4,9 @@ class_name KitKit
 # Mood sprite
 @onready var mood_bub = preload("res://Sprites/MoodBubble/MoodBubble.tscn")
 
+func toggle_z(active: bool) -> void:
+	$EmoteAnchor/Zzs.emitting = active
+
 func show_mood(mood: int) -> void:
 	if mood < 0 or mood > 8:
 		print("Invalid mood indicator for Kitkit!")
