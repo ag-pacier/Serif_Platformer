@@ -1,14 +1,18 @@
-[gd_scene load_steps=70 format=3 uid="uid://ccf8dlpyt5orp"]
+[gd_scene load_steps=72 format=3 uid="uid://ccf8dlpyt5orp"]
 
 [ext_resource type="Texture2D" uid="uid://dhfo46a50pa48" path="res://Art/Cat Sprite Sheet.png" id="1_xnuna"]
 [ext_resource type="Script" uid="uid://pyxekulw6433" path="res://Sprites/KitKit/kitkit.gd" id="2_rv81i"]
 [ext_resource type="Texture2D" uid="uid://c5uclolnqr4h3" path="res://Sprites/MoodBubble/Z.png" id="3_dtvbe"]
 [ext_resource type="AudioStream" uid="uid://bt03wg1x52isl" path="res://Sounds/CatSound/cat-meow-7-fx-306186.mp3" id="4_povsh"]
 [ext_resource type="AudioStream" uid="uid://6bl2htvolwep" path="res://Sounds/CatSound/cat_pur.wav" id="4_s3fm5"]
+[ext_resource type="AudioStream" uid="uid://b6bewgs4itixk" path="res://Sounds/CatSound/purchirpmeow.wav" id="5_ixycl"]
 [ext_resource type="AudioStream" uid="uid://c25ysq02qfucg" path="res://Sounds/CatSound/cat-meow-9-fx-306185.mp3" id="5_s3fm5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s3fm5"]
 size = Vector2(16, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5ul8"]
+size = Vector2(20, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ixycl"]
 size = Vector2(82, 82)
@@ -476,9 +480,11 @@ attractor_interaction_enabled = false
 alpha_curve = SubResource("CurveTexture_povsh")
 
 [node name="KitKit" type="StaticBody2D"]
-collision_layer = 16
+collision_layer = 512
 collision_mask = 80
 script = ExtResource("2_rv81i")
+sleeping = null
+find_me = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, -7.5)
@@ -497,6 +503,19 @@ bus = &"Effects"
 stream = ExtResource("5_s3fm5")
 bus = &"Effects"
 
+[node name="meow-pick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ixycl")
+bus = &"Effects"
+
+[node name="FindSpot" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FindSpot"]
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_g5ul8")
+
 [node name="SatrioNear" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 16
@@ -508,8 +527,7 @@ shape = SubResource("RectangleShape2D_ixycl")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ririo")
-animation = &"sitblank"
-frame_progress = 0.112704
+animation = &"run"
 centered = false
 offset = Vector2(-16, -32)
 
@@ -528,6 +546,6 @@ visibility_rect = Rect2(-50, -50, 100, 66)
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_s3fm5")
 
+[connection signal="body_entered" from="FindSpot" to="." method="_on_find_spot_body_entered"]
 [connection signal="body_entered" from="SatrioNear" to="." method="_on_nearby_region_body_entered"]
 [connection signal="body_exited" from="SatrioNear" to="." method="_on_nearby_region_body_exited"]
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
