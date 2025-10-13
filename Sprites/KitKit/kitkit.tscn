@@ -1,8 +1,10 @@
-[gd_scene load_steps=65 format=3 uid="uid://ccf8dlpyt5orp"]
+[gd_scene load_steps=67 format=3 uid="uid://ccf8dlpyt5orp"]
 
 [ext_resource type="Texture2D" uid="uid://dhfo46a50pa48" path="res://Art/Cat Sprite Sheet.png" id="1_xnuna"]
 [ext_resource type="Script" uid="uid://pyxekulw6433" path="res://Sprites/KitKit/kitkit.gd" id="2_rv81i"]
 [ext_resource type="Texture2D" uid="uid://c5uclolnqr4h3" path="res://Sprites/MoodBubble/Z.png" id="3_dtvbe"]
+[ext_resource type="AudioStream" uid="uid://bt03wg1x52isl" path="res://Sounds/CatSound/cat-meow-7-fx-306186.mp3" id="4_povsh"]
+[ext_resource type="AudioStream" uid="uid://c25ysq02qfucg" path="res://Sounds/CatSound/cat-meow-9-fx-306185.mp3" id="5_s3fm5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rv81i"]
 atlas = ExtResource("1_xnuna")
@@ -489,3 +491,15 @@ fixed_fps = 12
 visibility_rect = Rect2(-50, -50, 100, 66)
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_s3fm5")
+
+[node name="purrcator" type="AudioStreamPlayer2D" parent="."]
+max_distance = 1000.0
+bus = &"Effects"
+
+[node name="omni-meow1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_povsh")
+bus = &"Effects"
+
+[node name="omni-meow2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_s3fm5")
+bus = &"Effects"
