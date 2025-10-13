@@ -13,7 +13,9 @@ class_name KitKit
 # If Satrio is nearby
 @onready var satrio_near: bool
 
+# If disappearing
 @onready var disap: bool = false
+@onready var ftrack: float = 1.0
 
 enum kitstate {
 	ASLEEP = 0,
@@ -40,11 +42,10 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if disap:
-		var cur_alpha = $AnimatedSprite2D.self_modulate
-		cur_alpha = (1, 1, 1, ())
-
-func transition_state(new_state: kitstate):
-	pass
+		$AnimatedSprite2D.self_modulate = Color(1, 1, 1, ftrack)
+		ftrack -= 4 * delta
+		if ftrack < 0.1:
+			queue_free()
 
 func toggle_z(active: bool) -> void:
 	$EmoteAnchor/Zzs.emitting = active
@@ -75,3 +76,5 @@ func _on_find_spot_body_entered(body: Node2D) -> void:
 		$"meow-pick".play()
 		$FindSpot/CollisionShape2D.set_deferred("disabled", true)
 		$purrcator.stop()
+		show_mood(2)
+		body.add_score(100)
