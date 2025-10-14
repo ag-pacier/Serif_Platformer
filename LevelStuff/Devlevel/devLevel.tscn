@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://d1dxqy8fo7ltb"]
+[gd_scene load_steps=17 format=4 uid="uid://d1dxqy8fo7ltb"]
 
 [ext_resource type="PackedScene" uid="uid://xbynapupnn5l" path="res://LevelStuff/base_level.tscn" id="1_thfdx"]
 [ext_resource type="Script" uid="uid://cvw8sosk80xcu" path="res://LevelStuff/Devlevel/devlevel.gd" id="2_sqm4d"]
@@ -7,10 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://bh5u35bv1lvxj" path="res://Art/Peaceful_Nightfield/tileset.png" id="4_4sij5"]
 [ext_resource type="Texture2D" uid="uid://dx2rwftuppphm" path="res://Art/stringstar fields/background_2.png" id="4_hf1jf"]
 [ext_resource type="TileSet" uid="uid://cjvnmumb8d1af" path="res://LevelStuff/_TileSets/cute_forest.tres" id="7_w0vl6"]
-[ext_resource type="PackedScene" uid="uid://c31t0m1h55ytb" path="res://LevelStuff/_trigger/trigger_base.tscn" id="8_ngk8f"]
 [ext_resource type="AudioStream" uid="uid://0vli7igu6kxq" path="res://Music/Pixel/Pixel 12.ogg" id="8_ystxo"]
 [ext_resource type="PackedScene" uid="uid://cgryfmkyeh460" path="res://Sprites/coin/coin.tscn" id="9_5q86y"]
-[ext_resource type="PackedScene" uid="uid://xicgr417lmjh" path="res://Sprites/Barriers/DoorToOpen/Door.tscn" id="9_x0utg"]
 [ext_resource type="PackedScene" uid="uid://651qoousmogv" path="res://Sprites/MovingPlatform/MovingPlat.tscn" id="11_p8pol"]
 [ext_resource type="PackedScene" uid="uid://q7ign3bl3yn3" path="res://Sprites/Baddies/Slime/Slime.tscn" id="11_ystxo"]
 [ext_resource type="PackedScene" uid="uid://due08jky8phuv" path="res://Sprites/Barriers/Key/key.tscn" id="12_nyj2j"]
@@ -164,9 +162,6 @@ shape = SubResource("WorldBoundaryShape2D_fut0s")
 stream = ExtResource("8_ystxo")
 volume_db = -8.0
 
-[node name="Door" parent="Doors" index="0" instance=ExtResource("9_x0utg")]
-position = Vector2(1025, 231)
-
 [node name="Coin" parent="Items/Coins" index="0" instance=ExtResource("9_5q86y")]
 position = Vector2(34, 199)
 
@@ -188,25 +183,12 @@ position = Vector2(-566, 628)
 [node name="Coin7" parent="Items/Coins" index="6" instance=ExtResource("9_5q86y")]
 position = Vector2(-911, 628)
 
-[node name="TriggerBase" parent="Items/Sign" index="0" instance=ExtResource("8_ngk8f")]
-position = Vector2(997, 203)
-
 [node name="RedKey" parent="Items" index="3" instance=ExtResource("12_nyj2j")]
 position = Vector2(117, 222)
 key_color = Color(1, 0, 0, 1)
 pickup_name = "RedKey"
 
-[node name="BlueKey" parent="Items" index="4" instance=ExtResource("12_nyj2j")]
-position = Vector2(351, 222)
-key_color = Color(0.0333333, 0, 1, 1)
-pickup_name = "BlueKey"
-
-[node name="GreenKey" parent="Items" index="5" instance=ExtResource("12_nyj2j")]
-position = Vector2(206, 222)
-key_color = Color(0.0500001, 1, 0, 1)
-pickup_name = "GreenKey"
-
-[node name="KitKit" parent="Items" index="6" instance=ExtResource("13_35gk7")]
+[node name="KitKit" parent="Items" index="4" instance=ExtResource("13_35gk7")]
 position = Vector2(149, 230)
 sleeping = true
 find_me = true
@@ -225,5 +207,4 @@ aggro = true
 react_time = 0.5
 time_to_default = 5
 
-[connection signal="trigger_trip" from="Items/Sign/TriggerBase" to="." method="_on_trigger_base_trigger_trip"]
 [connection signal="enemy_gone" from="Enemies/Slime" to="." method="_on_slime_enemy_gone"]
