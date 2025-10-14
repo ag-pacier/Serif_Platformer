@@ -262,7 +262,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	var hit_angle = body.get_angle_to(position)
 	if hit_angle > 0.8 and hit_angle < 2.5 and body.is_in_group("MainC"):
-		body.bounce_me(false)
+		body.bounce_me(true)
 		if $InjuryTimer.is_stopped():
 			aggro = false
 			if current_health <= 1:
