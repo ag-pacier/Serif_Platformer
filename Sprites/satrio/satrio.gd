@@ -34,6 +34,9 @@ signal not_alive
 
 # container if Satrio has a context-relevant action they can do
 @onready var context_act: bool = false
+@onready var context_item: StringName = ""
+## Let a trigger know you are acting
+signal context_sig
 
 func _ready():
 	# Set max health and score
@@ -78,15 +81,19 @@ func change_health(health: int):
 
 func action_task() -> void:
 	if context_act:
-		pass
+		emit_signal("context_sig", context_item)
 	else:
 		var new_mood = mood_bub.instantiate()
 		$AnimatedSprite2D/EmoteAnchor.add_child(new_mood)
 		new_mood.emote(3, true)
 
+## Publicly accessible method to configure context from triggers
+func toggle_context(con_ready: bool, con_name: StringName) -> void:
+	context_act = con_ready
+	$DebugSprite.visible = con_ready
+	context_item = con_name
+
 func _physics_process(delta):
-	# Make the DebugSprite invisible
-	$DebugSprite.visible = false
 	# Check what we are touching and trip injury if the damage layer
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
