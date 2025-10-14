@@ -483,8 +483,6 @@ alpha_curve = SubResource("CurveTexture_povsh")
 collision_layer = 512
 collision_mask = 80
 script = ExtResource("2_rv81i")
-sleeping = null
-find_me = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, -7.5)
@@ -492,7 +490,11 @@ shape = SubResource("RectangleShape2D_s3fm5")
 
 [node name="purrcator" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_s3fm5")
-max_distance = 1000.0
+volume_db = 20.0
+max_distance = 600.0
+attenuation = 3.24901
+max_polyphony = 2
+panning_strength = 2.0
 bus = &"Effects"
 
 [node name="omni-meow1" type="AudioStreamPlayer" parent="."]
@@ -527,7 +529,7 @@ shape = SubResource("RectangleShape2D_ixycl")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ririo")
-animation = &"run"
+animation = &"backstretch"
 centered = false
 offset = Vector2(-16, -32)
 
@@ -546,6 +548,8 @@ visibility_rect = Rect2(-50, -50, 100, 66)
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_s3fm5")
 
+[connection signal="finished" from="purrcator" to="." method="_on_purrcator_finished"]
 [connection signal="body_entered" from="FindSpot" to="." method="_on_find_spot_body_entered"]
 [connection signal="body_entered" from="SatrioNear" to="." method="_on_nearby_region_body_entered"]
 [connection signal="body_exited" from="SatrioNear" to="." method="_on_nearby_region_body_exited"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

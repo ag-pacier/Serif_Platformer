@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://d1dxqy8fo7ltb"]
+[gd_scene load_steps=19 format=4 uid="uid://d1dxqy8fo7ltb"]
 
 [ext_resource type="PackedScene" uid="uid://xbynapupnn5l" path="res://LevelStuff/base_level.tscn" id="1_thfdx"]
 [ext_resource type="Script" uid="uid://cvw8sosk80xcu" path="res://LevelStuff/Devlevel/devlevel.gd" id="2_sqm4d"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://651qoousmogv" path="res://Sprites/MovingPlatform/MovingPlat.tscn" id="11_p8pol"]
 [ext_resource type="PackedScene" uid="uid://q7ign3bl3yn3" path="res://Sprites/Baddies/Slime/Slime.tscn" id="11_ystxo"]
 [ext_resource type="PackedScene" uid="uid://due08jky8phuv" path="res://Sprites/Barriers/Key/key.tscn" id="12_nyj2j"]
+[ext_resource type="PackedScene" uid="uid://ccf8dlpyt5orp" path="res://Sprites/KitKit/kitkit.tscn" id="13_35gk7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6bjdc"]
 texture = ExtResource("4_4sij5")
@@ -161,6 +162,7 @@ shape = SubResource("WorldBoundaryShape2D_fut0s")
 
 [node name="BackgroundMusic" parent="." index="3"]
 stream = ExtResource("8_ystxo")
+volume_db = -8.0
 
 [node name="Door" parent="Doors" index="0" instance=ExtResource("9_x0utg")]
 position = Vector2(1025, 231)
@@ -203,6 +205,11 @@ pickup_name = "BlueKey"
 position = Vector2(206, 222)
 key_color = Color(0.0500001, 1, 0, 1)
 pickup_name = "GreenKey"
+
+[node name="KitKit" parent="Items" index="6" instance=ExtResource("13_35gk7")]
+position = Vector2(149, 230)
+sleeping = true
+find_me = true
 
 [node name="MovingPlat" parent="MovingPlats" index="0" instance=ExtResource("11_p8pol")]
 position = Vector2(1105, 628)
