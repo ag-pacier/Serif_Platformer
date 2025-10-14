@@ -32,6 +32,9 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var alive: bool = true
 signal not_alive
 
+# container if Satrio has a context-relevant action they can do
+@onready var context_act: bool = false
+
 func _ready():
 	# Set max health and score
 	$Hud.set_max_health(3)
@@ -73,6 +76,13 @@ func change_health(health: int):
 			return
 	$Hud.increment_health(health)
 
+func action_task() -> void:
+	if context_act:
+		pass
+	else:
+		var new_mood = mood_bub.instantiate()
+		$AnimatedSprite2D/EmoteAnchor.add_child(new_mood)
+		new_mood.emote(3, true)
 
 func _physics_process(delta):
 	# Make the DebugSprite invisible
@@ -121,9 +131,7 @@ func _physics_process(delta):
 			bounce_timer.start()
 		
 	if Input.is_action_just_pressed("action") and alive:
-		var new_mood = mood_bub.instantiate()
-		$AnimatedSprite2D/EmoteAnchor.add_child(new_mood)
-		new_mood.emote(3, true)
+		action_task()
 		
 	# Set direction based on velocity
 	if velocity.x >= 0:
