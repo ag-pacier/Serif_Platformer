@@ -25,6 +25,10 @@ func _ready():
 		push_error("Unable to find expected character as a CharacterBody2D named Satrio")
 	else:
 		get_node("Satrio/Hud").death.connect(_on_death)
+		get_node("Satrio").context_sig.connect(_satrio_context)
+
+func _satrio_context(context: StringName):
+	print("Tripped context with ", context)
 
 func _on_death():
 	background_music.stop()
