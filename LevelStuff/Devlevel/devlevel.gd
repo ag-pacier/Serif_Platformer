@@ -1,16 +1,15 @@
 extends LevelBase
 
-@onready var test_door = $Doors/Door
-
 func _ready():
 	super()
-	
 
-
-func _on_trigger_base_trigger_trip(bod) -> void:
-	if bod.is_in_group("MainC") and test_door != null and bod.has_key("RedKey"):
-		test_door.unlock_door()
-
+func _satrio_context(context: StringName) -> void:
+	print("Passed to dev level: ", context)
+	match context:
+		"WrongWay":
+			print("We made it, champ")
+		_:
+			print("Made it to dev level but didn't recognize the context")
 
 func _on_slime_enemy_gone() -> void:
 	var new_slime = preload("res://Sprites/Baddies/Slime/Slime.tscn").instantiate()
