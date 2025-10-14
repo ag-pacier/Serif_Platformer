@@ -205,6 +205,7 @@ func _on_injury_timer_timeout():
 func _on_death():
 	alive = false
 	emit_signal("not_alive")
+	$CollisionShape2D.set_deferred("disabled", true)
 	$InjuryTimer.stop()
 	anim_node.self_modulate = Color(1, 1, 1, 1)
 	velocity = Vector2(0,0)
