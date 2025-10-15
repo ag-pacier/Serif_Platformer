@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://bknd7lltl8bb8"]
+
+[ext_resource type="Script" uid="uid://qyjbskqgqd1e" path="res://UI/InputIndicator/input_show.gd" id="1_1kbf4"]
+[ext_resource type="Texture2D" uid="uid://qcik0kjndqe3" path="res://Art/KennyInput_tilemap_packed.png" id="2_x2drq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etlq5"]
+atlas = ExtResource("2_x2drq")
+region = Rect2(304, 368, 16, 16)
+
+[sub_resource type="Gradient" id="Gradient_x2drq"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 0.709804, 0.407843, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_etlq5"]
+gradient = SubResource("Gradient_x2drq")
+width = 32
+height = 32
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_1kbf4"]
+offsets = PackedFloat32Array(0, 0.681818, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.909091, 0.909091, 0.909091, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_x2drq"]
+gradient = SubResource("Gradient_1kbf4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_etlq5"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 4.0
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+direction = Vector3(1, -1, 0)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 80.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 2.0
+color = Color(0, 0.0153333, 0.46, 0.364706)
+color_ramp = SubResource("GradientTexture1D_x2drq")
+
+[node name="InputShow" type="Node2D"]
+visible = false
+script = ExtResource("1_1kbf4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_etlq5")
+
+[node name="Glow" type="Sprite2D" parent="Sprite2D"]
+show_behind_parent = true
+texture = SubResource("GradientTexture2D_etlq5")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D"]
+show_behind_parent = true
+amount = 16
+lifetime = 0.4
+explosiveness = 0.4
+randomness = 0.51
+fixed_fps = 12
+process_material = SubResource("ParticleProcessMaterial_etlq5")
