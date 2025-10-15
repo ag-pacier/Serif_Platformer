@@ -420,6 +420,9 @@ sprite_frames = SubResource("SpriteFrames_0loxt")
 [node name="EmoteAnchor" type="Node2D" parent="AnimatedSprite2D"]
 position = Vector2(8, -8)
 
+[node name="InputAnchor" type="Node2D" parent="AnimatedSprite2D"]
+position = Vector2(0, -35)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_d0lfg")
 
