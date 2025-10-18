@@ -1,7 +1,39 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkd8rovxhiny2"]
+[gd_scene load_steps=7 format=4 uid="uid://dkd8rovxhiny2"]
 
 [ext_resource type="PackedScene" uid="uid://xbynapupnn5l" path="res://LevelStuff/base_level.tscn" id="1_4mg2c"]
 [ext_resource type="Script" uid="uid://bhsuf4gopxs8" path="res://LevelStuff/01_Tutorial/01_start.gd" id="2_2v6p3"]
+[ext_resource type="Texture2D" uid="uid://bh5u35bv1lvxj" path="res://Art/Peaceful_Nightfield/tileset.png" id="3_tp1jm"]
+[ext_resource type="TileSet" uid="uid://chgf3iegq5dca" path="res://LevelStuff/_TileSets/KennySimple.tres" id="3_wydhq"]
+[ext_resource type="Texture2D" uid="uid://ddi7ugs6q7okk" path="res://Art/Dungeon Ruins Tileset/Dungeon Ruins Tileset Night.png" id="4_cmw24"]
+[ext_resource type="AudioStream" uid="uid://b1xjpg7f5w1c6" path="res://Music/Space Music Pack/slow-travel.wav" id="5_3nory"]
 
 [node name="01start" instance=ExtResource("1_4mg2c")]
 script = ExtResource("2_2v6p3")
+
+[node name="TextureStill" parent="ParallaxBackground/Still" index="0"]
+texture_filter = 1
+texture_repeat = 2
+scale = Vector2(11, 11)
+texture = ExtResource("3_tp1jm")
+centered = false
+region_enabled = true
+region_rect = Rect2(112, 32, 64, 32)
+
+[node name="Near" parent="ParallaxBackground" index="1"]
+motion_mirroring = Vector2(768, 0)
+
+[node name="TextureNear" parent="ParallaxBackground/Near" index="0"]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("4_cmw24")
+centered = false
+offset = Vector2(0, 72)
+region_enabled = true
+region_rect = Rect2(320, 144, 192, 16)
+
+[node name="Base" parent="TileMapLayers" index="0"]
+tile_map_data = PackedByteArray("AAD+//v/AAAHAAEAAAD+//z/AAAHAAEAAAD+//3/AAAHAAEAAAD+//7/AAAHAAEAAAD+////AAAHAAEAAAD+/wAAAAAHAAEAAAD//wAAAAAIAAEAAAACAAAAAAAIAAEAAAADAAAAAAAIAAEAAAAEAAAAAAAIAAEAAAAFAAAAAAAIAAEAAAAGAAAAAAAIAAEAAAAHAAAAAAAIAAEAAAAIAAAAAAAIAAEAAAAJAAAAAAAIAAEAAAAKAAAAAAAIAAEAAAALAAAAAAAIAAEAAAAMAAAAAAAIAAEAAAANAAAAAAAIAAEAAAD///v/AAAIAAEAAAABAPv/AAAIAAEAAAACAPv/AAAIAAEAAAADAPv/AAAIAAEAAAAEAPv/AAAIAAEAAAAFAPv/AAAIAAEAAAAGAPv/AAAIAAEAAAAHAPv/AAAIAAEAAAAIAPv/AAAIAAEAAAAJAPv/AAAIAAEAAAAKAPv/AAAIAAEAAAALAPv/AAAIAAEAAAAMAPv/AAAIAAEAAAANAPv/AAAIAAEAAAAAAAAAAAAIAAEAAAAAAPv/AAAIAAEAAAABAAAAAAAIAAEAAAA=")
+tile_set = ExtResource("3_wydhq")
+
+[node name="BackgroundMusic" parent="." index="3"]
+stream = ExtResource("5_3nory")
