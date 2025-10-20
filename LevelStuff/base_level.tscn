@@ -24,11 +24,16 @@ position = Vector2(-1, -12)
 
 [node name="TileMapLayers" type="Node2D" parent="."]
 
+[node name="BackgroundItem" type="TileMapLayer" parent="TileMapLayers"]
+
 [node name="Base" type="TileMapLayer" parent="TileMapLayers"]
+z_index = 1
 
 [node name="OneWay" type="TileMapLayer" parent="TileMapLayers"]
+z_index = 1
 
 [node name="Damage" type="TileMapLayer" parent="TileMapLayers"]
+z_index = 1
 
 [node name="Foreground" type="TileMapLayer" parent="TileMapLayers"]
 z_index = 50
