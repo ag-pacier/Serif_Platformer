@@ -14,32 +14,45 @@ enum ctrl_style {
 }
 
 @onready var img = $Sprite2D
-## keyboard key size (use twice for Rect2)
-@onready var sq_sz: float = 16.0
 ## Dict for keyboard related controls to display
 @onready var img_dict_keyb: Dictionary = {
-	"right-arrow": Rect2(496.0, 192.0, sq_sz, sq_sz),
-	"left-arrow": Rect2(528.0, 192.0, sq_sz, sq_sz),
-	"space-bar": Rect2(496.0, 224.0, 48.0, sq_sz),
-	"f-key": Rect2(336.0, 176.0, sq_sz, sq_sz),
-	"esc-key": Rect2(272.0, 128.0, sq_sz, sq_sz),
+	"right-arrow": "Right_key",
+	"left-arrow": "Left_key",
+	"space-bar": "null",
+	"f-key": "F_key",
+	"esc-key": "ESC",
 }
 ## Dict for controller related controls to display
 @onready var img_dict_ctrl: Dictionary = {
-	"right": Rect2(160.0, 80.0, sq_sz, sq_sz),
-	"left": Rect2(192.0, 80.0, sq_sz, sq_sz),
-	"jump": Rect2(144.0, 16.0, sq_sz, sq_sz), # Dark B button
-	"action": Rect2(128.0, 16.0, sq_sz, sq_sz), # Dark A button
-	"pause": Rect2(304.0, 368.0, sq_sz, sq_sz), # Generic dark oval
+	"right": "Right_stick",
+	"left": "Left_Stick",
+	"jump": "RdB_button",
+	"action": "GrnA_button",
+	"pause": "Start",
 }
 
-## Current texture to show on the atlas
-@onready var cur_item: Rect2 = img_dict_keyb["right-arrow"]
-
-func set_icon(new: act_put, c_style: ctrl_style = ctrl_style.KEYBOARD) -> void:
-	var new_item: Rect2
-	if c_style == ctrl_style.KEYBOARD:
-		match new:
+func set_icon(new: StringName, c_style: StringName) -> void:
+	var indicate: act_put
+	var ind_style: ctrl_style
+	match new.to_lower():
+		"right":
+			indicate = act_put.RIGHT
+		"left":
+			indicate = act_put.LEFT
+		"jump":
+			indicate = act_put.JUMP
+		"pause":
+			indicate = act_put.PAUSE
+		_:
+			indicate = act_put.ACT
+	match c_style.to_lower():
+		"keyboard":
+			ind_style = ctrl_style.KEYBOARD
+		_:
+			ind_style = ctrl_style.GEN_CONTROLLER
+	var new_item: String
+	if ind_style == ctrl_style.KEYBOARD:
+		match indicate:
 			act_put.RIGHT:
 				new_item = img_dict_keyb["right-arrow"]
 			act_put.LEFT:
@@ -53,7 +66,7 @@ func set_icon(new: act_put, c_style: ctrl_style = ctrl_style.KEYBOARD) -> void:
 			_:
 				return
 	else:
-		match new:
+		match indicate:
 			act_put.RIGHT:
 				new_item = img_dict_ctrl["right"]
 			act_put.LEFT:
@@ -66,8 +79,5 @@ func set_icon(new: act_put, c_style: ctrl_style = ctrl_style.KEYBOARD) -> void:
 				new_item = img_dict_ctrl["pause"]
 			_:
 				return
-	cur_item = new_item
-	_update_sprite()
-
-func _update_sprite() -> void:
-	img.region_rect = cur_item
+	img.animation = new_item
+	img.frame = 1
