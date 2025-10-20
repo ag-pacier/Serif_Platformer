@@ -25,7 +25,7 @@ func _on_trigger(body: Node2D) -> void:
 	else:
 		if one_time:
 			$CollisionShape2D.set_deferred("disabled", true)
-		emit_signal("trigger", trigger_name)
+		emit_signal("trigger")
 
 func _on_body_exited(body: Node2D) -> void:
 	if contextual:
