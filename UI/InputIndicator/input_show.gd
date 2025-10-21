@@ -31,6 +31,12 @@ enum ctrl_style {
 	"pause": "Start",
 }
 
+func _ready() -> void:
+	toggle_visible(false)
+
+func toggle_visible(vis: bool = true):
+	set_deferred("visible", vis)
+
 func set_icon(new: StringName, c_style: StringName) -> void:
 	var indicate: act_put
 	var ind_style: ctrl_style
@@ -79,5 +85,12 @@ func set_icon(new: StringName, c_style: StringName) -> void:
 				new_item = img_dict_ctrl["pause"]
 			_:
 				return
-	img.animation = new_item
-	img.frame = 1
+	if indicate != act_put.JUMP:
+		$SpaceBar.set_deferred("visible", false)
+		img.set_deferred("visible", true)
+		img.animation = new_item
+		img.frame = 1
+	else:
+		img.set_deferred("visible", false)
+		$SpaceBar.set_deferred("visible", true)
+		

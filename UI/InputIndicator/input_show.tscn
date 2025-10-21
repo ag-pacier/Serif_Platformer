@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bknd7lltl8bb8"]
+[gd_scene load_steps=26 format=3 uid="uid://bknd7lltl8bb8"]
 
 [ext_resource type="Script" uid="uid://qyjbskqgqd1e" path="res://UI/InputIndicator/input_show.gd" id="1_1kbf4"]
 [ext_resource type="Texture2D" uid="uid://qcik0kjndqe3" path="res://Art/KennyInput_tilemap_packed.png" id="2_x2drq"]
@@ -69,6 +69,11 @@ region = Rect2(336, 336, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3jjb5"]
 animations = [{
+"frames": [],
+"loop": true,
+"name": &"BLANK",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1kbf4")
@@ -199,19 +204,47 @@ scale_max = 2.0
 color = Color(0, 0.0153333, 0.46, 0.364706)
 color_ramp = SubResource("GradientTexture1D_x2drq")
 
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1kbf4"]
+gradient = SubResource("Gradient_x2drq")
+height = 32
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
+
 [node name="InputShow" type="Node2D"]
-visible = false
 script = ExtResource("1_1kbf4")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_3jjb5")
-animation = &"Start"
+animation = &"BLANK"
 
 [node name="Glow" type="Sprite2D" parent="Sprite2D"]
 show_behind_parent = true
 texture = SubResource("GradientTexture2D_etlq5")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D"]
+show_behind_parent = true
+amount = 16
+lifetime = 0.4
+explosiveness = 0.4
+randomness = 0.51
+fixed_fps = 12
+process_material = SubResource("ParticleProcessMaterial_etlq5")
+
+[node name="SpaceBar" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+texture = ExtResource("2_x2drq")
+region_enabled = true
+region_rect = Rect2(496, 224, 48, 16)
+
+[node name="Glow" type="Sprite2D" parent="SpaceBar"]
+show_behind_parent = true
+texture = SubResource("GradientTexture2D_1kbf4")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="SpaceBar"]
 show_behind_parent = true
 amount = 16
 lifetime = 0.4
