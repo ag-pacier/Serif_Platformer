@@ -257,8 +257,10 @@ trigger_name = "StartLeftSym"
 one_time = true
 
 [node name="JumpSymbol" parent="Doors" index="3" instance=ExtResource("7_rw2si")]
-position = Vector2(731, 295)
+position = Vector2(755, 294)
 trigger_name = "JumpSymbOn"
+
+[node name="JumpInput" parent="Doors/JumpSymbol" index="1" instance=ExtResource("8_73ysj")]
 
 [node name="JumpDone" parent="Doors" index="4" instance=ExtResource("7_rw2si")]
 position = Vector2(707, 191)
