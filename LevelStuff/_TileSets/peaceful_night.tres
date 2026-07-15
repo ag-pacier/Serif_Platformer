@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://b24tcgkq7tmxq"]
+[gd_resource type="TileSet" format=3 uid="uid://b24tcgkq7tmxq"]
 
 [ext_resource type="Texture2D" uid="uid://bh5u35bv1lvxj" path="res://Art/Peaceful_Nightfield/tileset.png" id="1_mpdfi"]
 
