@@ -35,6 +35,8 @@ class_name Enemy
 @onready var attacking
 @onready var moving: bool = true
 @onready var start_x: float
+@onready var disap: bool = false
+@onready var ftrack: float = 1.0
 
 enum behave {
 	ASLEEP = 0,
@@ -110,6 +112,10 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.scale.x = 1
 		$VisionCast.target_position.x = -100
 	
+	# Start/continue disappearing if set to do so
+	if disap:
+		$AnimatedSprite2D.self_modulate = Color(1, 1, 1, ftrack)
+		ftrack -= 4 * delta
 	
 	# Make gravity happen
 	if not flying and not is_on_floor():
@@ -145,9 +151,9 @@ func mood_indicate(mood: behave = current_feel) -> void:
 ## If score or a drop is going to be done, it should be done here
 func poof_out() -> void:
 	var cloud_ani = poof.instantiate()
+	disap = true
 	add_child(cloud_ani)
 	cloud_ani.play()
-	emit_signal("enemy_gone")
 	cloud_ani.animation_finished.connect(_cleanup)
 
 func behavior_transition(new_behave: behave) -> void:
@@ -243,6 +249,7 @@ func _on_behave_timer_timeout() -> void:
 
 
 func _cleanup() -> void:
+	emit_signal("enemy_gone")
 	queue_free()
 
 

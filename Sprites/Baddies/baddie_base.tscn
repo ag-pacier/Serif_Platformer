@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cd48e4gqr48pn"]
+[gd_scene format=3 uid="uid://cd48e4gqr48pn"]
 
 [ext_resource type="Script" uid="uid://74ryh3myrsbc" path="res://Sprites/Baddies/baddie_base.gd" id="1_6jasc"]
 [ext_resource type="Texture2D" uid="uid://c5uclolnqr4h3" path="res://Sprites/MoodBubble/Z.png" id="2_ufvih"]
@@ -28,7 +28,7 @@ turbulence_enabled = true
 turbulence_noise_speed_random = 0.0
 turbulence_influence_min = 0.0
 
-[node name="BaddieBase" type="CharacterBody2D"]
+[node name="BaddieBase" type="CharacterBody2D" unique_id=1619104085]
 collision_layer = 64
 collision_mask = 526
 slide_on_ceiling = false
@@ -41,31 +41,31 @@ script = ExtResource("1_6jasc")
 react_time = 0.2
 time_to_default = 10
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=279983788]
 shape = SubResource("CapsuleShape2D_ufvih")
 
-[node name="AttackBox" type="Area2D" parent="."]
+[node name="AttackBox" type="Area2D" parent="." unique_id=1815330164]
 collision_layer = 0
 collision_mask = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackBox" unique_id=94516864]
 position = Vector2(0, -0.75)
 shape = SubResource("RectangleShape2D_e5x31")
 
-[node name="HitBox" type="Area2D" parent="."]
+[node name="HitBox" type="Area2D" parent="." unique_id=1982306483]
 collision_layer = 0
 collision_mask = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1010203377]
 position = Vector2(-0.5, -2)
 shape = SubResource("RectangleShape2D_ufvih")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1900276403]
 
-[node name="EmoteAnchor" type="Node2D" parent="AnimatedSprite2D"]
+[node name="EmoteAnchor" type="Node2D" parent="AnimatedSprite2D" unique_id=1171606314]
 position = Vector2(0, -20)
 
-[node name="Zs" type="GPUParticles2D" parent="AnimatedSprite2D/EmoteAnchor"]
+[node name="Zs" type="GPUParticles2D" parent="AnimatedSprite2D/EmoteAnchor" unique_id=1141871462]
 position = Vector2(12, 9)
 emitting = false
 amount = 3
@@ -75,18 +75,18 @@ randomness = 1.0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_ufvih")
 
-[node name="VisionCast" type="RayCast2D" parent="."]
+[node name="VisionCast" type="RayCast2D" parent="." unique_id=1037851195]
 target_position = Vector2(100, 0)
 collision_mask = 592
 
-[node name="VisualTimer" type="Timer" parent="."]
+[node name="VisualTimer" type="Timer" parent="." unique_id=1577715918]
 autostart = true
 
-[node name="InjuryTimer" type="Timer" parent="."]
+[node name="InjuryTimer" type="Timer" parent="." unique_id=1513162844]
 wait_time = 0.5
 one_shot = true
 
-[node name="BehaveTimer" type="Timer" parent="."]
+[node name="BehaveTimer" type="Timer" parent="." unique_id=1373939920]
 one_shot = true
 
 [connection signal="body_entered" from="AttackBox" to="." method="_on_attack_box_entered"]
