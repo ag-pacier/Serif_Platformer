@@ -13,6 +13,18 @@ extends Control
 @onready var cur_dialog: String
 @onready var display_finished: bool = true
 
+func start_dialog(pers: String, diag: String) -> void:
+	get_tree().pause = true
+	set_speaker(pers)
+	$Dialog.visible = true
+	set_cur_dialog(diag)
+
+func finish_dialog() -> void:
+	$Dialog.visible = false
+	get_tree().pause = false
+	set_speaker("None")
+	set_cur_dialog("")
+
 func set_speaker(speaker: StringName) -> void:
 	if speaker.length() > 20 or speaker.length() <= 0:
 		speaker_label.text("Some Person")

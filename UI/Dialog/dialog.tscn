@@ -9,6 +9,7 @@ default_font = ExtResource("1_ye18x")
 default_font_size = 18
 
 [node name="Dialog" type="Control" unique_id=723369609]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_hfww2")
