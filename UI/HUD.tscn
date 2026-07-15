@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cryvpoe0gf6fy"]
+[gd_scene format=3 uid="uid://cryvpoe0gf6fy"]
 
 [ext_resource type="Script" uid="uid://clvk2okm7g3st" path="res://UI/HUD.gd" id="1_cyhru"]
 [ext_resource type="Texture2D" uid="uid://c6pbj6sp8ps3x" path="res://Art/Dungeon Ruins Tileset/Dungeon Ruins Tileset Day.png" id="2_4n7mi"]
 [ext_resource type="PackedScene" uid="uid://bahl7j3gs67je" path="res://UI/PauseMenu/PauseMenu.tscn" id="2_ijstf"]
+[ext_resource type="PackedScene" uid="uid://b1rxg14uddxci" path="res://UI/Dialog/dialog.tscn" id="4_uk570"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uk570"]
 atlas = ExtResource("2_4n7mi")
@@ -12,28 +13,28 @@ region = Rect2(16, 80, 16, 16)
 atlas = ExtResource("2_4n7mi")
 region = Rect2(48, 80, 16, 16)
 
-[node name="Hud" type="CanvasLayer"]
+[node name="Hud" type="CanvasLayer" unique_id=116413885]
 process_mode = 3
 script = ExtResource("1_cyhru")
 
-[node name="TopContainer" type="HBoxContainer" parent="."]
+[node name="TopContainer" type="HBoxContainer" parent="." unique_id=2001896936]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 23.0
 grow_horizontal = 2
 theme_override_constants/separation = 0
 
-[node name="StartHB" type="TextureRect" parent="TopContainer"]
+[node name="StartHB" type="TextureRect" parent="TopContainer" unique_id=2125486996]
 texture_filter = 1
 layout_mode = 2
 texture = SubResource("AtlasTexture_uk570")
 
-[node name="EndHB" type="TextureRect" parent="TopContainer"]
+[node name="EndHB" type="TextureRect" parent="TopContainer" unique_id=573734770]
 texture_filter = 1
 layout_mode = 2
 texture = SubResource("AtlasTexture_f2wx0")
 
-[node name="ScoreText" type="RichTextLabel" parent="TopContainer"]
+[node name="ScoreText" type="RichTextLabel" parent="TopContainer" unique_id=866087635]
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -45,7 +46,7 @@ scroll_active = false
 shortcut_keys_enabled = false
 text_direction = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=437237538]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -55,14 +56,14 @@ grow_horizontal = 2
 grow_vertical = 2
 use_top_left = true
 
-[node name="PauseMenu" parent="CenterContainer" instance=ExtResource("2_ijstf")]
+[node name="PauseMenu" parent="CenterContainer" unique_id=610668540 instance=ExtResource("2_ijstf")]
 visible = false
 layout_mode = 2
 
-[node name="GmOva" type="RichTextLabel" parent="CenterContainer"]
+[node name="GmOva" type="RichTextLabel" parent="CenterContainer" unique_id=676883623]
 visible = false
-clip_contents = false
 custom_minimum_size = Vector2(50, 50)
+clip_contents = false
 layout_mode = 2
 bbcode_enabled = true
 text = "GAME OVER"
@@ -72,11 +73,29 @@ shortcut_keys_enabled = false
 deselect_on_focus_loss_enabled = false
 drag_and_drop_selection_enabled = false
 
-[node name="HealthIncTimer" type="Timer" parent="."]
+[node name="BottomContainer" type="GridContainer" parent="." unique_id=345746560]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 312.0
+offset_top = -115.0
+offset_right = -349.0
+grow_horizontal = 2
+grow_vertical = 0
+offset_transform_position = Vector2(0, -200)
+offset_transform_visual_only = false
+columns = 2
+
+[node name="Dialog" parent="BottomContainer" unique_id=723369609 instance=ExtResource("4_uk570")]
+visible = false
+layout_mode = 2
+
+[node name="HealthIncTimer" type="Timer" parent="." unique_id=1228336707]
 wait_time = 0.5
 one_shot = true
 
-[node name="PauseTimer" type="Timer" parent="."]
+[node name="PauseTimer" type="Timer" parent="." unique_id=1376683355]
 wait_time = 0.5
 one_shot = true
 ignore_time_scale = true
