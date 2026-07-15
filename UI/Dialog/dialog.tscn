@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://b1rxg14uddxci"]
+
+[ext_resource type="FontFile" uid="uid://dyrk0j7befli8" path="res://Art/ThaleahFat.ttf" id="1_ye18x"]
+[ext_resource type="StyleBox" uid="uid://0yxl6ewmfp6r" path="res://UI/Dialog/dialogstyle_box_flat.tres" id="2_hfww2"]
+
+[sub_resource type="Theme" id="Theme_oica4"]
+default_font = ExtResource("1_ye18x")
+default_font_size = 12
+
+[node name="Dialog" type="Control" unique_id=723369609]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=754317709]
+light_mask = 0
+layout_mode = 0
+offset_right = 606.0
+offset_bottom = 102.0
+theme = SubResource("Theme_oica4")
+theme_override_styles/panel = ExtResource("2_hfww2")
