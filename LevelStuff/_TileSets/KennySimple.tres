@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://chgf3iegq5dca"]
+[gd_resource type="TileSet" format=3 uid="uid://chgf3iegq5dca"]
 
 [ext_resource type="Texture2D" uid="uid://c78qnvqtvxxxv" path="res://Art/Kenny/marble_packed.png" id="1_gxftb"]
 [ext_resource type="Texture2D" uid="uid://b8fox21uxtwbu" path="res://Art/Kenny/rock_packed.png" id="2_tx546"]

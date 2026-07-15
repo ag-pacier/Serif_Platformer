@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=30 format=3 uid="uid://bhbd34aqik85h"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://bhbd34aqik85h"]
 
 [ext_resource type="Texture2D" uid="uid://b2tn3hp1dpd27" path="res://Art/Slime/Slime1_Attack_body.png" id="1_saxnk"]
 [ext_resource type="Texture2D" uid="uid://bae6bll0lget4" path="res://Art/Slime/Slime1_Death_full.png" id="2_0g5ix"]
@@ -141,7 +141,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_osv08")
 }],
-"loop": false,
+"loop": 0,
 "name": &"attack",
 "speed": 8.0
 }, {
@@ -176,7 +176,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_j30sk")
 }],
-"loop": false,
+"loop": 0,
 "name": &"dead",
 "speed": 8.0
 }, {
@@ -199,7 +199,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lxqew")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }]

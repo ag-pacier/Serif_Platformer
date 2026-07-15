@@ -1,6 +1,6 @@
 extends Control
 
-@onready var cur_menu = $VBoxContainer/SubMen/TopMenu
+@onready var cur_menu = $PanelContainer/VBoxContainer/SubMen/TopMenu
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_released("down_dir"):
@@ -15,7 +15,7 @@ func _on_top_menu_menu_change(item: String) -> void:
 	match item:
 		"Settings":
 			cur_menu.visible = false
-			cur_menu = $VBoxContainer/SubMen/setmen
+			cur_menu = $PanelContainer/VBoxContainer/SubMen/setmen
 			cur_menu.visible = true
 		"Exit":
 			$QuitTimer.start()
@@ -31,7 +31,7 @@ func _on_set_menu_menu_change(item: String) -> void:
 		match item:
 			"Back":
 				cur_menu.visible = false
-				cur_menu = $VBoxContainer/SubMen/TopMenu
+				cur_menu = $PanelContainer/VBoxContainer/SubMen/TopMenu
 				cur_menu.visible = true
 			_:
 				print("Saw: ", item)

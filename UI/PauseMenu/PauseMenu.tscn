@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bahl7j3gs67je"]
+[gd_scene format=3 uid="uid://bahl7j3gs67je"]
 
 [ext_resource type="Script" uid="uid://bp3yuhyvlr5g6" path="res://UI/PauseMenu/pause_menu.gd" id="1_qhpok"]
 [ext_resource type="FontFile" uid="uid://dyrk0j7befli8" path="res://Art/ThaleahFat.ttf" id="2_sjch0"]
@@ -10,21 +10,35 @@
 atlas = ExtResource("3_fhxse")
 region = Rect2(16, 80, 48, 16)
 
-[node name="PauseMenu" type="Control"]
+[node name="PauseMenu" type="Control" unique_id=631397194]
 process_mode = 2
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_qhpok")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="QuitTimer" type="Timer" parent="." unique_id=1222933491]
+wait_time = 0.8
+one_shot = true
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=832494501]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Pause Indicator" type="Label" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1681964984]
+light_mask = 0
+layout_mode = 2
+
+[node name="Pause Indicator" type="Label" parent="PanelContainer/VBoxContainer" unique_id=604772454]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
@@ -38,31 +52,27 @@ vertical_alignment = 1
 justification_flags = 160
 metadata/_edit_use_anchors_ = true
 
-[node name="TextureSep" type="TextureRect" parent="VBoxContainer"]
+[node name="TextureSep" type="TextureRect" parent="PanelContainer/VBoxContainer" unique_id=1061481007]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 6
 texture = SubResource("AtlasTexture_sjch0")
 
-[node name="SubMen" type="CenterContainer" parent="VBoxContainer"]
+[node name="SubMen" type="CenterContainer" parent="PanelContainer/VBoxContainer" unique_id=560762442]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
 
-[node name="TopMenu" parent="VBoxContainer/SubMen" instance=ExtResource("4_sjch0")]
+[node name="TopMenu" parent="PanelContainer/VBoxContainer/SubMen" unique_id=978419544 instance=ExtResource("4_sjch0")]
 layout_mode = 2
 menu_title = "Main Pause Menu"
 top_menu = true
 
-[node name="setmen" parent="VBoxContainer/SubMen" instance=ExtResource("5_n7v2j")]
+[node name="setmen" parent="PanelContainer/VBoxContainer/SubMen" unique_id=296023603 instance=ExtResource("5_n7v2j")]
 visible = false
 layout_mode = 2
 menu_title = "Settings Menu"
 
-[node name="QuitTimer" type="Timer" parent="."]
-wait_time = 0.8
-one_shot = true
-
-[connection signal="menu_change" from="VBoxContainer/SubMen/TopMenu" to="." method="_on_top_menu_menu_change"]
-[connection signal="menu_change" from="VBoxContainer/SubMen/setmen" to="." method="_on_set_menu_menu_change"]
 [connection signal="timeout" from="QuitTimer" to="." method="_on_quit_timer_timeout"]
+[connection signal="menu_change" from="PanelContainer/VBoxContainer/SubMen/TopMenu" to="." method="_on_top_menu_menu_change"]
+[connection signal="menu_change" from="PanelContainer/VBoxContainer/SubMen/setmen" to="." method="_on_set_menu_menu_change"]

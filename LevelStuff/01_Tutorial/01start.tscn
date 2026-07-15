@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://dkd8rovxhiny2"]
+[gd_scene format=4 uid="uid://dkd8rovxhiny2"]
 
 [ext_resource type="PackedScene" uid="uid://xbynapupnn5l" path="res://LevelStuff/base_level.tscn" id="1_4mg2c"]
 [ext_resource type="Script" uid="uid://bhsuf4gopxs8" path="res://LevelStuff/01_Tutorial/01_start.gd" id="2_2v6p3"]
@@ -202,7 +202,7 @@ sources/1 = SubResource("TileSetAtlasSource_tn5jv")
 sources/2 = SubResource("TileSetAtlasSource_8syx7")
 sources/3 = SubResource("TileSetAtlasSource_8rco2")
 
-[node name="01start" instance=ExtResource("1_4mg2c")]
+[node name="01start" unique_id=1906915697 instance=ExtResource("1_4mg2c")]
 script = ExtResource("2_2v6p3")
 
 [node name="TextureStill" parent="ParallaxBackground/Still" index="0"]
@@ -237,42 +237,42 @@ tile_set = ExtResource("3_wydhq")
 [node name="BackgroundMusic" parent="." index="3"]
 stream = ExtResource("5_3nory")
 
-[node name="StartTest" parent="Doors" index="0" instance=ExtResource("7_rw2si")]
+[node name="StartTest" parent="Doors" index="0" unique_id=547382359 instance=ExtResource("7_rw2si")]
 position = Vector2(38, -36)
 trigger_name = "StartCheck"
 one_time = true
 
-[node name="RInput" parent="Doors/StartTest" index="1" instance=ExtResource("8_73ysj")]
+[node name="RInput" parent="Doors/StartTest" index="1" unique_id=643112958 instance=ExtResource("8_73ysj")]
 
-[node name="LeftSymbol" parent="Doors" index="1" instance=ExtResource("7_rw2si")]
+[node name="LeftSymbol" parent="Doors" index="1" unique_id=997929520 instance=ExtResource("7_rw2si")]
 position = Vector2(1094, 280)
 trigger_name = "LeftIndicator"
 one_time = true
 
-[node name="LInput" parent="Doors/LeftSymbol" index="1" instance=ExtResource("8_73ysj")]
+[node name="LInput" parent="Doors/LeftSymbol" index="1" unique_id=765077548 instance=ExtResource("8_73ysj")]
 
-[node name="LeftSymbolStart" parent="Doors" index="2" instance=ExtResource("7_rw2si")]
+[node name="LeftSymbolStart" parent="Doors" index="2" unique_id=1642648975 instance=ExtResource("7_rw2si")]
 position = Vector2(1108, -34)
 trigger_name = "StartLeftSym"
 one_time = true
 
-[node name="JumpSymbol" parent="Doors" index="3" instance=ExtResource("7_rw2si")]
+[node name="JumpSymbol" parent="Doors" index="3" unique_id=2114838086 instance=ExtResource("7_rw2si")]
 position = Vector2(755, 294)
 trigger_name = "JumpSymbOn"
 
-[node name="JumpInput" parent="Doors/JumpSymbol" index="1" instance=ExtResource("8_73ysj")]
+[node name="JumpInput" parent="Doors/JumpSymbol" index="1" unique_id=8581874 instance=ExtResource("8_73ysj")]
 
-[node name="JumpDone" parent="Doors" index="4" instance=ExtResource("7_rw2si")]
+[node name="JumpDone" parent="Doors" index="4" unique_id=1318675156 instance=ExtResource("7_rw2si")]
 position = Vector2(707, 191)
 trigger_name = "JumpSymOff"
 one_time = true
 
-[node name="StartTimer" type="Timer" parent="." index="8"]
+[node name="StartTimer" type="Timer" parent="." index="8" unique_id=1018969183]
 wait_time = 2.0
 one_shot = true
 autostart = true
 
-[node name="LeftTimer" type="Timer" parent="." index="9"]
+[node name="LeftTimer" type="Timer" parent="." index="9" unique_id=587664547]
 wait_time = 2.0
 one_shot = true
 
