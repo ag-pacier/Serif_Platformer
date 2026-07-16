@@ -22,6 +22,7 @@ signal death
 # Dialog related vars
 @onready var talking: bool = false
 @onready var diag_node: Control = get_node("BottomContainer/Dialog")
+signal hud_dialog_complete
 
 func _ready() -> void:
 	generate_health_indicator()
@@ -146,4 +147,5 @@ func start_dialog(speaker: String, spoken: String):
 
 func _fin_dialog():
 	diag_node.finish_dialog()
+	hud_dialog_complete.emit()
 	get_tree().paused = false

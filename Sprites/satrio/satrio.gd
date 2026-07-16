@@ -42,13 +42,14 @@ signal context_sig
 @onready var dialog_act: bool = false
 @onready var speaker: String = ""
 @onready var speak: String = ""
-@onready var repeat_diag: bool = false
+@onready var source_trigger: DialogTrigger
 
 func _ready():
 	# Set max health and score
 	$Hud.set_max_health(3)
 	$Hud.set_health(3)
 	$Hud.set_score(0)
+	$Hud.hud_dialog_complete.connect(_dialog_done)
 
 ## Publicly accessible method to ensure the HUD gets the message to change the
 ## score
@@ -100,6 +101,17 @@ func toggle_context(con_ready: bool, con_name: StringName) -> void:
 	context_act = con_ready
 	$DebugSprite.visible = con_ready
 	context_item = con_name
+
+func set_dtrigger(TrigSource: DialogTrigger) -> void:
+	source_trigger = TrigSource
+
+func clear_dtrigger() -> void:
+	source_trigger = null
+
+func _dialog_done() -> void:
+	if not source_trigger == null:
+		source_trigger.queue_free()
+		self.clear_dtrigger()
 
 ## Publicly accessible method to configure dialog when available
 func toggle_dialog(diag_ready: bool, ready_speaker: String, spoken: String) -> void:
