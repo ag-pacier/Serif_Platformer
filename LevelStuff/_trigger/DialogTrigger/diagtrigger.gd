@@ -22,4 +22,4 @@ func _in_range(body: Node2D) -> void:
 func _on_body_exited(body: Node2D) -> void:
 	body.toggle_dialog(false, "", "")
 	if repeatable:
-		body.set_dtrigger()
+		body.set_dtrigger(null)

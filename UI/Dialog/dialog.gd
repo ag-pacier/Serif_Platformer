@@ -17,19 +17,19 @@ signal dialog_complete
 
 func start_dialog(pers: String, diag: String) -> void:
 	set_speaker(pers)
-	$Dialog.visible = true
+	self.visible = true
 	set_cur_dialog(diag)
 
 func finish_dialog() -> void:
-	$Dialog.visible = false
+	self.visible = false
 	set_speaker("None")
 	set_cur_dialog("")
 
 func set_speaker(speaker: StringName) -> void:
 	if speaker.length() > 20 or speaker.length() <= 0:
-		speaker_label.text("Some Person")
+		speaker_label.text = "Some Person"
 	else:
-		speaker_label.text(speaker)
+		speaker_label.text = speaker
 
 func set_cur_dialog(dia: String) -> void:
 	speech.visible_ratio = 0.0
@@ -42,7 +42,7 @@ func set_cur_dialog(dia: String) -> void:
 
 func _on_char_timer_timeout() -> void:
 	speech.visible_characters += 1
-	if speech.visible_ratio < 1.0:
+	if speech.visible_characters < len(cur_dialog):
 		cur_char = speech.visible_characters
 		next_char = cur_dialog[cur_char]
 		if next_char in short_pause_chars:

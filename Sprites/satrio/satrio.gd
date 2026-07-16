@@ -90,7 +90,7 @@ func action_task() -> void:
 	if context_act:
 		emit_signal("context_sig", context_item)
 	elif dialog_act:
-		$HUD.start_dialog(speaker, speak)
+		$Hud.start_dialog(speaker, speak)
 	else:
 		var new_mood = mood_bub.instantiate()
 		$AnimatedSprite2D/EmoteAnchor.add_child(new_mood)
@@ -116,6 +116,7 @@ func _dialog_done() -> void:
 ## Publicly accessible method to configure dialog when available
 func toggle_dialog(diag_ready: bool, ready_speaker: String, spoken: String) -> void:
 	$DebugSprite.visible = diag_ready
+	dialog_act = diag_ready
 	speaker = ready_speaker
 	speak = spoken
 
