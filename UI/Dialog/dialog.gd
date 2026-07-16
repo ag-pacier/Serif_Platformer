@@ -13,15 +13,15 @@ extends Control
 @onready var cur_dialog: String
 @onready var display_finished: bool = true
 
+signal dialog_complete
+
 func start_dialog(pers: String, diag: String) -> void:
-	get_tree().pause = true
 	set_speaker(pers)
 	$Dialog.visible = true
 	set_cur_dialog(diag)
 
 func finish_dialog() -> void:
 	$Dialog.visible = false
-	get_tree().pause = false
 	set_speaker("None")
 	set_cur_dialog("")
 
@@ -55,3 +55,4 @@ func _on_char_timer_timeout() -> void:
 			char_timer.start(pause)
 	else:
 		display_finished = true
+		dialog_complete.emit()

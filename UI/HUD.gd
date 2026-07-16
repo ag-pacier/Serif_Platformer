@@ -19,8 +19,13 @@ extends CanvasLayer
 # Indicator that Satrio has reached 0 health :(
 signal death
 
+# Dialog related vars
+@onready var talking: bool = false
+@onready var diag_node: Control = get_node("BottomContainer/Dialog")
+
 func _ready() -> void:
 	generate_health_indicator()
+	diag_node.dialog_complete.connect(_fin_dialog)
 
 ## Update the health bar if max health has changed
 func generate_health_indicator():
@@ -91,7 +96,8 @@ func _process(_delta):
 		$PauseTimer.start()
 		if get_tree().paused:
 			$CenterContainer/PauseMenu.visible = false
-			get_tree().paused = false
+			if not talking:
+				get_tree().paused = false
 		else:
 			get_tree().paused = true
 			$CenterContainer/PauseMenu.visible = true
@@ -133,3 +139,7 @@ func _on_zero_health():
 	buffer_health = 0
 	emit_signal("death")
 	$CenterContainer/GmOva.visible = true
+
+func _fin_dialog():
+	diag_node.finish_dialog()
+	get_tree().paused = false
