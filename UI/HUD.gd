@@ -140,6 +140,10 @@ func _on_zero_health():
 	emit_signal("death")
 	$CenterContainer/GmOva.visible = true
 
+func start_dialog(speaker: String, spoken: String):
+	diag_node.start_dialog(speaker, spoken)
+	get_tree().paused = true
+
 func _fin_dialog():
 	diag_node.finish_dialog()
 	get_tree().paused = false

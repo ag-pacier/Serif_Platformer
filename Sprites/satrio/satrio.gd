@@ -38,6 +38,12 @@ signal not_alive
 ## Let a trigger know you are acting
 signal context_sig
 
+# container if Satrio has dialog interactions they can do
+@onready var dialog_act: bool = false
+@onready var speaker: String = ""
+@onready var speak: String = ""
+@onready var repeat_diag: bool = false
+
 func _ready():
 	# Set max health and score
 	$Hud.set_max_health(3)
@@ -82,6 +88,8 @@ func change_health(health: int):
 func action_task() -> void:
 	if context_act:
 		emit_signal("context_sig", context_item)
+	elif dialog_act:
+		$HUD.start_dialog(speaker, speak, repeat_diag)
 	else:
 		var new_mood = mood_bub.instantiate()
 		$AnimatedSprite2D/EmoteAnchor.add_child(new_mood)
@@ -92,6 +100,13 @@ func toggle_context(con_ready: bool, con_name: StringName) -> void:
 	context_act = con_ready
 	$DebugSprite.visible = con_ready
 	context_item = con_name
+
+## Publicly accessible method to configure dialog when available
+func toggle_dialog(diag_ready: bool, ready_speaker: String, spoken: String, repeatable: bool) -> void:
+	$DebugSprite.visible = diag_ready
+	speaker = ready_speaker
+	speak = spoken
+	repeat_diag = repeatable
 
 func _physics_process(delta):
 	# Check what we are touching and trip injury if the damage layer
