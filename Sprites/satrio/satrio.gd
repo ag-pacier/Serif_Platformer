@@ -95,11 +95,17 @@ func action_task() -> void:
 	elif dialog_act:
 		$Hud.start_dialog(speaker, speak)
 	else:
-		dashing = true
-		velocity.y == 0
-		$DashTimer.start(1.0)
-		$DashCooldown.start(2.5)
-		anim_node.play("swoosh", 0)
+		if $DashCooldown.is_stopped():
+			dashing = true
+			if velocity.x > -1:
+				velocity = Vector2(1200, 0)
+			else:
+				velocity = Vector2(-1200, 0)
+			$DashTimer.start(0.2)
+			$DashCooldown.start(2.5)
+			anim_node.play("swoosh")
+			$AnimatedSprite2D/Zap.visible = true
+			$AnimatedSprite2D/Zap.play()
 
 ## Publicly accessible method to configure context from triggers
 func toggle_context(con_ready: bool, con_name: StringName) -> void:
@@ -246,4 +252,8 @@ func _on_death():
 
 func _on_dash_timer_timeout() -> void:
 	dashing = false
-	anim_node.play("swoosh", 1)
+	anim_node.play()
+
+
+func _on_zap_animation_finished() -> void:
+	$AnimatedSprite2D/Zap.visible = false

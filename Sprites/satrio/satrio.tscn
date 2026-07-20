@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b6aa67uvpmm37" path="res://Art/Satiro/satiro-Sheet v1.1.png" id="1_7o2o1"]
 [ext_resource type="Script" uid="uid://chvrool8jgv7x" path="res://Sprites/satrio/satrio.gd" id="1_wkkd5"]
 [ext_resource type="AudioStream" uid="uid://d822junqcdwr" path="res://Sounds/FreeSFX/Retro Jump Classic 08.wav" id="3_5qow8"]
+[ext_resource type="Texture2D" uid="uid://dbfbocncp1qkd" path="res://Art/Thrust 2 SpriteSheet.png" id="3_aesta"]
 [ext_resource type="AudioStream" uid="uid://dhtool1i13isv" path="res://Sounds/FreeSFX/Retro FootStep Grass 01.wav" id="4_372a0"]
 [ext_resource type="Texture2D" uid="uid://b2m2wnkvq2wna" path="res://Art/UI PixelArt Icons/UI ICONS_WHITE_pixel art_Sprite Sheet.png" id="5_yuq77"]
 [ext_resource type="PackedScene" uid="uid://cryvpoe0gf6fy" path="res://UI/HUD.tscn" id="6_k7i8d"]
@@ -400,6 +401,56 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhrik"]
+atlas = ExtResource("3_aesta")
+region = Rect2(0, 160, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11fpg"]
+atlas = ExtResource("3_aesta")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dl60f"]
+atlas = ExtResource("3_aesta")
+region = Rect2(0, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_781o4"]
+atlas = ExtResource("3_aesta")
+region = Rect2(0, 64, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pggm1"]
+atlas = ExtResource("3_aesta")
+region = Rect2(0, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w888l"]
+atlas = ExtResource("3_aesta")
+region = Rect2(0, 128, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_357fe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhrik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11fpg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dl60f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_781o4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pggm1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w888l")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 20.0
+}]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d0lfg"]
 radius = 8.0
 height = 22.0
@@ -420,6 +471,13 @@ animation = &"swoosh"
 
 [node name="EmoteAnchor" type="Node2D" parent="AnimatedSprite2D" unique_id=100011119]
 position = Vector2(8, -8)
+
+[node name="Zap" type="AnimatedSprite2D" parent="AnimatedSprite2D" unique_id=1070729955]
+visible = false
+position = Vector2(-30, 0)
+sprite_frames = SubResource("SpriteFrames_357fe")
+frame = 5
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2113759797]
 shape = SubResource("CapsuleShape2D_d0lfg")
@@ -465,6 +523,7 @@ one_shot = true
 [node name="Hud" parent="." unique_id=1409206345 instance=ExtResource("6_k7i8d")]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="AnimatedSprite2D/Zap" to="." method="_on_zap_animation_finished"]
 [connection signal="finished" from="StepSounds" to="." method="_on_step_sounds_finished"]
 [connection signal="timeout" from="InjuryTimer" to="." method="_on_injury_timer_timeout"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
