@@ -416,6 +416,7 @@ script = ExtResource("1_wkkd5")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1858780774]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_0loxt")
+animation = &"swoosh"
 
 [node name="EmoteAnchor" type="Node2D" parent="AnimatedSprite2D" unique_id=100011119]
 position = Vector2(8, -8)
@@ -455,6 +456,7 @@ process_callback = 0
 one_shot = true
 
 [node name="DashTimer" type="Timer" parent="." unique_id=1638424660]
+one_shot = true
 
 [node name="DashCooldown" type="Timer" parent="." unique_id=259642037]
 wait_time = 2.5

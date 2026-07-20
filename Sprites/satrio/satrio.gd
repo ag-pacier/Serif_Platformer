@@ -95,9 +95,11 @@ func action_task() -> void:
 	elif dialog_act:
 		$Hud.start_dialog(speaker, speak)
 	else:
-		var new_mood = mood_bub.instantiate()
-		$AnimatedSprite2D/EmoteAnchor.add_child(new_mood)
-		new_mood.emote(3, true)
+		dashing = true
+		velocity.y == 0
+		$DashTimer.start(1.0)
+		$DashCooldown.start(2.5)
+		anim_node.play("swoosh", 0)
 
 ## Publicly accessible method to configure context from triggers
 func toggle_context(con_ready: bool, con_name: StringName) -> void:
@@ -141,7 +143,7 @@ func _physics_process(delta):
 		anim_node.self_modulate = Color.from_hsv(0, 100, color_v, new_alpha)
 	# Get the input direction and handle the movement/deceleration.
 	var direction = Input.get_axis("left", "right")
-	if bounce_timer.is_stopped() and alive:
+	if bounce_timer.is_stopped() and alive and not dashing:
 		if direction:
 			velocity.x = direction * SPEED
 		else:
@@ -149,7 +151,7 @@ func _physics_process(delta):
 		
 	# Add the gravity with terminal velocity
 	# Modify velocity if we are "wall sliding"
-	if not is_on_floor() and alive:
+	if not is_on_floor() and alive and not dashing:
 		if is_on_wall() and velocity.y > -10 and direction != 0:
 			# In case we hit are able to latch onto a wall after falling a while
 			# check the velocity and quarter it until we are under a sliding speed
@@ -159,7 +161,7 @@ func _physics_process(delta):
 			velocity.y += gravity * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_wall()) and alive:
+	if Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_wall()) and alive and not dashing:
 		$JumpSound.play()
 		anim_node.play("jump")
 		velocity.y = JUMP_VELOCITY
@@ -167,7 +169,7 @@ func _physics_process(delta):
 			velocity.x = -50 * anim_node.scale.x
 			bounce_timer.start()
 		
-	if Input.is_action_just_pressed("action") and alive:
+	if Input.is_action_just_pressed("action") and alive and not dashing:
 		action_task()
 		
 	# Set direction based on velocity
@@ -177,7 +179,7 @@ func _physics_process(delta):
 		anim_node.scale.x = -1
 	# make sure there is always some animation playing
 	# play appropriate sounds for movement
-	if alive and not anim_node.animation == "on_hit":
+	if alive and not anim_node.animation == "on_hit" and not dashing:
 		if is_on_floor():
 			if velocity.x == 0:
 				anim_node.play("default")
@@ -244,3 +246,4 @@ func _on_death():
 
 func _on_dash_timer_timeout() -> void:
 	dashing = false
+	anim_node.play("swoosh", 1)
