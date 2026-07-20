@@ -40,6 +40,10 @@ func set_cur_dialog(dia: String) -> void:
 	speech.visible_characters = 1
 	char_timer.start(short_pause)
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("action") and display_finished:
+		dialog_complete.emit()
+
 func _on_char_timer_timeout() -> void:
 	speech.visible_characters += 1
 	if speech.visible_characters < len(cur_dialog):
@@ -55,4 +59,3 @@ func _on_char_timer_timeout() -> void:
 			char_timer.start(pause)
 	else:
 		display_finished = true
-		dialog_complete.emit()
