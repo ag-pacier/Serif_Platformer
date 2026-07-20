@@ -44,6 +44,9 @@ signal context_sig
 @onready var speak: String = ""
 @onready var source_trigger: DialogTrigger
 
+# container for dash related vars
+@onready var dashing: bool = false
+
 func _ready():
 	# Set max health and score
 	$Hud.set_max_health(3)
@@ -237,3 +240,7 @@ func _on_death():
 	anim_node.self_modulate = Color(1, 1, 1, 1)
 	velocity = Vector2(0,0)
 	anim_node.play("game_over")
+
+
+func _on_dash_timer_timeout() -> void:
+	dashing = false

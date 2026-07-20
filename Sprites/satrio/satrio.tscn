@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://n1qf3a26u2r2"]
+[gd_scene format=3 uid="uid://n1qf3a26u2r2"]
 
 [ext_resource type="Texture2D" uid="uid://b6aa67uvpmm37" path="res://Art/Satiro/satiro-Sheet v1.1.png" id="1_7o2o1"]
 [ext_resource type="Script" uid="uid://chvrool8jgv7x" path="res://Sprites/satrio/satrio.gd" id="1_wkkd5"]
@@ -228,7 +228,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pn4q5")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }, {
@@ -245,7 +245,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jjuu4")
 }],
-"loop": false,
+"loop": 0,
 "name": &"dodge_stop",
 "speed": 10.0
 }, {
@@ -268,7 +268,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ccnfj")
 }],
-"loop": true,
+"loop": 1,
 "name": &"fall",
 "speed": 5.0
 }, {
@@ -303,7 +303,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pxk0l")
 }],
-"loop": false,
+"loop": 0,
 "name": &"game_over",
 "speed": 8.0
 }, {
@@ -326,7 +326,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yi1xh")
 }],
-"loop": true,
+"loop": 1,
 "name": &"jump",
 "speed": 5.0
 }, {
@@ -355,7 +355,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nyr1l")
 }],
-"loop": true,
+"loop": 1,
 "name": &"move",
 "speed": 12.0
 }, {
@@ -372,7 +372,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_l0hy8")
 }],
-"loop": false,
+"loop": 0,
 "name": &"on_hit",
 "speed": 9.0
 }, {
@@ -395,7 +395,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_87upf")
 }],
-"loop": false,
+"loop": 0,
 "name": &"swoosh",
 "speed": 12.0
 }]
@@ -404,7 +404,7 @@ animations = [{
 radius = 8.0
 height = 22.0
 
-[node name="Satrio" type="CharacterBody2D" groups=["MainC"]]
+[node name="Satrio" type="CharacterBody2D" unique_id=513661750 groups=["MainC"]]
 collision_layer = 16
 collision_mask = 526
 floor_constant_speed = true
@@ -413,32 +413,32 @@ platform_floor_layers = 14
 platform_wall_layers = 4
 script = ExtResource("1_wkkd5")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1858780774]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_0loxt")
 
-[node name="EmoteAnchor" type="Node2D" parent="AnimatedSprite2D"]
+[node name="EmoteAnchor" type="Node2D" parent="AnimatedSprite2D" unique_id=100011119]
 position = Vector2(8, -8)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2113759797]
 shape = SubResource("CapsuleShape2D_d0lfg")
 
-[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+[node name="JumpSound" type="AudioStreamPlayer" parent="." unique_id=513180875]
 stream = ExtResource("3_5qow8")
 bus = &"Effects"
 
-[node name="StepSounds" type="AudioStreamPlayer" parent="."]
+[node name="StepSounds" type="AudioStreamPlayer" parent="." unique_id=738865756]
 stream = ExtResource("4_372a0")
 bus = &"Effects"
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1217022300]
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_left_margin = 0.1
 drag_right_margin = 0.01
 
-[node name="DebugSprite" type="Sprite2D" parent="."]
+[node name="DebugSprite" type="Sprite2D" parent="." unique_id=1086541362]
 visible = false
 position = Vector2(0, -19)
 scale = Vector2(0.2, 0.2)
@@ -446,17 +446,24 @@ texture = ExtResource("5_yuq77")
 region_enabled = true
 region_rect = Rect2(1201, 418, 32, 60)
 
-[node name="BounceTimer" type="Timer" parent="."]
+[node name="BounceTimer" type="Timer" parent="." unique_id=273652992]
 wait_time = 0.25
 one_shot = true
 
-[node name="InjuryTimer" type="Timer" parent="."]
+[node name="InjuryTimer" type="Timer" parent="." unique_id=973498216]
 process_callback = 0
 one_shot = true
 
-[node name="Hud" parent="." instance=ExtResource("6_k7i8d")]
+[node name="DashTimer" type="Timer" parent="." unique_id=1638424660]
+
+[node name="DashCooldown" type="Timer" parent="." unique_id=259642037]
+wait_time = 2.5
+one_shot = true
+
+[node name="Hud" parent="." unique_id=1409206345 instance=ExtResource("6_k7i8d")]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="finished" from="StepSounds" to="." method="_on_step_sounds_finished"]
 [connection signal="timeout" from="InjuryTimer" to="." method="_on_injury_timer_timeout"]
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="death" from="Hud" to="." method="_on_death"]
