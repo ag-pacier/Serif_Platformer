@@ -254,6 +254,7 @@ func _on_death():
 func _on_dash_timer_timeout() -> void:
 	dashing = false
 	anim_node.play()
+	$AnimatedSprite2D/Sweat.emitting = true
 
 
 func _on_zap_animation_finished() -> void:
@@ -262,3 +263,4 @@ func _on_zap_animation_finished() -> void:
 
 func _on_dash_cooldown_timeout() -> void:
 	$DashReady.play()
+	$AnimatedSprite2D/Sweat.emitting = false
