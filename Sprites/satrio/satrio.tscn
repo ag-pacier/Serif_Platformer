@@ -7,6 +7,8 @@
 [ext_resource type="AudioStream" uid="uid://dhtool1i13isv" path="res://Sounds/FreeSFX/Retro FootStep Grass 01.wav" id="4_372a0"]
 [ext_resource type="Texture2D" uid="uid://b2m2wnkvq2wna" path="res://Art/UI PixelArt Icons/UI ICONS_WHITE_pixel art_Sprite Sheet.png" id="5_yuq77"]
 [ext_resource type="PackedScene" uid="uid://cryvpoe0gf6fy" path="res://UI/HUD.tscn" id="6_k7i8d"]
+[ext_resource type="AudioStream" uid="uid://b36ufjdvtor4h" path="res://Sounds/FreeSFX/Retro Blop 22.wav" id="6_xhrik"]
+[ext_resource type="AudioStream" uid="uid://l2jquyuk3hq8" path="res://Sounds/FreeSFX/Retro Blop 18.wav" id="7_11fpg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_05doj"]
 atlas = ExtResource("1_7o2o1")
@@ -490,6 +492,14 @@ bus = &"Effects"
 stream = ExtResource("4_372a0")
 bus = &"Effects"
 
+[node name="DashSound" type="AudioStreamPlayer" parent="." unique_id=1197019639]
+stream = ExtResource("6_xhrik")
+bus = &"Effects"
+
+[node name="DashReady" type="AudioStreamPlayer" parent="." unique_id=605249834]
+stream = ExtResource("7_11fpg")
+bus = &"Effects"
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1217022300]
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
@@ -527,4 +537,5 @@ one_shot = true
 [connection signal="finished" from="StepSounds" to="." method="_on_step_sounds_finished"]
 [connection signal="timeout" from="InjuryTimer" to="." method="_on_injury_timer_timeout"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]
 [connection signal="death" from="Hud" to="." method="_on_death"]

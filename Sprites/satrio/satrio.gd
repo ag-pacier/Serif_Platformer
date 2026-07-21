@@ -97,6 +97,7 @@ func action_task() -> void:
 	else:
 		if $DashCooldown.is_stopped():
 			dashing = true
+			$DashSound.play()
 			if velocity.x > -1:
 				velocity = Vector2(1200, 0)
 			else:
@@ -257,3 +258,7 @@ func _on_dash_timer_timeout() -> void:
 
 func _on_zap_animation_finished() -> void:
 	$AnimatedSprite2D/Zap.visible = false
+
+
+func _on_dash_cooldown_timeout() -> void:
+	$DashReady.play()
