@@ -9,6 +9,8 @@ class_name KitKit
 
 ## If the cat leaps away after being found
 @export var leap_away: bool = false
+@onready var leaping: bool = false
+@onready var can_go: bool = false
 
 # DisplaySprite
 @onready var kitsprite = get_node("LeapPath2D/PathFollow2D/AnimatedSprite2D")
@@ -43,18 +45,29 @@ func _ready() -> void:
 		kitkit_state = kitstate.BORED
 	if find_me:
 		$purrcator.play()
+		can_go = true
 	else:
 		$FindSpot/CollisionShape2D.disabled = true
 
 func _process(delta: float) -> void:
+	if leaping:
+		$LeapPath2D/PathFollow2D.progress += 100 * delta
+		if $LeapPath2D/PathFollow2D.progress_ratio >= 0.5 and not disap:
+			disap = true
+			ftrack = 0.8
 	if disap:
 		kitsprite.self_modulate = Color(1, 1, 1, ftrack)
 		ftrack -= 4 * delta
-		if ftrack < 0.1:
+		if ftrack < 0.1 and can_go:
 			queue_free()
 
 func toggle_z(active: bool) -> void:
 	$LeapPath2D/PathFollow2D/AnimatedSprite2D/EmoteAnchor/Zzs.emitting = active
+
+func leap_away_kitty() -> void:
+	leaping = true
+	$"omni-meow1".play()
+	kitsprite.play("jump")
 
 func show_mood(mood: int) -> void:
 	if mood < 0 or mood > 8:
@@ -67,7 +80,11 @@ func show_mood(mood: int) -> void:
 
 func _on_nearby_region_body_entered(body: Node2D) -> void:
 	if body.is_in_group("MainC"):
+		if body.get_angle_to(self.position) > 1:
+			self.scale.x = -1
 		satrio_near = true
+		if leap_away:
+			leap_away_kitty()
 
 
 func _on_nearby_region_body_exited(body: Node2D) -> void:
@@ -104,3 +121,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 				kitsprite.play("sitblank")
 			else:
 				kitsprite.play("sitsidelook")
+
+
+func _on_omnimeow_1_finished() -> void:
+	can_go = true

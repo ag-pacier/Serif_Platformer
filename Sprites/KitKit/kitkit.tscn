@@ -369,7 +369,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"jump",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -547,13 +547,15 @@ curve = SubResource("Curve2D_ixycl")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="LeapPath2D" unique_id=1574304253]
 rotates = false
+cubic_interp = false
 loop = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="LeapPath2D/PathFollow2D" unique_id=667621343]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ririo")
-animation = &"asleep"
-frame_progress = 0.4327376
+animation = &"jump"
+frame = 6
+frame_progress = 1.0
 centered = false
 offset = Vector2(-16, -32)
 
@@ -612,6 +614,7 @@ shape = SubResource("RectangleShape2D_ixycl")
 
 [connection signal="animation_finished" from="LeapPath2D/PathFollow2D/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="finished" from="purrcator" to="." method="_on_purrcator_finished"]
+[connection signal="finished" from="omni-meow1" to="." method="_on_omnimeow_1_finished"]
 [connection signal="body_entered" from="FindSpot" to="." method="_on_find_spot_body_entered"]
 [connection signal="body_entered" from="SatrioNear" to="." method="_on_nearby_region_body_entered"]
 [connection signal="body_exited" from="SatrioNear" to="." method="_on_nearby_region_body_exited"]

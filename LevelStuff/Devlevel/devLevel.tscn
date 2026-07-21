@@ -198,7 +198,7 @@ pickup_name = "RedKey"
 
 [node name="KitKit" parent="Items" index="4" unique_id=284394190 instance=ExtResource("13_35gk7")]
 position = Vector2(149, 230)
-sleeping = true
+leap_away = true
 
 [node name="TriggerBase" parent="Items" index="5" unique_id=1604210859 instance=ExtResource("8_ngk8f")]
 position = Vector2(-949, 610)
