@@ -22,6 +22,7 @@ func start_dialog(pers: String, diag: String) -> void:
 
 func finish_dialog() -> void:
 	self.visible = false
+	$FinTexture.visible = false
 	set_speaker("None")
 	set_cur_dialog("")
 
@@ -41,11 +42,13 @@ func set_cur_dialog(dia: String) -> void:
 	char_timer.start(short_pause)
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("action") and display_finished:
+	if Input.is_action_just_pressed("action") and display_finished and self.visible:
 		dialog_complete.emit()
 
 func _on_char_timer_timeout() -> void:
 	speech.visible_characters += 1
+	if speech.visible_characters % 2 == 0:
+		$TypeSound.play()
 	if speech.visible_characters < len(cur_dialog):
 		cur_char = speech.visible_characters
 		next_char = cur_dialog[cur_char]
@@ -59,3 +62,4 @@ func _on_char_timer_timeout() -> void:
 			char_timer.start(pause)
 	else:
 		display_finished = true
+		$FinTexture.visible = true

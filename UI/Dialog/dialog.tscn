@@ -3,10 +3,16 @@
 [ext_resource type="Script" uid="uid://cwf12iohkynvl" path="res://UI/Dialog/dialog.gd" id="1_hfww2"]
 [ext_resource type="FontFile" uid="uid://dyrk0j7befli8" path="res://Art/ThaleahFat.ttf" id="1_ye18x"]
 [ext_resource type="StyleBox" uid="uid://0yxl6ewmfp6r" path="res://UI/Dialog/dialogstyle_box_flat.tres" id="2_hfww2"]
+[ext_resource type="Texture2D" uid="uid://bjb65sr0dyn1p" path="res://Art/cute_forest/tileset.png" id="4_qqpiv"]
+[ext_resource type="AudioStream" uid="uid://by7t3aa2vei6b" path="res://Sounds/FreeSFX/Retro FootStep Mud 01.wav" id="5_n8epo"]
 
 [sub_resource type="Theme" id="Theme_oica4"]
 default_font = ExtResource("1_ye18x")
 default_font_size = 18
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_357fe"]
+atlas = ExtResource("4_qqpiv")
+region = Rect2(118, 21, 6, 6)
 
 [node name="Dialog" type="Control" unique_id=723369609]
 process_mode = 3
@@ -42,5 +48,18 @@ shortcut_keys_enabled = false
 
 [node name="CharTimer" type="Timer" parent="." unique_id=423253016]
 one_shot = true
+
+[node name="FinTexture" type="TextureRect" parent="." unique_id=2080262929]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 284.0
+offset_top = 65.0
+offset_right = 293.0
+offset_bottom = 73.0
+texture = SubResource("AtlasTexture_357fe")
+
+[node name="TypeSound" type="AudioStreamPlayer" parent="." unique_id=590488288]
+stream = ExtResource("5_n8epo")
 
 [connection signal="timeout" from="CharTimer" to="." method="_on_char_timer_timeout"]
