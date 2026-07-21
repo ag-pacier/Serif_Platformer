@@ -11,11 +11,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s3fm5"]
 size = Vector2(16, 15)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5ul8"]
-size = Vector2(20, 17)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ixycl"]
-size = Vector2(82, 82)
+[sub_resource type="Curve2D" id="Curve2D_ixycl"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 24, -40, 0, 0, 0, 0, 41, -18)
+}
+point_count = 3
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rv81i"]
 atlas = ExtResource("1_xnuna")
@@ -527,6 +527,12 @@ gravity = Vector3(0, -25, 0)
 attractor_interaction_enabled = false
 alpha_curve = SubResource("CurveTexture_povsh")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5ul8"]
+size = Vector2(20, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ixycl"]
+size = Vector2(82, 82)
+
 [node name="KitKit" type="StaticBody2D" unique_id=1836989567]
 collision_layer = 512
 collision_mask = 80
@@ -535,6 +541,36 @@ script = ExtResource("2_rv81i")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1020995665]
 position = Vector2(1, -7.5)
 shape = SubResource("RectangleShape2D_s3fm5")
+
+[node name="LeapPath2D" type="Path2D" parent="." unique_id=1353979976]
+curve = SubResource("Curve2D_ixycl")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="LeapPath2D" unique_id=1574304253]
+rotates = false
+loop = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="LeapPath2D/PathFollow2D" unique_id=667621343]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_ririo")
+animation = &"asleep"
+frame_progress = 0.4327376
+centered = false
+offset = Vector2(-16, -32)
+
+[node name="EmoteAnchor" type="Node2D" parent="LeapPath2D/PathFollow2D/AnimatedSprite2D" unique_id=542334889]
+position = Vector2(9, -11)
+
+[node name="Zzs" type="GPUParticles2D" parent="LeapPath2D/PathFollow2D/AnimatedSprite2D/EmoteAnchor" unique_id=805368252]
+texture_filter = 1
+emitting = false
+amount = 3
+texture = ExtResource("3_dtvbe")
+lifetime = 2.0
+randomness = 0.11
+fixed_fps = 12
+visibility_rect = Rect2(-50, -50, 100, 66)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_s3fm5")
 
 [node name="purrcator" type="AudioStreamPlayer2D" parent="." unique_id=39402628]
 stream = ExtResource("4_s3fm5")
@@ -574,30 +610,8 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SatrioNear" unique_id=274994139]
 shape = SubResource("RectangleShape2D_ixycl")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=667621343]
-texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_ririo")
-animation = &"sitsidelook"
-centered = false
-offset = Vector2(-16, -32)
-
-[node name="EmoteAnchor" type="Node2D" parent="AnimatedSprite2D" unique_id=542334889]
-position = Vector2(9, -11)
-
-[node name="Zzs" type="GPUParticles2D" parent="AnimatedSprite2D/EmoteAnchor" unique_id=805368252]
-texture_filter = 1
-emitting = false
-amount = 3
-texture = ExtResource("3_dtvbe")
-lifetime = 2.0
-randomness = 0.11
-fixed_fps = 12
-visibility_rect = Rect2(-50, -50, 100, 66)
-local_coords = true
-process_material = SubResource("ParticleProcessMaterial_s3fm5")
-
+[connection signal="animation_finished" from="LeapPath2D/PathFollow2D/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="finished" from="purrcator" to="." method="_on_purrcator_finished"]
 [connection signal="body_entered" from="FindSpot" to="." method="_on_find_spot_body_entered"]
 [connection signal="body_entered" from="SatrioNear" to="." method="_on_nearby_region_body_entered"]
 [connection signal="body_exited" from="SatrioNear" to="." method="_on_nearby_region_body_exited"]
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
