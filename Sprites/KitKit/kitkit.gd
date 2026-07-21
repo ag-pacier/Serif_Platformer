@@ -12,6 +12,12 @@ class_name KitKit
 @onready var leaping: bool = false
 @onready var can_go: bool = false
 
+## Name for specific instance if needed for friendlier triggering
+@export var kitten_name: String
+
+## Signal on queue_free
+@export var emit_end: bool = false
+
 # DisplaySprite
 @onready var kitsprite = get_node("LeapPath2D/PathFollow2D/AnimatedSprite2D")
 
@@ -24,6 +30,8 @@ class_name KitKit
 # If disappearing
 @onready var disap: bool = false
 @onready var ftrack: float = 1.0
+
+signal kitty_signal(signal_name)
 
 enum kitstate {
 	ASLEEP = 0,
@@ -59,6 +67,8 @@ func _process(delta: float) -> void:
 		kitsprite.self_modulate = Color(1, 1, 1, ftrack)
 		ftrack -= 4 * delta
 		if ftrack < 0.1 and can_go:
+			if emit_end:
+				kitty_signal.emit(kitten_name)
 			queue_free()
 
 func toggle_z(active: bool) -> void:
