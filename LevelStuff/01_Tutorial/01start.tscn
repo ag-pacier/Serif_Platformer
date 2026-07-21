@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c31t0m1h55ytb" path="res://LevelStuff/_trigger/trigger_base.tscn" id="7_rw2si"]
 [ext_resource type="Texture2D" uid="uid://cxkqtgu3sicvg" path="res://Art/Kenny/stone_packed.png" id="8_0uat7"]
 [ext_resource type="PackedScene" uid="uid://bknd7lltl8bb8" path="res://UI/InputIndicator/input_show.tscn" id="8_73ysj"]
+[ext_resource type="PackedScene" uid="uid://ccf8dlpyt5orp" path="res://Sprites/KitKit/kitkit.tscn" id="13_ip4wk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6qf3i"]
 texture = ExtResource("5_dl8hm")
@@ -266,6 +267,11 @@ trigger_name = "JumpSymbOn"
 position = Vector2(707, 191)
 trigger_name = "JumpSymOff"
 one_time = true
+
+[node name="KitKit" parent="Items" index="3" unique_id=1836989567 instance=ExtResource("13_ip4wk")]
+position = Vector2(136, -2)
+sleeping = true
+leap_away = true
 
 [node name="StartTimer" type="Timer" parent="." index="8" unique_id=1018969183]
 wait_time = 2.0
