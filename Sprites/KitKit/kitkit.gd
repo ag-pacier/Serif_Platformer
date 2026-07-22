@@ -75,6 +75,7 @@ func toggle_z(active: bool) -> void:
 	$LeapPath2D/PathFollow2D/AnimatedSprite2D/EmoteAnchor/Zzs.emitting = active
 
 func leap_away_kitty() -> void:
+	$CollisionShape2D.set_deferred("disabled", true)
 	leaping = true
 	$"omni-meow1".play()
 	kitsprite.play("jump")
@@ -90,7 +91,10 @@ func show_mood(mood: int) -> void:
 
 func _on_nearby_region_body_entered(body: Node2D) -> void:
 	if body.is_in_group("MainC"):
-		if body.get_angle_to(self.position) > 1:
+		var enc_pos = self.global_position.x - body.global_position.x
+		if enc_pos > 0:
+			self.scale.x = 1
+		else:
 			self.scale.x = -1
 		satrio_near = true
 		if leap_away:

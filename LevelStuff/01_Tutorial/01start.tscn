@@ -268,10 +268,32 @@ position = Vector2(707, 191)
 trigger_name = "JumpSymOff"
 one_time = true
 
-[node name="KitKit" parent="Items" index="3" unique_id=1836989567 instance=ExtResource("13_ip4wk")]
+[node name="KitKit1" parent="Items" index="3" unique_id=1836989567 instance=ExtResource("13_ip4wk")]
 position = Vector2(136, -2)
 sleeping = true
 leap_away = true
+kitten_name = "first"
+emit_end = true
+
+[node name="KitKit2" parent="Items" index="4" unique_id=1491633577 instance=ExtResource("13_ip4wk")]
+position = Vector2(1017, 323)
+sleeping = true
+leap_away = true
+kitten_name = "second"
+emit_end = true
+
+[node name="KitKit3" parent="Items" index="5" unique_id=870296214 instance=ExtResource("13_ip4wk")]
+position = Vector2(300, 320)
+leap_away = true
+kitten_name = "third"
+emit_end = true
+
+[node name="KitKit4" parent="Items" index="6" unique_id=1965257124 instance=ExtResource("13_ip4wk")]
+position = Vector2(392, 738)
+scale = Vector2(-1, 1)
+leap_away = true
+kitten_name = "fourth"
+emit_end = true
 
 [node name="StartTimer" type="Timer" parent="." index="8" unique_id=1018969183]
 wait_time = 2.0
@@ -287,5 +309,9 @@ one_shot = true
 [connection signal="trigger" from="Doors/LeftSymbolStart" to="." method="_on_left_symbol_start_trigger"]
 [connection signal="trigger" from="Doors/JumpSymbol" to="." method="_on_jump_symbol_trigger"]
 [connection signal="trigger" from="Doors/JumpDone" to="." method="_on_jump_done_trigger"]
+[connection signal="kitty_signal" from="Items/KitKit1" to="." method="_on_kit_kit_kitty_signal"]
+[connection signal="kitty_signal" from="Items/KitKit2" to="." method="_on_kit_kit_kitty_signal"]
+[connection signal="kitty_signal" from="Items/KitKit3" to="." method="_on_kit_kit_kitty_signal"]
+[connection signal="kitty_signal" from="Items/KitKit4" to="." method="_on_kit_kit_kitty_signal"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="LeftTimer" to="." method="_on_left_timer_timeout"]

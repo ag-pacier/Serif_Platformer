@@ -5,6 +5,7 @@ func _ready():
 	$Doors/StartTest/RInput.set_icon("right", "keyboard")
 	$Doors/LeftSymbol/LInput.set_icon("left", "keyboard")
 	$Doors/JumpSymbol/JumpInput.set_icon("jump", "keyboard")
+	var _kitten_guide = preload("res://Sprites/KitKit/kitkit.tscn")
 
 func _satrio_context(context: StringName) -> void:
 	super(context)
@@ -50,3 +51,14 @@ func _on_jump_symbol_trigger() -> void:
 func _on_jump_done_trigger() -> void:
 	print("Jump symbol turned off!")
 	$Doors/JumpSymbol/JumpInput.toggle_visible(false)
+
+
+func _on_kit_kit_kitty_signal(signal_name: Variant) -> void:
+	if signal_name == "first":
+		$Satrio.force_talking("Talking Cat??", "Startled me! Press the action button to close this dialog box.")
+	elif signal_name == "second":
+		$Satrio.force_talking("Talking Cat?!", "Feels weird to share the space with another. I'm Kit.")
+	elif signal_name == "third":
+		$Satrio.force_talking("Kit", "You got a name? How'd you get here anyway?")
+	elif signal_name == "fourth":
+		$Satrio.force_talking("Kit", "If you said something, I couldn't hear it. You seem capable enough otherwise. Keep following, I want to show you something.")

@@ -89,6 +89,9 @@ func change_health(health: int):
 			return
 	$Hud.increment_health(health)
 
+func force_talking(speaks: String, speakin: String) -> void:
+	$Hud.start_dialog(speaks, speakin)
+
 func action_task() -> void:
 	if context_act:
 		emit_signal("context_sig", context_item)
