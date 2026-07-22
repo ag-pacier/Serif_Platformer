@@ -4,8 +4,8 @@ extends Control
 @onready var speech = $PanelContainer/VBoxContainer/Speech
 @onready var char_timer = $CharTimer
 @onready var short_pause: float = 0.008
-@onready var pause: float = 0.09
-@onready var long_pause: float = 0.4
+@onready var pause: float = 0.07
+@onready var long_pause: float = 0.3
 @onready var long_pause_chars: Array = [",", ".", "\n", "!", "?"]
 @onready var short_pause_chars: Array = [" ", "'"]
 @onready var cur_char: int = 0
