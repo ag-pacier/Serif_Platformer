@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://0vli7igu6kxq" path="res://Music/Pixel/Pixel 12.ogg" id="8_ystxo"]
 [ext_resource type="PackedScene" uid="uid://cgryfmkyeh460" path="res://Sprites/coin/coin.tscn" id="9_5q86y"]
 [ext_resource type="PackedScene" uid="uid://ctg3c7j7qwgvf" path="res://LevelStuff/_trigger/DialogTrigger/diagtrigger.tscn" id="9_35gk7"]
+[ext_resource type="PackedScene" uid="uid://blnj8nn17xup0" path="res://LevelStuff/_trigger/FallReturn/fallreturn.tscn" id="10_fbyru"]
 [ext_resource type="PackedScene" uid="uid://651qoousmogv" path="res://Sprites/MovingPlatform/MovingPlat.tscn" id="11_p8pol"]
 [ext_resource type="PackedScene" uid="uid://q7ign3bl3yn3" path="res://Sprites/Baddies/Slime/Slime.tscn" id="11_ystxo"]
 [ext_resource type="PackedScene" uid="uid://due08jky8phuv" path="res://Sprites/Barriers/Key/key.tscn" id="12_nyj2j"]
@@ -169,6 +170,10 @@ position = Vector2(161, 224)
 speaker = "Kitty"
 spoke = "Hey'ya handsome. I hope you're doing alright."
 repeatable = true
+
+[node name="Fallreturn" parent="Doors" index="1" unique_id=1745462191 instance=ExtResource("10_fbyru")]
+position = Vector2(-1291, 647)
+return_point = Vector2(287, 162)
 
 [node name="Coin" parent="Items/Coins" index="0" unique_id=384186538 instance=ExtResource("9_5q86y")]
 position = Vector2(34, 199)

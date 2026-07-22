@@ -89,6 +89,10 @@ func change_health(health: int):
 			return
 	$Hud.increment_health(health)
 
+## Move Satrio to a given location globally in the shared scene he is in
+func zip_to(new_loc: Vector2):
+	self.global_position = new_loc
+
 func force_talking(speaks: String, speakin: String) -> void:
 	$Hud.start_dialog(speaks, speakin)
 
