@@ -75,6 +75,7 @@ func toggle_z(active: bool) -> void:
 	$LeapPath2D/PathFollow2D/AnimatedSprite2D/EmoteAnchor/Zzs.emitting = active
 
 func leap_away_kitty() -> void:
+	toggle_z(false)
 	$CollisionShape2D.set_deferred("disabled", true)
 	leaping = true
 	$"omni-meow1".play()

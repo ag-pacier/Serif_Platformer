@@ -18,11 +18,12 @@ signal dialog_complete
 func start_dialog(pers: String, diag: String) -> void:
 	set_speaker(pers)
 	self.visible = true
+	$FinTexture.visible = false
 	set_cur_dialog(diag)
 
 func finish_dialog() -> void:
-	self.visible = false
 	$FinTexture.visible = false
+	self.visible = false
 	set_speaker("None")
 	set_cur_dialog("")
 
