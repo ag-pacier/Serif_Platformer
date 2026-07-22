@@ -62,3 +62,5 @@ func _on_kit_kit_kitty_signal(signal_name: Variant) -> void:
 		$Satrio.force_talking("Kit", "You got a name? How'd you get here anyway?")
 	elif signal_name == "fourth":
 		$Satrio.force_talking("Kit", "If you said something, I couldn't hear it. You seem capable enough otherwise. Keep following, I want to show you something.")
+	elif signal_name == "fifth":
+		$Satrio.force_talking("Kit", "You're pretty quick! I bet clicking the action button when not talking lets you dash. Not a bad trick to know.")
