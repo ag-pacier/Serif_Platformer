@@ -51,6 +51,7 @@ text = "Main Menu"
 horizontal_alignment = 1
 
 [node name="MMenu" type="VBoxContainer" parent="Primary/Main/CurMenu" unique_id=1819269684]
+visible = false
 layout_mode = 2
 
 [node name="NewGame" type="Label" parent="Primary/Main/CurMenu/MMenu" unique_id=1917870647]
@@ -72,3 +73,22 @@ text = "Level Select"
 [node name="Exit" type="Label" parent="Primary/Main/CurMenu/MMenu" unique_id=1626448256]
 layout_mode = 2
 text = "Exit"
+
+[node name="SMenu" type="VBoxContainer" parent="Primary/Main/CurMenu" unique_id=116562793]
+layout_mode = 2
+
+[node name="Sounds" type="Label" parent="Primary/Main/CurMenu/SMenu" unique_id=349959476]
+layout_mode = 2
+text = "Audio"
+
+[node name="Video" type="Label" parent="Primary/Main/CurMenu/SMenu" unique_id=1765919904]
+layout_mode = 2
+text = "Video"
+
+[node name="Controls" type="Label" parent="Primary/Main/CurMenu/SMenu" unique_id=848428701]
+layout_mode = 2
+text = "Controls"
+
+[node name="Prev" type="Label" parent="Primary/Main/CurMenu/SMenu" unique_id=369689889]
+layout_mode = 2
+text = "Previous Menu"
