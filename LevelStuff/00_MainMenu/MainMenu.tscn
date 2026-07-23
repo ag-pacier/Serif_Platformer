@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://dxtud4hltcga7"]
+
+[ext_resource type="Script" uid="uid://731e6m0h8ua6" path="res://LevelStuff/00_MainMenu/main_menu.gd" id="1_clcpn"]
+[ext_resource type="FontFile" uid="uid://dyrk0j7befli8" path="res://Art/ThaleahFat.ttf" id="2_lh68d"]
+
+[sub_resource type="Theme" id="Theme_357fe"]
+default_font = ExtResource("2_lh68d")
+
+[node name="MainMenu" type="Control" unique_id=588208194]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_clcpn")
+
+[node name="Primary" type="CenterContainer" parent="." unique_id=2060895670]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main" type="VBoxContainer" parent="Primary" unique_id=2134153551]
+layout_mode = 2
+theme = SubResource("Theme_357fe")
+alignment = 1
+
+[node name="Title" type="Label" parent="Primary/Main" unique_id=1098659255]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Serif Satrio"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurMenu" type="VBoxContainer" parent="Primary/Main" unique_id=1575496155]
+layout_mode = 2
+
+[node name="SubTitle" type="Label" parent="Primary/Main/CurMenu" unique_id=337083619]
+layout_mode = 2
+text = "Main Menu"
+horizontal_alignment = 1
+
+[node name="MMenu" type="VBoxContainer" parent="Primary/Main/CurMenu" unique_id=1819269684]
+layout_mode = 2
+
+[node name="NewGame" type="Label" parent="Primary/Main/CurMenu/MMenu" unique_id=1917870647]
+layout_mode = 2
+text = "New Game"
+
+[node name="LoadGame" type="Label" parent="Primary/Main/CurMenu/MMenu" unique_id=423221133]
+layout_mode = 2
+text = "Load Game"
+
+[node name="Settings" type="Label" parent="Primary/Main/CurMenu/MMenu" unique_id=1089391552]
+layout_mode = 2
+text = "Settings"
+
+[node name="Level Select" type="Label" parent="Primary/Main/CurMenu/MMenu" unique_id=1352344605]
+layout_mode = 2
+text = "Level Select"
+
+[node name="Exit" type="Label" parent="Primary/Main/CurMenu/MMenu" unique_id=1626448256]
+layout_mode = 2
+text = "Exit"
