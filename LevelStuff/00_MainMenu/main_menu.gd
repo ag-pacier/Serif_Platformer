@@ -3,12 +3,17 @@ extends Control
 # Current menu
 @onready var cur_menu: StringName = "Main"
 
-# Possible Menus
-@onready var menus: Array = ["Main", "Settings", "Load Game"]
-
 # Current Selection
 @onready var selection: int = 0
 @onready var max_select: int = 0
+
+# Common nodes
+@onready var menu_title: Label = $Primary/Main/Title
+@onready var mm_node: VBoxContainer = $Primary/Main/CurMenu/MMenu
+@onready var sm_node: VBoxContainer = $Primary/Main/CurMenu/SMenu
+
+# Possible Menus
+@onready var menus: Array = [ {"Name": "Main", "Node": mm_node, "Max Items": 4} ]
 
 func _activate_menu(menu: StringName) -> void:
 	if not menu in menus:

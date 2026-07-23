@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://grulgupnycbv"]
+
+[ext_resource type="Script" uid="uid://ddxx1r81f3o4f" path="res://UI/Menu2.0/menubase.gd" id="1_46ow8"]
+[ext_resource type="Theme" uid="uid://b2d7786rwcuj6" path="res://UI/Menu2.0/MenuTheme.tres" id="1_qs7yk"]
+
+[node name="Menubase" type="VBoxContainer" unique_id=252986711]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qs7yk")
+script = ExtResource("1_46ow8")
+
+[node name="MTitle" type="Label" parent="." unique_id=1891727454]
+layout_mode = 2
+
+[node name="ItemList" type="VBoxContainer" parent="MTitle" unique_id=1284493058]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+alignment = 1

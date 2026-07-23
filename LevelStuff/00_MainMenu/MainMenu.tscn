@@ -1,10 +1,7 @@
 [gd_scene format=3 uid="uid://dxtud4hltcga7"]
 
 [ext_resource type="Script" uid="uid://731e6m0h8ua6" path="res://LevelStuff/00_MainMenu/main_menu.gd" id="1_clcpn"]
-[ext_resource type="FontFile" uid="uid://dyrk0j7befli8" path="res://Art/ThaleahFat.ttf" id="2_lh68d"]
-
-[sub_resource type="Theme" id="Theme_357fe"]
-default_font = ExtResource("2_lh68d")
+[ext_resource type="Theme" uid="uid://b2d7786rwcuj6" path="res://UI/Menu2.0/MenuTheme.tres" id="2_lh68d"]
 
 [node name="MainMenu" type="Control" unique_id=588208194]
 texture_filter = 1
@@ -32,7 +29,7 @@ grow_vertical = 2
 
 [node name="Main" type="VBoxContainer" parent="Primary" unique_id=2134153551]
 layout_mode = 2
-theme = SubResource("Theme_357fe")
+theme = ExtResource("2_lh68d")
 alignment = 1
 
 [node name="Title" type="Label" parent="Primary/Main" unique_id=1098659255]
