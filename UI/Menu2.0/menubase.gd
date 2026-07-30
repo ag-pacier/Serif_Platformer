@@ -49,3 +49,6 @@ func move_ind(previous: bool = false) -> void:
 			current_selection += 1
 	cur_item = menu_item_list.get(entries[current_selection])
 	cur_item.label_settings = current_effect
+
+func activation() -> void:
+	print("Activated :", entries[current_selection])
