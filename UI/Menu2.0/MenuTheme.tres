@@ -4,3 +4,4 @@
 
 [resource]
 default_font = ExtResource("1_prvrd")
+default_font_size = 30

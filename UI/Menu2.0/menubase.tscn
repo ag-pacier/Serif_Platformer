@@ -15,8 +15,11 @@ script = ExtResource("1_46ow8")
 [node name="MTitle" type="Label" parent="." unique_id=1891727454]
 layout_mode = 2
 
-[node name="ItemList" type="VBoxContainer" parent="MTitle" unique_id=1284493058]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ItemList" type="VBoxContainer" parent="." unique_id=1284493058]
+layout_mode = 2
 alignment = 1
+
+[node name="InputCool" type="Timer" parent="." unique_id=1428131450]
+wait_time = 0.2
+one_shot = true
+ignore_time_scale = true
