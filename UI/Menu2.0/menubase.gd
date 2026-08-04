@@ -22,9 +22,6 @@ class_name MenuI
 # Current selection effect
 @onready var current_effect = preload("res://UI/Menu2.0/cur_item_effect.tres")
 
-# Input cooldown
-@onready var inp_timer: Timer = $InputCool
-
 # Signal to pass what is being selected
 signal selected_item(ite: String)
 
@@ -61,13 +58,3 @@ func move_ind(previous: bool = false) -> void:
 func activation() -> void:
 	print("Activation for ", title, " on entry: ", entries[current_selection])
 	selected_item.emit(entries[current_selection])
-	inp_timer.start()
-
-func _process(_delta: float) -> void:
-	if self.visible and inp_timer.is_stopped():
-		if Input.is_action_just_pressed("down_dir"):
-			move_ind()
-		elif Input.is_action_just_pressed("up_dir"):
-			move_ind(true)
-		elif Input.is_action_just_pressed("return_but"):
-			activation()
