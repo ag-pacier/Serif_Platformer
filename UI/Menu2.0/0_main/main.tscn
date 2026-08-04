@@ -37,6 +37,4 @@ entries = Array[String](["Developer Arena", "Tutorial", "Back To Main"])
 visible = false
 layout_mode = 2
 title = "Settings"
-entries = Array[String](["Back to Main"])
-
-[connection signal="selected_item" from="Prime/LvlSelect" to="." method="_on_top_level_selected_item"]
+entries = Array[String](["Back To Main"])
