@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://blwqdrgqwe8c7"]
+
+[ext_resource type="Script" uid="uid://3w218tjdrq2h" path="res://UI/Menu2.0/_subItems/settingsPane/setting_menu.gd" id="1_7btgw"]
+
+[node name="SettingMenu" type="VBoxContainer" unique_id=436448001]
+script = ExtResource("1_7btgw")
+metadata/_custom_type_script = "uid://ddxx1r81f3o4f"
