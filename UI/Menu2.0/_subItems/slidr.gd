@@ -7,6 +7,9 @@ class_name setSlider
 ## Indicating name and value when changed
 signal val_changed(sname: String, sval: int)
 
+# Selected effect
+@onready var select_effect: LabelSettings = preload("res://UI/Menu2.0/cur_item_effect.tres")
+
 func _ready() -> void:
 	if slider_name == "":
 		push_error("Slider names cannot be blank")
@@ -24,3 +27,9 @@ func set_slide_value(new_val: int) -> void:
 func _on_slider_drag_ended(value_changed: bool) -> void:
 	if value_changed:
 		val_changed.emit(slider_name, $HSlider.value)
+
+func selected_slider(selected: bool) -> void:
+	if selected:
+		$NameLabel.label_settings = select_effect
+	else:
+		$NameLabel.label_settings = null
