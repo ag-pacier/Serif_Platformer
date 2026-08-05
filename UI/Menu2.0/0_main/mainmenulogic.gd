@@ -1,7 +1,7 @@
 extends CenterContainer
 
 @onready var current_menu: MenuI = $Prime/TopLevel
-@onready var menu_lst: Dictionary = {"Main": $Prime/TopLevel, "Level Select": $Prime/LvlSelect, "Settings": $Prime/Settings}
+@onready var menu_lst: Dictionary = {"Main": $Prime/TopLevel, "Level Select": $Prime/LvlSelect}
 
 func _ready() -> void:
 	current_menu.connect("selected_item", _selected_item)

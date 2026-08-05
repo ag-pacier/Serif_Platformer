@@ -32,9 +32,3 @@ visible = false
 layout_mode = 2
 title = "Level Select"
 entries = Array[String](["Developer Arena", "Tutorial", "Back To Main"])
-
-[node name="Settings" parent="Prime" unique_id=62108759 instance=ExtResource("2_grbmn")]
-visible = false
-layout_mode = 2
-title = "Settings"
-entries = Array[String](["Back To Main"])
