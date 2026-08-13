@@ -13,6 +13,10 @@ func _process(_delta: float) -> void:
 		current_menu.move_ind(true)
 	elif Input.is_action_just_pressed("return_but"):
 		current_menu.activation()
+	elif Input.is_action_just_pressed("right"):
+		current_menu.slide_mot(true)
+	elif Input.is_action_just_pressed("left"):
+		current_menu.slide_mot(false)
 
 func _selected_item(ite: String) -> void:
 	if ite == "Start":

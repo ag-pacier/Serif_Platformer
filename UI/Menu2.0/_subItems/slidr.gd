@@ -16,6 +16,19 @@ func _ready() -> void:
 	else:
 		$NameLabel.text = slider_name
 
+## Change value of slider by one increment
+func inc_value(pos: bool) -> void:
+	var cur_val: float = $HSlider.value
+	if pos and cur_val < 100.0:
+		cur_val += 5
+		if cur_val > 100.0:
+			cur_val = 100.0
+	elif not pos and cur_val > 0.0:
+		cur_val -= 5
+		if cur_val < 0.0:
+			cur_val = 0.0
+	$HSlider.set_value_no_signal(cur_val)
+
 ## Set the value of the slider immediately
 func set_slide_value(new_val: int) -> void:
 	if new_val < 0 or new_val > 100:

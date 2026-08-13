@@ -72,6 +72,11 @@ func move_ind(previous: bool = false) -> void:
 	else:
 		cur_item[1].selected_slider(true)
 
+func slide_mot(pos: bool) -> void:
+	var cur_item: Array = menu_item_list.get(entries[current_selection])
+	if cur_item[0] == selection_type.SLIDER:
+		cur_item[1].inc_value(pos)
+
 func activation() -> void:
 	print("Activation for ", title, " on entry: ", entries[current_selection])
 	selected_item.emit(entries[current_selection])
