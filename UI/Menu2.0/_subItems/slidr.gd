@@ -19,19 +19,21 @@ func _ready() -> void:
 ## Change value of slider by one increment
 func inc_value(pos: bool) -> void:
 	var cur_val: float = $HSlider.value
-	if pos and cur_val < 100.0:
+	if pos and cur_val < 6.0:
 		cur_val += 5
-		if cur_val > 100.0:
-			cur_val = 100.0
-	elif not pos and cur_val > 0.0:
+		if cur_val > 6.0:
+			cur_val = 6.0
+	elif not pos and cur_val > -80.0:
 		cur_val -= 5
-		if cur_val < 0.0:
-			cur_val = 0.0
-	$HSlider.set_value_no_signal(cur_val)
+		if cur_val < -80.0:
+			cur_val = -80.0
+	if not cur_val == $HSlider.value:
+		$HSlider.set_value_no_signal(cur_val)
+		val_changed.emit(slider_name, cur_val)
 
 ## Set the value of the slider immediately
 func set_slide_value(new_val: int) -> void:
-	if new_val < 0 or new_val > 100:
+	if new_val < -80.0 or new_val > 6:
 		push_error("Unable to set slider ", slider_name, " to a value of ", new_val)
 		return
 	$HSlider.set_value_no_signal(new_val)

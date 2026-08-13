@@ -39,3 +39,7 @@ slider_name = "Music Volume"
 [node name="Back2Main" type="Label" parent="ItemList" unique_id=1886845797]
 layout_mode = 2
 text = "Back To Main"
+
+[connection signal="val_changed" from="ItemList/AudioMaster" to="." method="_on_audio_master_val_changed"]
+[connection signal="val_changed" from="ItemList/AudioEffects" to="." method="_on_audio_effects_val_changed"]
+[connection signal="val_changed" from="ItemList/AudioMusic" to="." method="_on_audio_music_val_changed"]

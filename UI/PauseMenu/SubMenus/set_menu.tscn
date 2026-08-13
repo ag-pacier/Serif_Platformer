@@ -1,20 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://dv6vuos0oqfev"]
+[gd_scene format=3 uid="uid://dv6vuos0oqfev"]
 
 [ext_resource type="PackedScene" uid="uid://0o311gqfojnt" path="res://UI/PauseMenu/pmenu_base.tscn" id="1_lyrfc"]
 [ext_resource type="Script" uid="uid://dnygvrta6qtqg" path="res://UI/PauseMenu/SubMenus/set_menu.gd" id="2_fn514"]
 
-[node name="setmen" instance=ExtResource("1_lyrfc")]
+[node name="setmen" unique_id=817952122 instance=ExtResource("1_lyrfc")]
 script = ExtResource("2_fn514")
 
-[node name="TopVolume" type="HBoxContainer" parent="." index="2"]
+[node name="TopVolume" type="HBoxContainer" parent="." index="2" unique_id=1273125484]
 layout_mode = 2
 
-[node name="MasLabel" type="Label" parent="TopVolume" index="0"]
+[node name="MasLabel" type="Label" parent="TopVolume" index="0" unique_id=629424293]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Master Volume"
 
-[node name="MasSlider" type="HSlider" parent="TopVolume" index="1"]
+[node name="MasSlider" type="HSlider" parent="TopVolume" index="1" unique_id=33572907]
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 min_value = -80.0
@@ -24,15 +24,15 @@ scrollable = false
 tick_count = 10
 ticks_on_borders = true
 
-[node name="EffectVolume" type="HBoxContainer" parent="." index="3"]
+[node name="EffectVolume" type="HBoxContainer" parent="." index="3" unique_id=677000976]
 layout_mode = 2
 
-[node name="EffLabel" type="Label" parent="EffectVolume" index="0"]
+[node name="EffLabel" type="Label" parent="EffectVolume" index="0" unique_id=65096058]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Effects Volume"
 
-[node name="EffSlider" type="HSlider" parent="EffectVolume" index="1"]
+[node name="EffSlider" type="HSlider" parent="EffectVolume" index="1" unique_id=919610975]
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 min_value = -80.0
@@ -42,15 +42,15 @@ scrollable = false
 tick_count = 10
 ticks_on_borders = true
 
-[node name="MusicVolume" type="HBoxContainer" parent="." index="4"]
+[node name="MusicVolume" type="HBoxContainer" parent="." index="4" unique_id=535332298]
 layout_mode = 2
 
-[node name="MusLabel" type="Label" parent="MusicVolume" index="0"]
+[node name="MusLabel" type="Label" parent="MusicVolume" index="0" unique_id=297310458]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Music Volume"
 
-[node name="MusSlider" type="HSlider" parent="MusicVolume" index="1"]
+[node name="MusSlider" type="HSlider" parent="MusicVolume" index="1" unique_id=1286746162]
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 min_value = -80.0
