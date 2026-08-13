@@ -3,13 +3,19 @@
 [ext_resource type="Script" uid="uid://c7siep740ucc5" path="res://UI/Menu2.0/0_main/mainmenulogic.gd" id="1_grbmn"]
 [ext_resource type="Theme" uid="uid://b2d7786rwcuj6" path="res://UI/Menu2.0/MenuTheme.tres" id="1_lo3h2"]
 [ext_resource type="PackedScene" uid="uid://grulgupnycbv" path="res://UI/Menu2.0/menubase.tscn" id="2_grbmn"]
+[ext_resource type="PackedScene" uid="uid://blwqdrgqwe8c7" path="res://UI/Menu2.0/_subItems/settingsPane/settingMenu.tscn" id="4_xqmn2"]
 
 [node name="Main" type="CenterContainer" unique_id=1051336811]
-anchors_preset = 15
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
+offset_top = -112.0
+offset_bottom = 112.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_grbmn")
 
 [node name="Prime" type="VBoxContainer" parent="." unique_id=47334428]
@@ -32,3 +38,7 @@ visible = false
 layout_mode = 2
 title = "Level Select"
 entries = Array[String](["Developer Arena", "Tutorial", "Back To Main"])
+
+[node name="Settings" parent="Prime" unique_id=436448001 instance=ExtResource("4_xqmn2")]
+visible = false
+layout_mode = 2

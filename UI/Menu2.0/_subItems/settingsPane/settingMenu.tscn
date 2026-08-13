@@ -1,7 +1,41 @@
 [gd_scene format=3 uid="uid://blwqdrgqwe8c7"]
 
 [ext_resource type="Script" uid="uid://3w218tjdrq2h" path="res://UI/Menu2.0/_subItems/settingsPane/setting_menu.gd" id="1_7btgw"]
+[ext_resource type="Theme" uid="uid://b2d7786rwcuj6" path="res://UI/Menu2.0/MenuTheme.tres" id="1_ysvk6"]
+[ext_resource type="PackedScene" uid="uid://da5031fyq7h13" path="res://UI/Menu2.0/_subItems/slidr.tscn" id="2_eigtu"]
 
 [node name="SettingMenu" type="VBoxContainer" unique_id=436448001]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ysvk6")
 script = ExtResource("1_7btgw")
 metadata/_custom_type_script = "uid://ddxx1r81f3o4f"
+
+[node name="Title" type="Label" parent="." unique_id=1227383371]
+layout_mode = 2
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ItemList" type="VBoxContainer" parent="." unique_id=1833429048]
+layout_mode = 2
+size_flags_stretch_ratio = 6.33
+
+[node name="AudioMaster" parent="ItemList" unique_id=1532445433 instance=ExtResource("2_eigtu")]
+layout_mode = 2
+slider_name = "Master Volume"
+
+[node name="AudioEffects" parent="ItemList" unique_id=1971447564 instance=ExtResource("2_eigtu")]
+layout_mode = 2
+slider_name = "Effect Volume"
+
+[node name="AudioMusic" parent="ItemList" unique_id=30933189 instance=ExtResource("2_eigtu")]
+layout_mode = 2
+slider_name = "Music Volume"
+
+[node name="Back2Main" type="Label" parent="ItemList" unique_id=1886845797]
+layout_mode = 2
+text = "Back To Main"

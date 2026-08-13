@@ -3,11 +3,16 @@
 [ext_resource type="Script" uid="uid://bvajg0la3o1d2" path="res://UI/Menu2.0/_subItems/slidr.gd" id="1_b57g2"]
 
 [node name="Slidr" type="HBoxContainer" unique_id=1532445433]
-anchors_preset = 15
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+alignment = 1
 script = ExtResource("1_b57g2")
 
 [node name="NameLabel" type="Label" parent="." unique_id=932247228]
@@ -15,6 +20,8 @@ layout_mode = 2
 text = "Name"
 
 [node name="HSlider" type="HSlider" parent="." unique_id=202792078]
+custom_minimum_size = Vector2(200, 0)
+propagate_maximum_size = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
