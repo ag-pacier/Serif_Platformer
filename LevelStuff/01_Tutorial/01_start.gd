@@ -73,3 +73,7 @@ func _on_kit_kit_kitty_signal(signal_name: Variant) -> void:
 			$Satrio.force_talking("Kit", "I managed to trick that pit into yanking you back up if you fall. I can't do it for all of them though!")
 		else:
 			$Satrio.force_talking("Kit", "Nice work! I want to show you one more thing before we move on.")
+	elif signal_name == "seventh":
+		$Satrio.force_talking("Kit", "There are items scattered about the world. Some provide benefits, others act as guides or progress markers.")
+	elif signal_name == "eighth":
+		$Satrio.force_talking("Kit", "Your agility should let you leap against and up walls. Going down isn't always a bad though.")
