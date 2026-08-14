@@ -1,5 +1,7 @@
 extends LevelBase
 
+@onready var fell_down: bool = false
+
 func _ready():
 	super()
 	$Doors/StartTest/RInput.set_icon("right", "keyboard")
@@ -10,6 +12,8 @@ func _ready():
 func _satrio_context(context: StringName) -> void:
 	super(context)
 
+func fall_handle(_sig: Variant) -> void:
+	fell_down = true
 
 func _on_start_test_trigger() -> void:
 	print("Start trigger hit")
