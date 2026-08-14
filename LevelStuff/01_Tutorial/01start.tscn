@@ -306,6 +306,12 @@ leap_away = true
 kitten_name = "fifth"
 emit_end = true
 
+[node name="KitKit6" parent="Items" index="8" unique_id=256354678 instance=ExtResource("13_ip4wk")]
+position = Vector2(2075, 737)
+leap_away = true
+kitten_name = "sixth"
+emit_end = true
+
 [node name="StartTimer" type="Timer" parent="." index="8" unique_id=1018969183]
 wait_time = 2.0
 one_shot = true
@@ -326,5 +332,6 @@ one_shot = true
 [connection signal="kitty_signal" from="Items/KitKit3" to="." method="_on_kit_kit_kitty_signal"]
 [connection signal="kitty_signal" from="Items/KitKit4" to="." method="_on_kit_kit_kitty_signal"]
 [connection signal="kitty_signal" from="Items/KitKit5" to="." method="_on_kit_kit_kitty_signal"]
+[connection signal="kitty_signal" from="Items/KitKit6" to="." method="_on_kit_kit_kitty_signal"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="LeftTimer" to="." method="_on_left_timer_timeout"]
